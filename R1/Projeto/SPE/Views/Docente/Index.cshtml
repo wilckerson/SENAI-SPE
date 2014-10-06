@@ -1,0 +1,100 @@
+@model IEnumerable<SPE.ViewModel.DocenteViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Docente")
+
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Docentes</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table class="table table-striped" id="dataTable" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Nome
+                        </th>
+                        <th search>Tipo de Contrato
+                        </th>
+                        <th search>Empresa
+                        </th>
+
+                        <th>CPF
+                        </th>
+                        <th>E-mail
+                        </th>
+                        <th filtered>Nivel de Função
+                        </th>
+                        <th filtered>Sexo
+                        </th>
+                        <th>Telefone
+                        </th>
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                        <tr>
+                             <td>@item.Nome</td>
+                            <td>@item.TipoContratoAtual.Descr</td>
+                            <td>@item.EmpresaAtual.NomeFantasia</td>
+                           
+                            <td>@item.CPF</td>
+                            <td>@item.Email</td>
+                            <td>@item.NivelFuncao</td>
+                            <td>
+                                @if (item.Sexo == 0)
+                                {
+                                    @:Feminino
+                                }
+                                else if (item.Sexo == 1)
+                                {
+                                    @:Masculino
+                                }
+                                else
+                                {
+                                    @:N/A
+                                }
+                            </td>
+                            <td>@item.Tel</td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip" onclick="Editar('/Docente/EditarDocente/@item.IdDocente');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.IdDocente);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Não há Docentes cadastrados.</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Docente", "CadastrarDocente", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Docente/ExcluirDocente/")

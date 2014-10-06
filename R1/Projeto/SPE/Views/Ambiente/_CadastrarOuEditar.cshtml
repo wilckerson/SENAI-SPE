@@ -1,0 +1,81 @@
+@model SPE.ViewModel.AmbienteViewModel
+
+@{
+    ViewBag.Title = "_CadastrarOuEditar";
+}
+
+<div class="span5">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IdTipoAmbiente)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.IdTipoAmbiente, ((IEnumerable<SPE.ViewModel.TipoAmbienteViewModel>)Model.ListaTipoAmbiente).Select(option => new SelectListItem
+               {
+                   Text = option.Descr,
+                   Value = option.IdTipoAmbiente.ToString(),
+                   Selected = Model != null && option.IdTipoAmbiente == Model.IdTipoAmbiente
+               }), "Selecione")
+        @Html.ValidationMessageFor(model => model.IdTipoAmbiente)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IdLoc)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.IdLoc, ((IEnumerable<SPE.ViewModel.LocalAmbienteViewModel>)Model.ListaLocalidade).Select(option => new SelectListItem
+               {
+                   Text = option.Descr,
+                   Value = option.IdLoc.ToString(),
+                   Selected = Model != null && option.IdLoc == Model.IdLoc
+               }), "Selecione")
+        @Html.ValidationMessageFor(model => model.IdLoc)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Observacao)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Observacao, new { maxlength = "254" })
+        @Html.ValidationMessageFor(model => model.Observacao)
+    </div>
+
+</div>
+
+<div class="span5">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Nome)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Nome, new { maxlength = 100 })
+        @Html.ValidationMessageFor(model => model.Nome)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Capac)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Capac, new { maxlength = 4, onkeypress = "return AllowOnlyNumbers(event);" })
+        @Html.ValidationMessageFor(model => model.Capac)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Status)
+    </div>
+    <div class="editor-field">
+        <label class="radio" style="display: inline-block">
+            <input type="radio" name="Status" value="1" @if (Model.Status == 1 || Model.Status == null)
+                                                        {
+                                                            @:checked
+                                                        }
+             >Ativo</label>
+        <label class="radio span1" style="display: inline-block">
+            <input type="radio" name="Status" value="0" @if (Model.Status == 0)
+                                                        {
+                                                            @:checked
+                                                        }
+            >Inativo</label>
+        @Html.ValidationMessageFor(model => model.Status)
+    </div>
+
+
+</div>

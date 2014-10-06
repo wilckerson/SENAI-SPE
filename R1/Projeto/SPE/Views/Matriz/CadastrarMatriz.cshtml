@@ -1,0 +1,47 @@
+﻿@model SPE.ViewModel.MatrizViewModel
+
+@{
+    ViewBag.Title = "Cadastrar Matriz";
+}
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Matriz")
+@using (Html.BeginForm("CadastrarMatriz", "Matriz", FormMethod.Post, new { id = "frmEditarMatriz" }))
+{@Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.IdMatriz)
+    
+    @Html.HiddenFor(model => model.Json)
+       
+    @section Head
+    {
+        <script src="~/Scripts/Matriz/matriz.js"></script>
+    }
+    
+    <div class="container">
+        <div class="white_box">
+            <div class="container-fluid">
+
+                <h1>Cadastrar Matriz</h1>
+                <hr />
+
+                <div class="row-fluid">
+                    @Html.Partial("_CadastrarOuEditar", Model)
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <h3>Lista de módulos e seus componentes</h3>
+                <hr />
+
+                @Html.Partial("MatrizModulo", Model)
+
+            </div>
+            <div class="buttons">
+                <input type="submit" id="btnSalvar" data-loading-text="Carregando..." value="Salvar" class="btns btn-large btn-principal json" />
+                @Html.ActionLink("Lista de Matrizes", "Index", null, new { @class = "btns btn-large" })
+            </div>
+        </div>
+    </div>
+
+}
+
+<div id="ModalComponente" class="modal hide fade"></div>
+

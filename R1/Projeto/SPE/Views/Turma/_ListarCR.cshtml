@@ -1,0 +1,15 @@
+﻿@model List<SPE.ViewModel.CRViewModel>
+@{
+    Layout = null;
+}
+
+@*<select data-val="true" data-val-required="Campo Obrigat&amp;#243;rio" id="IdCR" name="IdCR" style="width:auto;" class="valid"><option value="">Selecione</option>
+
+</select>*@
+
+    <option value="">Selecione</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.IdCR" selected="selected">@item.Nome</option>
+    }
+

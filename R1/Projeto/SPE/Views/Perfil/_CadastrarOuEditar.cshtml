@@ -1,0 +1,207 @@
+@model SPE.ViewModel.PerfilVM
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Nome, new { @class = "input-medium", maxlength = "250" })
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descricao)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Descricao, new { maxlength = "254" })
+            @Html.ValidationMessageFor(model => model.Descricao)
+        </div>
+
+        <div class="editor-label">
+            <label>Habilitado</label>
+        </div>       
+        <div class="editor-field">
+            @if (Model.Perfil != null)
+            {
+            <select name="Status" id="Status" data-val="true" data-val-required="Campo Obrigatório.">
+                <option value="">Selecione</option>
+                <option value="1" @(Model.Perfil.Status == 1 ? "selected=selected" : null)>Sim</option>
+                <option value="0" @(Model.Perfil.Status == 0 ? "selected=selected" : null)>Não</option>
+            </select>
+            }
+            else
+            {
+            <select name="Status" id="Status" data-val="true" data-val-required="Campo Obrigatório.">
+                <option value="">Selecione</option>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
+            </select>                
+            }            
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+        <div class="editor-label">
+            Aprovar Matriz
+        </div>
+        <div class="editor-field">
+            @if (Model.Perfil != null)
+            {
+            <select name="AprovarMatriz" id="AprovarMatriz" data-val="true" data-val-required="Campo Obrigatório.">
+                <option value="">Selecione</option>
+                <option value="1" @(Model.Perfil.AprovarMatriz == 1 ? "selected=selected" : null)>Sim</option>
+                <option value="0" @(Model.Perfil.AprovarMatriz == 0 ? "selected=selected" : null)>Não</option>
+            </select>
+            }
+            else
+            {
+            <select name="AprovarMatriz" id="AprovarMatriz" data-val="true" data-val-required="Campo Obrigatório.">
+                <option value="">Selecione</option>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
+            </select>                
+            }            
+            @Html.ValidationMessageFor(model => model.AprovarMatriz)
+        </div>
+         <div class="editor-label">
+            Aprovar Turma
+        </div>
+        <div class="editor-field">
+            @if (Model.Perfil != null)
+            {
+            <select name="AprovarTurma" id="AprovarTurma" data-val="true" data-val-required="Campo Obrigatório.">
+                <option value="">Selecione</option>
+                <option value="1" @(Model.Perfil.AprovarTurma == 1 ? "selected=selected" : null)>Sim</option>
+                <option value="0" @(Model.Perfil.AprovarTurma == 0 ? "selected=selected" : null)>Não</option>
+            </select>
+            }
+            else
+            {
+            <select name="AprovarTurma" id="AprovarTurma" data-val="true" data-val-required="Campo Obrigatório.">
+                <option value="">Selecione</option>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
+            </select>                
+            }            
+            @Html.ValidationMessageFor(model => model.AprovarTurma)
+        </div>
+        <div class="editor-label">
+            Expirar Matriz
+        </div>
+        <div class="editor-field">
+            @if (Model.Perfil != null)
+            {
+            <select name="ExpirarMatriz" id="ExpirarMatriz" data-val="true" data-val-required="Campo Obrigatório.">
+                <option value="">Selecione</option>
+                <option value="1" @(Model.Perfil.ExpirarMatriz == 1 ? "selected=selected" : null)>Sim</option>
+                <option value="0" @(Model.Perfil.ExpirarMatriz == 0 ? "selected=selected" : null)>Não</option>
+            </select>
+            }
+            else
+            {
+            <select name="ExpirarMatriz" id="ExpirarMatriz" data-val="true" data-val-required="Campo Obrigatório.">
+                <option value="">Selecione</option>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
+            </select>                
+            }            
+            @Html.ValidationMessageFor(model => model.ExpirarMatriz)
+        </div>
+    </div>
+
+
+    <div class="row-fluid">
+        <div id="modulos" class="span6">
+            <h3>Funcionalidades Escolhidas</h3>
+            <div class="modulo-item" order="1" moduloid="">
+                <div id="headModulo" style="text-align:right">                                     
+                         <a href="#" class="limparTudo">Limpar</a>
+                </div>
+                <div style="clear: right">
+                    @if (Model.Perfil != null)
+                    {
+                        if (Model.Perfil.Funcionalidade != null && Model.Perfil.Funcionalidade.Count > 0)
+                        {
+                            <ul class="ul1 modulos ui-sortable">
+                            @foreach (var item in Model.Perfil.Funcionalidade.OrderBy(a => a.Descricao))
+                            {
+                            <li funcionalidadeId="@item.idFuncionalidade" nome="@item.Descricao" class="ui-draggable" style="position: relative; cursor:pointer; cursor:hand -webkit-touch-callout: none;
+                                -webkit-user-select: none;
+                                -khtml-user-select: none;
+                                -moz-user-select: moz-none;
+                                -ms-user-select: none;
+                                user-select: none;">@item.Descricao <a href="" onclick="return false;" class="remove" style="margin-left: 4px;">
+                                    <span class="icon icon-remove"></span>
+                            </a><span style="font-weight: bold; float: right"> </span></li>
+                            }
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="ul1 modulos">
+                            </ul>
+                        }
+                    }
+                    else
+                    {
+                        <ul class="ul1 modulos">
+                        </ul>
+                    }
+
+                            
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="componentes span6">
+            <h3>Funcionalidades Disponiveis</h3>
+            <div id="componentesDocente">
+                
+                @if (Model.Funcionalidades != null)
+                {
+                    var i = 0;
+                    <div class="funcionalidadesBase" style="float:left;">
+                    <ul class="ul1">
+                        @foreach (var item in Model.Funcionalidades.OrderBy(a => a.Descricao))
+                        {
+                            <li funcionalidadeId="@item.idFuncionalidade" nome="@item.Descricao" class="ui-draggable" style="position: relative; cursor:pointer; cursor:hand -webkit-touch-callout: none;
+                            -webkit-user-select: none;
+                            -khtml-user-select: none;
+                            -moz-user-select: moz-none;
+                            -ms-user-select: none;
+                            user-select: none;">@item.Descricao <a href="" onclick="return false;" class="remove" style="margin-left: 4px;">
+                                <span class="icon icon-remove"></span>
+                            </a><span style="font-weight: bold; float: right"></span></li>
+                            if (i == 14)
+                            {
+                                @:</ul></div><div style='float:left;'><ul class='ul1'>
+                            }
+                            i++;
+                        }
+                    </ul>
+
+                </div>                   
+                }
+
+
+                else
+                {
+
+                    <ul class="ul1 modulos">
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalComponente" class="modal hide fade"></div>
+<link href="~/Content/DragComponente.css" rel="stylesheet" />
+
+<input type="hidden" name="idFuncionalidades" id="idFuncionalidades" />

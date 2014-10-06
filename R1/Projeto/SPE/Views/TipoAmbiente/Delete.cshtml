@@ -1,0 +1,29 @@
+@model SPE.ViewModel.TipoAmbienteViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>TipoAmbienteViewModel</legend>
+
+    <div class="display-label">Descr</div>
+    <div class="display-field">@Model.Descr</div>
+
+    <div class="display-label">Ambiente</div>
+    <div class="display-field">@(Model.Ambiente == null ? "None" : Model.Ambiente.Count.ToString())</div>
+
+    <div class="display-label">Componente</div>
+    <div class="display-field">@(Model.Componente == null ? "None" : Model.Componente.Count.ToString())</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

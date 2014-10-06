@@ -1,0 +1,35 @@
+@model SPE.ViewModel.TipoContratoViewModel
+
+@{
+    ViewBag.Title = "CadastrarTipoUsuario";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Tipo Contrato")
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+
+            <h1>Cadastrar Tipo de Contrato</h1>
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend></legend>
+
+                    @Html.Partial("_CadastrarOuEditar", Model)
+
+
+                </fieldset>
+          
+
+            <div class="buttons">
+               <input type="submit" value="Salvar" class="btns btn-large btn-principal" /> @Html.ActionLink("Lista de Tipos de Contrato", "Index", null, new { @class = "btns btn-large" })
+            </div>
+            }
+
+        </div>
+    </div>
+
+</div>

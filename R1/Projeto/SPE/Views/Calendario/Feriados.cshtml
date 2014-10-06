@@ -1,0 +1,129 @@
+@model SPE.ViewModels.CalendarioVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Calendario")
+
+@section Head {
+    <link href="~/Scripts/jCal/jCal.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/Scripts/jCal/jCal.js"></script>
+    <script type="text/javascript" src="~/Scripts/jCal/jquery.animate.clip.js"></script>
+    <script type="text/javascript" src="~/Scripts/jCal/custom.js"></script>@* ?v=@Html.Raw(new Random().Next()) *@
+
+}
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+
+            <div id="formAdicionar" class="filtros">
+                <h4>Adicionar Data</h4>
+                <table class="camposFiltro">
+                    <tr>
+                        <td style="text-align: right">Descrição</td>
+                        <td>
+                            <input id="dataDesc" style="width: 300px;" title="Descrição" />
+                        </td>
+                        <td>Data Início</td>
+                        <td>
+                            <input type="text" id="datainicio" title="Data Inicio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">Tipo Legenda</td>
+                        <td>
+                            <select id="IdLegenda">
+                                @foreach (var item in Model.Legendas)
+                                {
+                                    <option value="@item.IdCalendario" style="color:#@item.Cor;">@item.Descricao</option>
+                                }
+                            </select>
+                        </td>
+
+                        <td>Data de Fim</td>
+                        <td>
+                            <input type="text" id="datafim" title="Data fim" />
+                        </td>
+                        <td>
+                            <input type="button" value="Cadastrar" id="Cadastrar" style="border: none;" class="btns btn-small btn-principal">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <div class="filtros" id="editarFeriado" style="display: none;">
+                <h4>Editar Data</h4>
+                @using (Html.BeginForm("EditarFeriado", "Calendario", FormMethod.Post, new { Id = "editarForm" }))
+                {
+                    <input type="hidden" id="idFeriado" name="IdCalendarioCivil" value="" />
+                    <table class="camposFiltro">
+                        <tr>
+                            <td style="text-align: right">Descrição</td>
+                            <td>
+                                <input id="edit_dataDesc" name="Descricao" style="width: 300px;" />
+                            </td>
+                            <td>Data Início</td>
+                            <td>
+                                <input type="text" name="DataInicial" id="edit_datainicio" />
+                            </td>
+                           
+                        </tr>
+                        <tr>
+                            <td style="text-align: right">Tipo</td>
+                            <td>
+                                <select id="edit_IdLegenda" name="IdLegenda">
+                                    @foreach (var item in Model.Legendas)
+                                    {
+                                        <option value="@item.IdCalendario">@item.Descricao</option>
+                                    }
+                                </select>
+                            </td>
+
+                            <td>Data de Fim</td>
+                            <td>
+                                <input type="text" name="DataFim" id="edit_datafim" />
+                            </td>
+                             <td >
+                                <input type="button" id="btnEditarFeriado" value="Salvar" class="btns btn-small btn-principal" style="border: none; margin: 1px;">
+                               &nbsp; &nbsp; &nbsp;
+                                <input type="button" value="Cancelar" id="Cancelar" class="btns btn-small" style="border: none; margin: 1px;">
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+
+            <hr />
+            <div class="btn" onclick="JCalendario.backYear();"><< Ano Anterior</div>
+            <div class="btn" onclick="JCalendario.addYear();">Ano Seguinte >></div>
+
+            <div id="calendario"></div>
+
+            <div id="datasFeriadosSPE" class="datas" style="clear: both;">
+                @*@foreach (var item in Model.Calendarios)
+                {
+                    <div class="itemData">
+                        <div class="">@item.Descricao</div>
+                        @if (item.DataFim.HasValue)
+                        {
+                            <div class="">@item.DataInicial.ToString("dd/MM/yyyy")</div>
+                            <div class="">@item.DataFim.Value.ToString("dd/MM/yyyy")</div>
+                        }
+                        else
+                        {
+                            <div class="">@item.DataInicial.ToString("dd/MM/yyyy")</div>
+                        }
+                    </div>
+                }*@
+            </div>
+
+           
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,73 @@
+@model SPE.ViewModel.FiltrosCR
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "CR")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Centros de Responsabilidades</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Código
+                        </th>
+                        <th search>Nome
+                        </th>
+                        <th filtered>Modalidade</th>
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.CR != null)
+                    {
+                        foreach (var item in Model.CR)
+                        {
+                        <tr>
+                            <td>
+                                @item.Codigo
+                            </td>
+                            <td>
+                                @item.Nome
+                            </td>
+                            <td>
+                                @item.NomeModalidade
+                            </td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip" onclick="Editar('/CR/EditarCR/@item.IdCR');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.IdCR);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Não há C.R's cadastradas.</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Centro de Responsabilidade", "CadastrarCR", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/CR/ExcluirCR/")

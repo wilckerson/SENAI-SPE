@@ -1,0 +1,35 @@
+@model SPE.ViewModel.AreaAtuacaoViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    @Html.Partial("../Shared/_MenuCarroselCadastro","Área Atuação")
+ <div class="container">
+    <div class="white_box">
+
+        <div class="container-fluid">
+        <h1>Detalhes Área de Atuação</h1>
+
+<h3> Área Atuação</h3>
+        <fieldset>
+            <legend></legend>
+
+            <table border="1" class="table table-striped">
+              
+                <tr>
+                    <th  > <div class="display-label">Nome:</div></th>
+                    <td> <div class="display-field">@Model.Nome</div></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">@Html.ActionLink("Editar", "EditarModalidade", new { id = Model.IdAreaAtuacao }, new { @class = "btn"})</td>
+                </tr>
+
+            </table>
+        </fieldset>
+        <p>
+            @Html.ActionLink("Lista de Áreas de Atuação", "Index",null, new { @class = "btns btn-large btn-principal"})
+        </p>
+    </div>
+</div>
+     </div>

@@ -1,0 +1,35 @@
+﻿@model SPE.ViewModel.CalendarioLegendaViewModel
+
+@{
+    ViewBag.Title = "CalendarioLegenda";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "CalendarioLegenda")
+<script src="~/Scripts/CalendarioLegenda/calendarioLegenda.js"></script>
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Editar Legenda</h1>
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend></legend>
+
+                    @Html.HiddenFor(model => model.IdCalendario)
+                    @Html.Partial("_CadastrarOuEditar", Model)
+
+
+                </fieldset>
+          
+
+            <div class="buttons">
+                <input type="submit" value="Salvar" class="btns btn-large btn-principal" />
+                 @Html.ActionLink("Lista de Legendas", "Index", null, new { @class = "btns btn-large" })
+               
+            </div>
+            }
+        </div>
+    </div>
+</div>

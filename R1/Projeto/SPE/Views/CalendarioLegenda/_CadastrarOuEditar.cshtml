@@ -1,0 +1,20 @@
+﻿@model SPE.ViewModel.CalendarioLegendaViewModel
+
+@Html.HiddenFor(model => model.IdCalendario)
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Descricao)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Descricao, new { @class = "input-medium" })
+    @Html.ValidationMessageFor(model => model.Descricao)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Cor)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Cor, new { @class = "input-small kolorPicker", @maxlength="6", @size="6" })
+    @Html.ValidationMessageFor(model => model.Cor)
+
+</div>

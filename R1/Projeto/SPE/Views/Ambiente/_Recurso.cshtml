@@ -1,0 +1,163 @@
+﻿@model SPE.ViewModel.AmbienteViewModel
+@{
+    Layout = null;
+}
+
+<div id="recursos" class="editor-field">
+    @{
+        var isEditarAmbiente = (ViewContext.RouteData.Values["action"].ToString().Equals("EditarAmbiente")) ? true : false;
+    }
+
+    @Html.Hidden("isEditarAmbiente", isEditarAmbiente)
+
+    <h3>Recursos Adicionados</h3>
+    <br />
+
+
+    <table id="tableRecursoEscolhido" class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                @{
+                    if (isEditarAmbiente)
+                    {
+                    <th>Ativo/Inativo</th> 
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.RecursoAmbiente != null)
+            {
+                foreach (var item in Model.RecursoAmbiente)
+                {
+                <tr>
+                    <td>
+                        <span id="@item.IdRecurso" class="icon icon-remove removeRecurso"></span>
+                    </td>
+                    <td>@item.Recurso.Descr</td>
+                    <td>@item.Recurso.TipoRecurso.Descr</td>
+                    @{
+                    if (isEditarAmbiente)
+                    {
+                        <td>
+                            <input name="@item.IdRecurso" type="checkbox" value="true" class="boxMarcado"
+                                    @{
+                        if (item.Status != 0)
+                        {
+                                            @:checked
+                                        }
+                                    }
+                                    />
+                        </td>
+                    }
+                    }
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <br />
+
+    <h3>Recursos Disponíveis para serem adicionados</h3>
+    <div class="filtro">
+        <h4>Filtros</h4>
+        <table class="camposFiltro">
+            <tr>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+    <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+        <thead>
+            <tr>
+                <th></th>
+                <th search>Nome</th>
+                <th search>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ListaRecurso != null)
+            {
+                foreach (var recurso in Model.ListaRecurso)
+                {
+                <tr>
+                    <td>
+                        <span id="@recurso.idRecurso" class="icon icon-plus-sign addRecurso"></span>
+                    </td>
+                    <td>@recurso.Descr</td>
+                    <td>@recurso.TipoRecurso.Descr</td>
+                </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" style="text-align: center;">Não há C.R's cadastradas.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    @*<table class="table condensed-table">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListaRecurso)
+            {
+                <tr>
+                    <td>@item.TipoRecurso.Descr</td>
+                    <td>@item.Descr</td>
+                    <td>
+                        <input name="@item.idRecurso" type="checkbox" value="true" 
+                            @{
+                                if(Model.RecursoAmbiente != null){
+                                    if (Model.RecursoAmbiente.Count>0)
+                                    {
+                                        var recursoDoAmbiente = Model.RecursoAmbiente.FirstOrDefault(e => e.IdRecurso == item.idRecurso);
+                                        
+                                        if(recursoDoAmbiente != null){
+                                            @:checked 
+
+                                            if(recursoDoAmbiente.Status == 0){
+                                                @:data-toggle="tooltip" data-placement="right" data-trigger="hover" data-original-title="Este recurso encontra-se Inativo, visite e página 'Recurso Ambiente'" class="boxMarcado tooltiper" readonly="readonly" 
+                                            }
+                                            else
+                                            {
+                                                @:class="boxMarcado" 
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @:class="boxMarcado"
+                                        }
+                                        
+                                    }
+                                    else
+	                                {
+                                        @:class="boxMarcado" 
+	                                }
+                                }
+                                else
+	                            {
+                                    @:class="boxMarcado" 
+	                            }
+                            }
+                        >
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>*@
+</div>

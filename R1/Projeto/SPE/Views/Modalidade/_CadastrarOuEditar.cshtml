@@ -1,0 +1,14 @@
+@model SPE.ViewModel.ModalidadeViewModel
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+@Html.HiddenFor(model => model.IdModalidade)
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Nome)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Nome, new { @class = "input-medium", maxlength = 250 })
+    @Html.ValidationMessageFor(model => model.Nome)
+</div>
+

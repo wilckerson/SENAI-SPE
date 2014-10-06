@@ -1,0 +1,92 @@
+﻿@model SPE.ViewModel.MatrizViewModel
+
+@{
+    ViewBag.Title = "Editar Matriz";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Matriz")
+@using (Html.BeginForm("EditarMatriz", "Matriz", FormMethod.Post, new { id = "frmEditarMatriz" }))
+{ 
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.IdMatriz)
+    
+    @section Head
+    {
+        <script src="~/Scripts/Matriz/matriz.js"></script>
+    }
+    
+    <div class="container">
+        <div class="white_box">
+            <div class="container-fluid">
+                <h1>Editar Matriz</h1>
+                <hr />
+
+                @Html.HiddenFor(model => model.IdResponsavel)
+
+                <div class="row-fluid">
+                    @Html.Partial("_CadastrarOuEditar", Model)
+                </div>
+            </div>
+
+            <div>
+                <h3>Lista de módulos e seus componentes</h3>
+                <hr />
+
+                @Html.Partial("MatrizModulo", Model)
+
+                <div class="row-fluid" style="float:left;">
+                    <h1>Histórico Aprovação</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Descrição</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (Model.ListaReprovacaoMatriz != null)
+                            {
+                                foreach (var item in Model.ListaReprovacaoMatriz.OrderByDescending(a => a.IdReprovacaoMatriz))
+                                {
+                                    if (item.Tipo == 0)
+                                    {
+                                <tr class="error">
+                                    <td>Reprovado</td>
+                                    <td>@item.Observacao</td>
+                                    <td>@item.Data.Value.ToString("dd/MM/yyyy 'às' HH:mm")</td>
+                                </tr>                                            
+                                    }
+                                    else if (item.Tipo == 1)
+                                    {
+                                                                                   
+                                <tr class="success">
+                                    <td style="color: none;">Aprovado</td>
+                                    <td style="color: none;">@item.Observacao</td>
+                                    <td>@item.Data.Value.ToString("dd/MM/yyyy 'às' HH:mm")</td>
+                                </tr>
+                                    }
+
+                                }
+                            }
+                            @if (Model.Aprovado == null && Model.ListaReprovacaoMatriz.Count == 0)
+                            {
+                                <tr class="warning">
+                                    <td colspan="2" style="text-align: center;">Não há histórico de aprovação para esta Matriz.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="buttons" style="float: left;">
+                <input type="button" id="btnSalvar" data-loading-text="Carregando..." value="Salvar" class="btn-large btn-principal json" style="margin-top: 13px;" />
+                @Html.ActionLink("Lista de Matrizes", "Index", null, new { @class = "btns btn-large" })
+            </div>
+        </div>
+    </div>
+}
+
+<div id="ModalComponente" class="modal hide fade"></div>

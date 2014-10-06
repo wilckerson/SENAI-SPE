@@ -1,0 +1,29 @@
+﻿@model List<Senai.SPE.Domain.TipoAmbiente>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    foreach (var ambiente in item.Ambiente)
+    {                     
+    <tr>
+        <td>
+            <icon id="@ambiente.IdAmbiente" class="icon-plus-sign addAmbiente"  capacidade="@ambiente.Capac" ></icon>
+        </td>
+        <td>@ambiente.Nome </td>
+        <td>@ambiente.TipoAmbiente.Descr</td>
+        <td>@ambiente.Capac</td>
+
+        <td>
+            @if (ambiente.TipoAmbiente != null)
+            { 
+                @:@ambiente.LocalAmbiente.Descr
+                                                                                                                                                                                                                                                                                                                                                        }
+            else
+            { 
+                @:N/A
+            }
+        </td>
+    </tr>
+    }
+}

@@ -1,0 +1,266 @@
+@model SPE.ViewModel.TurmaViewModel
+
+
+
+
+@{
+    ViewBag.Title = "_CadastrarOuEditar";
+}
+@if (ViewBag.User != Model.IdResponsavel)
+{
+    <script>
+        $(document).ready(function () {
+            $("input").each(function () {
+                $(this).attr("readonly", "readonly");
+                $(this).click(function () {
+                    return false;
+                })
+            })
+            $("select").each(function () {
+                $(this).attr("readonly", "readonly");
+                $(this).attr("disabled", "disabled");
+
+            })
+        });
+    </script>
+    
+}
+@if (ViewBag.AprovacaoTurma == 1)
+{
+    <script>
+        $(document).ready(function () {
+            $("#aprovacaoTurma").removeAttr("disabled");
+            $("#aprovacaoTurma").removeAttr("readonly");
+            $("#btnsalvar").removeAttr("disabled");
+            $("#btnsalvar").removeAttr("readonly");
+        });
+    </script>
+}
+
+
+
+<div class="row">
+    <div class="span5">
+        <div class="editor-label">
+            Código
+        </div>
+        <div class="editor-field">
+            <input type="text" value="@Model.IdTurma.ToString("00000")" readonly="readonly"/>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdMatriz)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.IdMatriz, ((IEnumerable<SPE.ViewModel.MatrizViewModel>)Model.ListaMatrizes).Select(option => new SelectListItem
+       {
+           Text = option.Nome + " (" + option.CH + "h)",
+
+           Value = option.IdMatriz.ToString(),
+
+           Selected = Model != null && option.IdMatriz == Model.IdMatriz
+       }), "Selecione", new { style = "width:auto;", })
+            @Html.ValidationMessageFor(model => model.IdMatriz)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdTurno)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.IdTurno, ((IEnumerable<SPE.ViewModel.TurnoViewModel>)Model.ListaTurnos).Select(option => new SelectListItem
+       {
+           Text = option.Descr,
+           Value = option.IdTurno.ToString(),
+           Selected = Model != null && option.IdTurno == Model.IdTurno
+       }), "Selecione")
+            @Html.ValidationMessageFor(model => model.IdTurno)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TipoOferta)
+        </div>
+        <div class="editor-field">
+            <label class="radio span1" style="display: inline-block">
+                <input type="radio" name="TipoOferta" value="0" @if (Model.TipoOferta == 0)
+                                                                {
+                                                                              @:checked
+                                                                              
+                                                                }>Gratuita</label>
+            <label class="radio" style="display: inline-block">
+                <input type="radio" name="TipoOferta" value="1"@if (Model.TipoOferta == 1)
+                                                               {
+                                                                              @:checked
+                                                                              }>Paga</label>
+            @Html.ValidationMessageFor(model => model.TipoOferta)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            <label class="radio span1" style="display: inline-block">
+                <input type="radio" name="Status" value="0" @if (Model.Status == 0)
+                                                            {
+                                                                              @:checked
+                                                                              }
+             >Inativo</label>
+            <label class="radio" style="display: inline-block">
+                <input type="radio" name="Status" value="1"@if (Model.Status == 1)
+                                                           {
+                                                                              @:checked
+                                                                              }>Ativo</label>
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QtdeVagas)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.QtdeVagas, null, new { onkeypress = "return AllowOnlyNumbers(event);", @class = "input-small" })
+            @Html.ValidationMessageFor(model => model.QtdeVagas)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Evento)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Evento, null, new { onkeypress = "return AllowOnlyNumbers(event);", @class = "input-small" })
+            @Html.ValidationMessageFor(model => model.Evento)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdUnidade)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.IdUnidade, ((IEnumerable<SPE.ViewModel.UnidadeViewModel>)Model.ListaUnidades).Select(option => new SelectListItem
+       {
+           Text = option.Descr,
+           Value = option.IdUnidade.ToString(),
+           Selected = Model != null && option.IdUnidade == Model.IdUnidade
+       }), "Selecione")
+            @Html.ValidationMessageFor(model => model.IdUnidade)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdCR, new { style = "display:inline" })
+            <img id="loadingCR" src="~/Images/ajax-loader.gif" style="display: none;" />
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.IdCR, ((IEnumerable<SPE.ViewModel.CRViewModel>)Model.ListaCR).Select(option => new SelectListItem
+       {
+           Text = option.Nome,
+           Value = option.IdCR.ToString(),
+           Selected = Model != null && option.IdCR == Model.IdCR
+       }), "Selecione", new { style = "width:auto;" })
+
+            @Html.ValidationMessageFor(model => model.IdCR)
+        </div>
+
+    </div>
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CHView)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CHView, null, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.CHView)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdUsuario)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.IdUsuario, ((IEnumerable<SPE.ViewModel.UsuarioViewModel>)Model.ListaUsuario).Select(option => new SelectListItem
+       {
+           Text = option.Nome,
+           Value = option.IdUsuario.ToString(),
+           Selected = Model != null && option.IdUsuario == Model.IdUsuario
+       }), "Selecione", new { @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.IdUsuario)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DataInicio)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DataIniView, null, new { @class = "input-small", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.DataInicio)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DataFim)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DataFimView, null, new { @class = "datepicker input-small", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.DataInicio)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Preco)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PrecoView, null, new { @class = "input-small" })
+            @Html.ValidationMessageFor(model => model.PrecoView)
+        </div>
+        @if (Model.IdTurma > 0)
+        {
+            <div class="editor-label">
+                Aprovação
+            </div>
+            <div class="editor-field">
+
+                <select name="aprovacaoTurma" id="aprovacaoTurma"  @(ViewBag.AprovacaoTurma == 1 ? "" : "readonly=true disabled=disabled")>
+                    <option value="">Em Aprovação</option>
+                    <option value="1" @(Model.Aprovado == 1 ? "selected=selected" : null)>Aprovado</option>
+                    <option value="0" @(Model.Aprovado == 0 ? "selected=selected" : null)>Reprovado</option>
+                </select>
+
+                @Html.ValidationMessageFor(model => model.Aprovado)
+            </div>
+        }
+        <div class="editor-label" id="labelReprovacao" style="display: none;">
+            @Html.LabelFor(model => model.ReprovacaoTurma.Observacao)
+        </div>
+        <div class="editor-field" id="textReprovacao" style="display: none;">
+            @Html.TextAreaFor(model => model.Observacao, new { maxlength = "254", rows = 5 })
+            @Html.ValidationMessageFor(model => model.Observacao)
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    //Lógica do onchange da Matriz para carregar as CR's 
+    $('#IdMatriz').change(function () {
+        var $idMatriz = $('#IdMatriz').val();
+        var $cr = $('#IdCR');
+
+        if ($idMatriz.length > 0) {
+            $('#loadingCR').show();
+            $.ajax({
+                url: '/Turma/ListarCR/',
+                data: { idMatriz: $idMatriz },
+                type: "get",
+                success: function (data) {
+                    $cr.empty().append(data);
+                    $('#loadingCR').hide();
+                },
+                error: function (data) {
+                    $('#loadingCR').hide();
+                }
+            });
+        } else {
+            var $data = '<option value="">Selecione uma matriz</option>';
+            $cr.empty().append($data);
+        }
+
+        $('#loadingCR').hide();
+
+    }).change();
+
+    $('#aprovacaoTurma').change(function () {
+        if ($(this).val() == 0 || $(this).val() == 1) {
+            $("#labelReprovacao").show()
+            $("#textReprovacao").show();
+        }
+        if ($(this).val() == "") {
+            $("#labelReprovacao").hide();
+            $("#textReprovacao").hide();
+
+        }
+    });
+</script>

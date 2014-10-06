@@ -1,0 +1,19 @@
+﻿@model List<SPE.ViewModels.Usuario.NomeLogin>
+
+@{
+    Layout = null;
+    
+}
+
+<select id="drpUsuario">
+    <option value="" selected>
+        Selecione um Usuario
+    </option>
+    @foreach (var item in Model)
+    {
+        <option value='{"userName": "@item.Login", "email": "@item.Email"}' >
+            @item.Nome - @item.Login
+        </option>
+    }
+
+</select>

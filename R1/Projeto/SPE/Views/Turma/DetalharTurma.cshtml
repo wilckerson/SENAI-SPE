@@ -1,0 +1,50 @@
+@model SPE.ViewModel.TurmaViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>TurmaViewModel</legend>
+
+    <div class="display-label">IdUnidade</div>
+    <div class="display-field">@Model.IdUnidade</div>
+
+    <div class="display-label">IdTurno</div>
+    <div class="display-field">@Model.IdTurno</div>
+
+    <div class="display-label">IdCR</div>
+    <div class="display-field">@Model.IdCR</div>
+
+    <div class="display-label">IdMatriz</div>
+    <div class="display-field">@Model.IdMatriz</div>
+
+    <div class="display-label">IdUsuario</div>
+    <div class="display-field">@Model.IdUsuario</div>
+
+    <div class="display-label">QtdeVagas</div>
+    <div class="display-field">@Model.QtdeVagas</div>
+
+    <div class="display-label">DataFim</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DataFim)</div>
+
+    <div class="display-label">Status</div>
+    <div class="display-field">@Model.Status</div>
+
+    <div class="display-label">TipoOferta</div>
+    <div class="display-field">@Model.TipoOferta</div>
+
+    <div class="display-label">Preco</div>
+    <div class="display-field">@String.Format("{0:F}", Model.Preco)</div>
+
+    <div class="display-label">Evento</div>
+    <div class="display-field">@Model.Evento</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.IdTurma }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

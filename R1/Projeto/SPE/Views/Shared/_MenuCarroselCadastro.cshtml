@@ -1,0 +1,129 @@
+﻿<div class="container">
+   
+    @{       
+        List<string> lstFuncionalidades = (ViewBag.Funcionalidades as ICollection<Senai.SPE.Domain.Funcionalidade>).Select(f => f.Pagina.ToLower()).ToList();
+
+        //Necessário para montar o array Anonimo         
+        var nenhumaOpcao = new[] { new { Titulo = "", Url = "" } };
+        
+        var menu = new[] {
+            new { 
+                Titulo = "INÍCIO",
+                Url = "/Home",
+                Opcoes = nenhumaOpcao
+            },
+            new { 
+                Titulo = "AMBIENTES",
+                Url = "#",
+                Opcoes = new[]{
+                    new { Titulo = "Ambiente", Url = "/Ambiente"},
+                    new { Titulo = "Tipo de Ambiente", Url = "/TipoAmbiente"},
+                    new { Titulo = "Localidade", Url = "/LocalAmbiente"},
+                    new { Titulo = "Recurso", Url = "/Recurso"},
+                    new { Titulo = "Tipo de Recurso", Url = "/TipoRecurso"}
+                }},
+            new { 
+                Titulo = "CALENDÁRIO",
+                Url = "#",
+                Opcoes = new[]{
+                    new { Titulo = "Calendário", Url = "/Calendario/Feriados"},
+                    new { Titulo = "Tipo de Legenda", Url = "/CalendarioLegenda"}
+                }},
+            new { 
+                Titulo = "CONFIGURAÇÕES",
+                Url = "#",
+                Opcoes = new[]{
+                    new { Titulo = "Áreas de Atuação", Url = "/AreaAtuacao"},
+                    new { Titulo = "Centros de Responsabilidade", Url = "/CR"},
+                    new { Titulo = "Modalidades", Url = "/Modalidade"},
+                    new { Titulo = "Perfils", Url = "/Perfil"},
+                    new { Titulo = "Unidades", Url = "/Unidade"},
+                    new { Titulo = "Usuários", Url = "/Usuario"}
+                }},
+            new { 
+                Titulo = "DOCENTES",
+                Url = "#",
+                Opcoes = new[]{
+                    new { Titulo = "Agenda do Docente", Url = "/AgendaEvento/Eventos"},
+                    new { Titulo = "Tipo de Atividade", Url = "/TipoAtividade"},
+                    new { Titulo = "Docente", Url = "/Docente"},
+                    new { Titulo = "Empresa", Url = "/Empresa"},
+                    new { Titulo = "Tipos de Contrato", Url = "/TipoContrato"}
+                }},
+            new { 
+                Titulo = "EVENTOS",
+                Url = "#",
+                Opcoes = new[]{
+                    new { Titulo = "Agendamento", Url = "/Agendamento"},                   
+                    new { Titulo = "Turma", Url = "/Turma"},
+                    new { Titulo = "Turno", Url = "/Turno"}
+                }},
+            new { 
+                Titulo = "MATRIZES",
+                Url = "#",
+                Opcoes = new[]{
+                    new { Titulo = "Componente", Url = "/Componente"},
+                    new { Titulo = "Matriz", Url = "/Matriz"},
+                    new { Titulo = "CBO", Url = "/CBO"}
+                }},
+        };
+        
+    }
+  
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav">
+            @foreach(var mnuItem in menu)
+			{
+                var temOpcoes = (mnuItem.Opcoes != nenhumaOpcao);
+                
+                var exibeRaiz = true;
+                if (temOpcoes)
+                {
+                    exibeRaiz = lstFuncionalidades.Any(f => mnuItem.Opcoes.Any(o => o.Url.ToLower().Contains(f)));
+                }
+                else
+                {
+                    exibeRaiz = lstFuncionalidades.Contains(mnuItem.Url.ToLower());
+                }
+
+                if (exibeRaiz)
+                {                   
+			       <li 
+                       @if (temOpcoes)
+                       {
+                            @:class="dropdown"
+                        }
+                       ><a href="@mnuItem.Url" 
+                            @if (temOpcoes)
+                            {
+                                @:class="dropdown-toggle" data-toggle="dropdown"
+                            }
+                            >@mnuItem.Titulo 
+                            @if (temOpcoes)
+                            {
+                                <b class="caret"></b>
+                            }
+                        </a>
+                        @if (temOpcoes)
+                        {
+                            <ul class="dropdown-menu">
+                            @foreach (var subItem in mnuItem.Opcoes)
+                            {
+                                //Se tem permissão
+                                if(lstFuncionalidades.Any(fu => subItem.Url.ToLower().Contains(fu))){
+                                    <li>
+                                        <a href="@subItem.Url">@subItem.Titulo</a>
+                                    </li>
+                                }
+                            }
+                            </ul>
+                        }
+                    </li>
+                }
+			} 
+            </ul> 
+        </div>
+    </div>
+
+</div>

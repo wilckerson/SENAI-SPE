@@ -1,0 +1,76 @@
+@model List<Senai.SPE.Domain.Perfil>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Perfil")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Perfis de usuário</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Nome</th>
+                        <th search>Descrição</th>
+                        <th filtered>Habilitado</th>
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @item.Nome
+                            </td>
+                            <td>
+                                @item.Descricao
+                            </td>
+                            <td>@if (@item.Status == 1)
+                                {@:Sim                                
+                                }
+                                else
+                                {@:Não 
+                                }
+                            </td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip"  onclick="Editar('/Perfil/Editar/@item.idPerfil');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.idPerfil);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Não há Perfis cadastrados.</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Perfil", "Cadastrar", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Perfil/Excluir/")
+

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e75594b2f1b04ca791eba9a8a553074b" Name="Diagram1" ZoomLevel="69">
+        <EntityTypeShape EntityType="SPEDomain.AgendaAmbiente" Width="1.5" PointX="6.692621707307465" PointY="10.039128934051435" />
+        <EntityTypeShape EntityType="SPEDomain.AgendaComponente" Width="1.5" PointX="11.280287425629929" PointY="4.28560632666834" />
+        <EntityTypeShape EntityType="SPEDomain.AgendaDocente" Width="1.5" PointX="4.997780237811515" PointY="19.99652887321847" />
+        <EntityTypeShape EntityType="SPEDomain.AgendaEvento" Width="1.5" PointX="8.2296982855674337" PointY="11.802168643009928" />
+        <EntityTypeShape EntityType="SPEDomain.Agendamento" Width="1.5" PointX="3.83461188889789" PointY="28.598984225000713" />
+        <EntityTypeShape EntityType="SPEDomain.Ambiente" Width="1.5" PointX="10.07291707120506" PointY="11.548460265411279" />
+        <EntityTypeShape EntityType="SPEDomain.AreaAtuacao" Width="1.5" PointX="8.2553408910778074" PointY="28.232436610494013" />
+        <EntityTypeShape EntityType="SPEDomain.CalendarioCivil" Width="1.5" PointX="6.2729277118448756" PointY="16.491020314624077" />
+        <EntityTypeShape EntityType="SPEDomain.CalendarioLegenda" Width="1.5" PointX="7.7899601980065736" PointY="31.199216171726221" />
+        <EntityTypeShape EntityType="SPEDomain.CatMaterial" Width="1.5" PointX="3.20422260239917" PointY="9.2649281217087651" />
+        <EntityTypeShape EntityType="SPEDomain.CatServico" Width="1.5" PointX="7.0197671088482094" PointY="1.728100419849204" />
+        <EntityTypeShape EntityType="SPEDomain.CatUsuario" Width="1.5" PointX="5.4680045812707414" PointY="27.3911485054489" />
+        <EntityTypeShape EntityType="SPEDomain.CBO" Width="1.5" PointX="11.329834811077376" PointY="21.412139574723383" />
+        <EntityTypeShape EntityType="SPEDomain.Componente" Width="1.5" PointX="3.7608380707729783" PointY="12.161811655462632" />
+        <EntityTypeShape EntityType="SPEDomain.CR" Width="1.5" PointX="3.0531870438964974" PointY="25.684432816544749" />
+        <EntityTypeShape EntityType="SPEDomain.Docente" Width="1.5" PointX="0.9422187157637526" PointY="9.9923546211758421" />
+        <EntityTypeShape EntityType="SPEDomain.Empresa" Width="1.5" PointX="2.8410629121777893" PointY="29.389870046353838" />
+        <EntityTypeShape EntityType="SPEDomain.Funcionalidade" Width="1.5" PointX="2.6895580285645826" PointY="29.402431471926359" />
+        <EntityTypeShape EntityType="SPEDomain.LocalAmbiente" Width="1.5" PointX="2.9988591908471935" PointY="22.959204475842046" />
+        <EntityTypeShape EntityType="SPEDomain.Material" Width="1.5" PointX="0.0017669219531896161" PointY="9.5198151215537514" />
+        <EntityTypeShape EntityType="SPEDomain.Matriz" Width="1.5" PointX="1.5455777726814046" PointY="25.394729879402895" />
+        <EntityTypeShape EntityType="SPEDomain.Modalidade" Width="1.5" PointX="6.6414563239745128" PointY="5.7199461337737487" />
+        <EntityTypeShape EntityType="SPEDomain.Modulo" Width="1.5" PointX="5.4484287805149467" PointY="27.165687856807228" />
+        <EntityTypeShape EntityType="SPEDomain.Perfil" Width="1.5" PointX="3.4892018230116006" PointY="29.759097411185081" />
+        <EntityTypeShape EntityType="SPEDomain.Recurso" Width="1.5" PointX="4.2150958386320134" PointY="0.90532103223042615" />
+        <EntityTypeShape EntityType="SPEDomain.RecursoAmbiente" Width="1.5" PointX="7.6448324172035012" PointY="29.318625106158958" />
+        <EntityTypeShape EntityType="SPEDomain.ReprovacaoMatriz" Width="1.5" PointX="4.5859254564093082" PointY="6.7637459816242318" />
+        <EntityTypeShape EntityType="SPEDomain.ReprovacaoTurma" Width="1.5" PointX="2.3342473759941047" PointY="16.118890799637366" />
+        <EntityTypeShape EntityType="SPEDomain.Servico" Width="1.5" PointX="10.296668768998547" PointY="2.6896179628975774" />
+        <EntityTypeShape EntityType="SPEDomain.TipoAmbiente" Width="1.5" PointX="2.2772675614232512" PointY="23.915274392773991" />
+        <EntityTypeShape EntityType="SPEDomain.TipoAtividade" Width="1.5" PointX="3.7378602566839478" PointY="9.7840504393838579" />
+        <EntityTypeShape EntityType="SPEDomain.TipoContrato" Width="1.5" PointX="1.3726261972322251" PointY="16.541198887182958" />
+        <EntityTypeShape EntityType="SPEDomain.TipoRecurso" Width="1.5" PointX="9.7824003686115155" PointY="16.868757568704318" />
+        <EntityTypeShape EntityType="SPEDomain.TipoUsuario" Width="1.5" PointX="1.48960968735144" PointY="24.624372329853649" />
+        <EntityTypeShape EntityType="SPEDomain.Turma" Width="1.5" PointX="7.8976057003706721" PointY="19.325375759659977" />
+        <EntityTypeShape EntityType="SPEDomain.Turno" Width="1.5" PointX="3.1852734271368357" PointY="29.814022718842153" />
+        <EntityTypeShape EntityType="SPEDomain.UnCurricular" Width="1.5" PointX="11.697939142444142" PointY="31.024778484844035" />
+        <EntityTypeShape EntityType="SPEDomain.Unidade" Width="1.5" PointX="1.9287702729593823" PointY="25.324649077525663" />
+        <EntityTypeShape EntityType="SPEDomain.Usuario" Width="1.5" PointX="6.0065813334689384" PointY="8.8613994162815626" />
+        <AssociationConnector Association="SPEDomain.FK_AGENDAAM_AMBIENTE__AMBIENTE" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaAmbiente_Componente" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaAmbiente_Modulo" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaAmbiente_Turma" />
+        <AssociationConnector Association="SPEDomain.FK_AGENDACO_AGENDA_CO_COMPONEN" />
+        <AssociationConnector Association="SPEDomain.FK_AGENDACO_DOCENTE_U_UNIDADE" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaComponente_Modulo" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaComponente_Turma" />
+        <AssociationConnector Association="SPEDomain.FK_AMBIENTE_AGENDA_CO_AGENDACO" />
+        <AssociationConnector Association="SPEDomain.FK_DOCENTE_AGENDA_CO_AGENDACO" />
+        <AssociationConnector Association="SPEDomain.FK_EMPRESA_AGENDA_CO_AGENDACO" />
+        <AssociationConnector Association="SPEDomain.FK_AGENDADO_AGENDA_DO_TIPOATIV" />
+        <AssociationConnector Association="SPEDomain.FK_AGENDADO_DOCENTE_A_DOCENTE" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaDocente_Componente" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaDocente_Modulo" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaDocente_Turma" />
+        <AssociationConnector Association="SPEDomain.FK_AgendaEvento_Docente" />
+        <AssociationConnector Association="SPEDomain.FK_Agendamento_Ambiente" />
+        <AssociationConnector Association="SPEDomain.FK_Agendamento_Componente" />
+        <AssociationConnector Association="SPEDomain.FK_Agendamento_Docente" />
+        <AssociationConnector Association="SPEDomain.FK_Agendamento_Turma" />
+        <AssociationConnector Association="SPEDomain.FK_AMBIENTE_AMBIENTE__LOCALAMB" />
+        <AssociationConnector Association="SPEDomain.FK_AMBIENTE_AMBIENTE__TIPOAMBI" />
+        <AssociationConnector Association="SPEDomain.FK_RecursoAmbiente_Ambiente" />
+        <AssociationConnector Association="SPEDomain.FK_MATRIZ_MATRIZ_AR_AREAATUA" />
+        <AssociationConnector Association="SPEDomain.FK_Calendario_Legenda" />
+        <AssociationConnector Association="SPEDomain.FK_MATERIAL_MATERIAL__CATMATER" />
+        <AssociationConnector Association="SPEDomain.FK_SERVICO_SERVICO_C_CATSERVI" />
+        <AssociationConnector Association="SPEDomain.FK_MATRIZ_MATRIZ_CB_CBO" />
+        <AssociationConnector Association="SPEDomain.FK_UNCURRIC_COMPONENT_COMPONEN" />
+        <AssociationConnector Association="SPEDomain.FK_CR_MODALIDE__MODALIDA" />
+        <AssociationConnector Association="SPEDomain.FK_CURSO_CURSO_CR_CR" />
+        <AssociationConnector Association="SPEDomain.FK_DOCENTE_DOCENTE_T_TIPOCONT" />
+        <AssociationConnector Association="SPEDomain.FK_DOCENTE_EMPRESA_D_EMPRESA" />
+        <AssociationConnector Association="SPEDomain.FK_CURSO_MATRIZ_CU_MATRIZ" />
+        <AssociationConnector Association="SPEDomain.FK_MATRIZ_MATRIZ_MO_MODALIDA" />
+        <AssociationConnector Association="SPEDomain.FK_Matriz_Usuario" />
+        <AssociationConnector Association="SPEDomain.FK_Modulo_IdMatriz" />
+        <AssociationConnector Association="SPEDomain.FK_ReprovacaoMatriz_ReprovacaoMatriz" />
+        <AssociationConnector Association="SPEDomain.FK_Usuario_Perfil" />
+        <AssociationConnector Association="SPEDomain.FK_Recurso_TipoRecurso" />
+        <AssociationConnector Association="SPEDomain.FK_RecursoAmbiente_Recurso" />
+        <AssociationConnector Association="SPEDomain.FK_ReprovacaoTurma_Turma" />
+        <AssociationConnector Association="SPEDomain.FK_CURSO_CURSO_TUR_TURNO" />
+        <AssociationConnector Association="SPEDomain.FK_CURSO_CURSO_UNI_UNIDADE" />
+        <AssociationConnector Association="SPEDomain.FK_CURSO_CURSO_USU_USUARIO" />
+        <AssociationConnector Association="SPEDomain.AreaAtuacaoDocente" />
+        <AssociationConnector Association="SPEDomain.AreaOrientador" />
+        <AssociationConnector Association="SPEDomain.ComponenteAreaAtuacao" />
+        <AssociationConnector Association="SPEDomain.ComponenteDocente" />
+        <AssociationConnector Association="SPEDomain.ComponenteTipoAmbiente" />
+        <AssociationConnector Association="SPEDomain.CrUNidade" />
+        <AssociationConnector Association="SPEDomain.MatrizMaterial" />
+        <AssociationConnector Association="SPEDomain.MatrizServico" />
+        <AssociationConnector Association="SPEDomain.ModalidadeUnidade" />
+        <AssociationConnector Association="SPEDomain.ModuloComponente" />
+        <AssociationConnector Association="SPEDomain.PerfilFuncionalidade" />
+        <AssociationConnector Association="SPEDomain.TurmaMaterial" />
+        <AssociationConnector Association="SPEDomain.TurmaServico" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,113 @@
+@model SPE.ViewModel.FiltrosUsuario
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Usuário")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Usuários</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Nome</th>
+                        <th search>Email</th>
+                        <th filtered>Perfil</th>
+                        <th>Ultimo Acesso</th>
+                        <th filtered>Status</th>
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Usuario != null)
+                    {
+                        foreach (var item in Model.Usuario)
+                        {
+                        <tr>
+                            <td>
+                                @item.Nome
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>@if (item.Perfil != null && item.Perfil.Status == 1)
+                                {
+                                    @item.Perfil.Nome
+                                }
+                                else if (item.Perfil != null && item.Perfil.Status != 1)
+                                {
+                                   <span>@item.Perfil.Nome (Desabilitado)</span>
+                                }
+                                else
+                                {
+                                    <span>Sem perfil</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.UltimoAcesso != null)
+                                {
+                                    @item.UltimoAcesso
+                                }
+                                else
+                                {
+                                    @:N/A 
+                                }
+                            </td>
+                            <td>
+                                @if (item.Status == 1)
+                                {
+                                    @:Ativo                                    
+                                }
+                                else
+                                {
+                                    @:Inativo
+                                }
+                            </td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip"  onclick="Editar('/Usuario/Editar/@item.IdUsuario');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                @if (item.Status == 1)
+                                {
+                                    <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Desativar" alt="tootip" onclick="Excluir(@item.IdUsuario);"><i class="icon-ban-circle"></i><a href="#" alt="Desativar"></a></div>
+                                }
+                                else
+                                {
+                                    <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ativar" alt="tootip" onclick="Excluir(@item.IdUsuario);"><i class="icon-ok-circle"></i><a href="#" alt="Ativar"></a></div>
+                                }
+
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Não Há Usuários cadastrados.</td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Usuário", "Cadastrar", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoModificar", "/Usuario/Modificar/")
+

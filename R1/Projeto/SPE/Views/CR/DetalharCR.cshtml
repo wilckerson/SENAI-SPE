@@ -1,0 +1,45 @@
+@model SPE.ViewModel.CRViewModel
+
+@{
+    ViewBag.Title = "DetalharCr";
+}
+
+    @Html.Partial("../Shared/_MenuCarroselCadastro","CR")
+    <div class="container">
+    <div class="white_box">
+
+        <div class="container-fluid">
+
+<h1>Detalhes Centro de Responsabilidade</h1>
+
+<h3>Centro de Responsabilidade</h3>
+<fieldset>
+    <legend></legend>
+
+    <table border="1" class="table table-striped">
+        <tr>
+            <th><div class="display-label">Nome</div></th>
+            <td> <div class="display-field">@Model.Nome</div></td>
+        </tr>  
+        <tr>
+            <th><div class="display-label">Modalidade</div></th>
+            <td> <div class="display-field">@if (Model.Modalidade != null)
+                {
+                    @Model.Modalidade.Nome
+                }</div>
+            </td>
+        </tr>           
+        <tr>
+            <td colspan="2" style="text-align:center;">@Html.ActionLink("Editar", "EditarCR", new { id = Model.IdCR }, new { @class = "btn"})</td>
+        </tr>
+
+    </table> 
+</fieldset>
+<div class="buttons">    
+   @Html.ActionLink("Lista de Centros de Responsabilidade", "Index",null, new { @class = "btns btn-large btn-principal"})
+</div>
+
+
+
+        </div>
+    </div></div>

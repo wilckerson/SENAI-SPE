@@ -1,0 +1,41 @@
+@model SPE.ViewModel.TipoAmbienteViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Tipo Ambiente")
+<div class="container">
+    <div class="white_box">
+
+        <div class="container-fluid">
+            <h1>Detalhes Tipo de Ambiente</h1>
+
+            <h3>Tipo de Ambiente</h3>
+            <fieldset>
+                <legend></legend>
+
+                <table border="1" class="table table-striped">
+
+                    <tr>
+                        <th>
+                            <div class="display-label">Nome:</div>
+                        </th>
+                        <td>
+                            <div class="display-field">@Model.Descr</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">@Html.ActionLink("Editar", "EditarTipoAmbienteAmbiente", new { id = Model.IdTipoAmbiente }, new { @class = "btn" })</td>
+                    </tr>
+
+                </table>
+            </fieldset>
+            <p>
+                @Html.ActionLink("Lista de Tipos de Ambientes", "Index", null, new { @class = "btns btn-large btn-principal" })
+            </p>
+        </div>
+    </div>
+</div>
+
+

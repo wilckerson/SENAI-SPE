@@ -1,0 +1,84 @@
+@model SPE.ViewModel.DocenteViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Docente")
+
+    <div class="container">
+    <div class="white_box">
+
+        <div class="container-fluid">
+<h1>Detalhes Docente</h1>
+
+
+                <h3>Docente</h3>
+                <hr />
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+    <div class="display-label">IdAgendaComponente</div>
+                        </td>
+                        <td>
+    <div class="display-field">@Model.IdAgendaComponente</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+    <div class="display-label">IdTipoContrato</div>
+                        </td>
+                        <td>
+    <div class="display-field">@Model.IdTipoContrato</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+    <div class="display-label">IdEmpresa</div>
+                        </td>
+                        <td>
+    <div class="display-field">@Model.IdEmpresa</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><div class="display-label">CPF</div></td>
+                        <td><div class="display-field">@Model.CPF</div></td>
+                    </tr>
+
+                    <tr>
+                    <td><div class="display-label">Email</div></td>
+                    <td><div class="display-field">@Model.Email</div></td>
+                        </tr>
+
+                    <tr>
+                    <td><div class="display-label">Sexo</div></td>
+                    <td><div class="display-field">@Model.Sexo</div></td>
+                    </tr>
+
+                    <tr>
+                    <td><div class="display-label">Tel</div></td>
+                    <td><div class="display-field">@Model.Tel</div></td>
+                    </tr>
+
+                    <tr>
+                    <td><div class="display-label">NivelFuncao</div></td>
+                    <td><div class="display-field">@Model.NivelFuncao</div></td>
+                        </tr>
+
+                    <tr>
+                        <td colspan="2"><div class="btn">@Html.ActionLink("Editar Docente", "Edit", new { id = Model.IdDocente })</div></td>
+                    </tr>
+                </table>
+
+            <div class="buttons">
+                
+                @Html.ActionLink("Lista de Centros de Responsabilidade", "Index", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+
+
+        </div>
+    </div>
+</div>

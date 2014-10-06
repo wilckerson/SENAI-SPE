@@ -1,0 +1,759 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{561CC4D3-5EE5-4059-B3B0-75EBFF594747}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SPE</RootNamespace>
+    <AssemblyName>SPE</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleMe.cs" />
+    <Compile Include="Controllers\AgendaEventoController.cs" />
+    <Compile Include="Controllers\AgendamentoController.cs" />
+    <Compile Include="Controllers\AmbienteController.cs" />
+    <Compile Include="Controllers\AreaAtuacaoController.cs" />
+    <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\CadastrosController.cs" />
+    <Compile Include="Controllers\CalendarioLegendaController.cs" />
+    <Compile Include="Controllers\CatUsuarioController.cs" />
+    <Compile Include="Controllers\CBOController.cs" />
+    <Compile Include="Controllers\ComponenteController.cs" />
+    <Compile Include="Controllers\CalendarioController.cs" />
+    <Compile Include="Controllers\Copy of LoginController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\PlanejamentoEscolarController.cs" />
+    <Compile Include="Controllers\TipoContratoController.cs" />
+    <Compile Include="Controllers\CRController.cs" />
+    <Compile Include="Controllers\DocenteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocalAmbienteController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MatrizController.cs" />
+    <Compile Include="Controllers\ModalidadeController.cs" />
+    <Compile Include="Controllers\RecursoController.cs" />
+    <Compile Include="Controllers\TipoAmbienteController.cs" />
+    <Compile Include="Controllers\TipoAtividadeController.cs" />
+    <Compile Include="Controllers\TipoRecursoController.cs" />
+    <Compile Include="Controllers\TurmaController.cs" />
+    <Compile Include="Controllers\TurnoController.cs" />
+    <Compile Include="Controllers\UnidadeController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Base\ModelBase.cs" />
+    <Compile Include="Models\AgendaAmbienteM.cs" />
+    <Compile Include="Models\ItemMenu.cs" />
+    <Compile Include="Models\MatrizM.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Images\icoWarning.png" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="ScriptBundle\CalendarioLegenda\CalendarioLegenda.js" />
+    <Compile Include="ViewModels\AgendaAmbienteViewModel.cs" />
+    <Compile Include="ViewModels\AgendaComponenteViewModel.cs" />
+    <Compile Include="ViewModels\AgendaDocenteViewModel.cs" />
+    <Compile Include="ViewModels\AgendaEventoViewModel.cs" />
+    <Compile Include="ViewModels\AgendamentoCompletoViewModel.cs" />
+    <Compile Include="ViewModels\Agendamento\AgendamentoIndexVM.cs" />
+    <Compile Include="ViewModels\Agendamento\ComponenteCHVM.cs" />
+    <Compile Include="ViewModels\Agendamento\DocenteCHVM.cs" />
+    <Compile Include="ViewModels\Agendamento\FiltroAgendamento.cs" />
+    <Compile Include="ViewModels\Agendamento\optionsVM.cs" />
+    <Compile Include="ViewModels\AlertViewModel.cs" />
+    <Compile Include="ViewModels\AmbienteViewModel.cs" />
+    <Compile Include="ViewModels\AreaAtuacaoViewModel.cs" />
+    <Compile Include="ViewModels\AreaAtuacao\FiltrosAreaAtuacao.cs" />
+    <Compile Include="ViewModels\Calendario\CalendarioItem.cs" />
+    <Compile Include="ViewModels\Calendario\CalendarioItemAgendamento.cs" />
+    <Compile Include="ViewModels\Calendario\CalendarioVM.cs" />
+    <Compile Include="ViewModels\CatUsuarioViewModel.cs" />
+    <Compile Include="ViewModels\CBOViewModel.cs" />
+    <Compile Include="ViewModels\ComponenteViewModel.cs" />
+    <Compile Include="ViewModels\Componente\FiltrosComponente.cs" />
+    <Compile Include="ViewModels\AreaAtuacaoDocenteViewModel.cs" />
+    <Compile Include="ViewModels\CR\FiltrosCR.cs" />
+    <Compile Include="ViewModels\Modalidade\FiltrosModalidade.cs" />
+    <Compile Include="ViewModels\ReprovacaoMatrizViewModel.cs" />
+    <Compile Include="ViewModels\ReprovacaoTurmaViewModel.cs" />
+    <Compile Include="ViewModels\Perfil\CadastrarOuEditarPerfil.cs" />
+    <Compile Include="ViewModels\Perfil\CadastrarOuEditar.cs" />
+    <Compile Include="ViewModels\CRViewModel.cs" />
+    <Compile Include="ViewModels\CalendarioLegendaViewModel.cs" />
+    <Compile Include="ViewModels\DocenteViewModel.cs" />
+    <Compile Include="ViewModels\Docente\CadastrarOuEditar.cs" />
+    <Compile Include="ViewModels\EmpresaViewModel.cs" />
+    <Compile Include="ViewModels\LocalAmbienteViewModel.cs" />
+    <Compile Include="ViewModels\MaterialViewModel.cs" />
+    <Compile Include="ViewModels\MatrizListarComponentesViewModel.cs" />
+    <Compile Include="ViewModels\MatrizViewModel.cs" />
+    <Compile Include="ViewModels\Matriz\FiltrosMatriz.cs" />
+    <Compile Include="ViewModels\ModalidadeViewModel.cs" />
+    <Compile Include="ViewModels\ModuloComponenteViewModel.cs" />
+    <Compile Include="ViewModels\ModuloViewModel.cs" />
+    <Compile Include="ViewModels\RecursoAmbienteViewModel.cs" />
+    <Compile Include="ViewModels\RecursoViewModel.cs" />
+    <Compile Include="ViewModels\Required.cs" />
+    <Compile Include="ViewModels\ServicoViewModel.cs" />
+    <Compile Include="ViewModels\TipoAmbienteViewModel.cs" />
+    <Compile Include="ViewModels\TipoAtividadeViewModel.cs" />
+    <Compile Include="ViewModels\TipoContratoViewModel.cs" />
+    <Compile Include="ViewModels\TipoRecursoViewModel.cs" />
+    <Compile Include="ViewModels\TurmaViewModel.cs" />
+    <Compile Include="ViewModels\Turma\FiltrosTurma.cs" />
+    <Compile Include="ViewModels\TurnoViewModel.cs" />
+    <Compile Include="ViewModels\UnidadeViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioViewModel.cs" />
+    <Compile Include="ViewModels\Usuario\CadastrarOuEditar.cs" />
+    <Compile Include="ViewModels\Usuario\FiltrosUsuario.cs" />
+    <Compile Include="ViewModels\Usuario\NomeLogin.cs" />
+    <Compile Include="ViewModels\ValidaCPF.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap\js\jquery-1.8.0.min.js" />
+    <Content Include="Content\bootstrap\js\jquery-ui-1.8.24.custom.min.js" />
+    <Content Include="Content\css\bootstrap-timepicker.css" />
+    <Content Include="Content\css\bootstrap-timepicker.min.css" />
+    <Content Include="Content\css\estilo.css" />
+    <Content Include="Content\css\images\animated-overlay.gif" />
+    <Content Include="Content\css\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\css\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\css\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\css\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\css\jquery-ui-1.10.3.custom.css" />
+    <Content Include="Content\css\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="Content\css\jquery-ui-timepicker-addon.css" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\DragComponente.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\1372983265_Error.png" />
+    <Content Include="Images\1372986121_Tick.png" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\agenda_btn.png" />
+    <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\arrow_down.png" />
+    <Content Include="Images\arrow_left.jpg" />
+    <Content Include="Images\arrow_right.jpg" />
+    <Content Include="Images\arrow_tab.png" />
+    <Content Include="Images\arrow_top.jpg" />
+    <Content Include="Images\arrow_top.png" />
+    <Content Include="Images\avatar.jpg" />
+    <Content Include="Images\backsup_btn.png" />
+    <Content Include="Images\back_btn.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\calendar_example.jpg" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\down.png" />
+    <Content Include="Images\FormIcon.png" />
+    <Content Include="Images\forward_btn.png" />
+    <Content Include="Images\glyphicons-halflings.png" />
+    <Content Include="Images\graphic.jpg" />
+    <Content Include="Images\greys.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\icons.png" />
+    <Content Include="Images\icon_a.png" />
+    <Content Include="Images\icon_ajustes.png" />
+    <Content Include="Images\icon_cadastro.png" />
+    <Content Include="Images\icon_dashboard.jpg" />
+    <Content Include="Images\icon_dashboard.png" />
+    <Content Include="Images\logo_spe.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Images\senai_logo.png" />
+    <Content Include="Images\setup_icon.png" />
+    <Content Include="Images\user_icon.png" />
+    <Content Include="ScriptBundle\Calendario\Index\calendario.js" />
+    <Content Include="ScriptBundle\PlanejamentoEscolar\calendario.js" />
+    <Content Include="ScriptBundle\PlanejamentoEscolar\Index.js" />
+    <Content Include="Scripts\accentRemove.js" />
+    <Content Include="Scripts\Agendamento\Componente.js" />
+    <Content Include="Scripts\Ambiente\ambiente.js" />
+    <Content Include="Scripts\AreaAtuacao\areaAtuacao.js" />
+    <Content Include="Scripts\base.SPE.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-timepicker.min.js" />
+    <Content Include="Scripts\CalendarioLegenda\calendarioLegenda.js" />
+    <Content Include="Scripts\CBO\CBO.js" />
+    <Content Include="Scripts\Componente\Componente.js" />
+    <Content Include="Scripts\CR\cr.js" />
+    <Content Include="Scripts\dataTableCustom2.js" />
+    <Content Include="Scripts\Empresa\Empresa.js" />
+    <Content Include="Scripts\Eventos\custom.js" />
+    <Content Include="Scripts\jCal\double-arrow-vert.gif" />
+    <Content Include="Scripts\jCal\eeGrad.gif" />
+    <Content Include="Scripts\jCal\_left.gif" />
+    <Content Include="Scripts\jCal\_right.gif" />
+    <Content Include="Scripts\jquery.dataTables.Custom.js" />
+    <Content Include="Scripts\LocalAmbiente\localAmbiente.js" />
+    <Content Include="Scripts\Modalidade\modalidade.js" />
+    <Content Include="Scripts\Modal\close.png" />
+    <Content Include="Scripts\Modal\examples\ajax.html" />
+    <Content Include="Scripts\Modal\examples\ajax2.html" />
+    <Content Include="Scripts\Modal\examples\highlight\github.css" />
+    <Content Include="Scripts\Modal\examples\highlight\highlight.pack.js" />
+    <Content Include="Scripts\Modal\examples\index.html" />
+    <Content Include="Scripts\Modal\jquery.modal.css" />
+    <Content Include="Scripts\Modal\jquery.modal.js" />
+    <Content Include="Scripts\Modal\jquery.modal.min.js" />
+    <Content Include="Scripts\Modal\spinner.gif" />
+    <Content Include="Scripts\Perfil\Perfil.js" />
+    <Content Include="Scripts\dataTableCustom.js" />
+    <Content Include="Scripts\Docente\Docente.js" />
+    <None Include="Properties\PublishProfiles\Fuem.pubxml" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\Agendamento\custom.js" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.css" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Scripts\fullcalendar\gcal.js" />
+    <Content Include="Scripts\jCal\custom.js" />
+    <Content Include="Scripts\jCal\jCal.css" />
+    <Content Include="Scripts\jCal\jCal.js" />
+    <Content Include="Scripts\jCal\jquery.animate.clip.js" />
+    <Content Include="Scripts\jCal\jquery.color.js" />
+    <Content Include="Scripts\jCal\jquery.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jQuery.dPassword.min.js" />
+    <Content Include="Scripts\jquery.maskMoney.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JQUERY4U.datetime.js" />
+    <Content Include="Scripts\jqueryui.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\kolorpicker\jquery.kolorpicker.js" />
+    <Content Include="Scripts\kolorpicker\style\images\color-wheel.jpg" />
+    <Content Include="Scripts\kolorpicker\style\kolorpicker.css" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="Scripts\maskInput.js" />
+    <Content Include="Scripts\Matriz\matriz.js" />
+    <Content Include="Scripts\methods_pt.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Recurso\recurso.js" />
+    <Content Include="Scripts\sort.js" />
+    <Content Include="Scripts\TipoAmbiente\tipoAmbiente.js" />
+    <Content Include="Scripts\TipoAtividade\tipoAtividade.js" />
+    <Content Include="Scripts\TipoRecurso\tipoRecurso.js" />
+    <Content Include="Scripts\Turma\turma.js" />
+    <Content Include="Scripts\Turno\turno.js" />
+    <Content Include="Scripts\Unidade\unidade.js" />
+    <Content Include="Scripts\Usuario\Usuario.js" />
+    <Content Include="Scripts\Validacoes\base.validacao.SPE.js" />
+    <Content Include="Scripts\xdate.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Ambiente\CadastrarAmbiente.cshtml" />
+    <Content Include="Views\Ambiente\Delete.cshtml" />
+    <Content Include="Views\Ambiente\DetalharAmbiente.cshtml" />
+    <Content Include="Views\Ambiente\EditarAmbiente.cshtml" />
+    <Content Include="Views\Ambiente\Index.cshtml" />
+    <Content Include="Views\Ambiente\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Ambiente\_Recurso.cshtml" />
+    <Content Include="Views\AreaAtuacao\CadastrarAreaAtuacao.cshtml" />
+    <Content Include="Views\AreaAtuacao\Delete.cshtml" />
+    <Content Include="Views\AreaAtuacao\DetalharAreaAtuacao.cshtml" />
+    <Content Include="Views\AreaAtuacao\EditarAreaAtuacao.cshtml" />
+    <Content Include="Views\AreaAtuacao\Index.cshtml" />
+    <Content Include="Views\AreaAtuacao\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\CBO\CadastrarCBO.cshtml" />
+    <Content Include="Views\CBO\Delete.cshtml" />
+    <Content Include="Views\CBO\DetalharCBO.cshtml" />
+    <Content Include="Views\CBO\EditarCBO.cshtml" />
+    <Content Include="Views\CBO\Index.cshtml" />
+    <Content Include="Views\CBO\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Componente\CadastrarComponente.cshtml" />
+    <Content Include="Views\Componente\DetalharComponente.cshtml" />
+    <Content Include="Views\Componente\EditarComponente.cshtml" />
+    <Content Include="Views\Componente\Index.cshtml" />
+    <Content Include="Views\Componente\ModalComponente.cshtml" />
+    <Content Include="Views\Componente\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\CR\CadastrarCR.cshtml" />
+    <Content Include="Views\CR\Delete.cshtml" />
+    <Content Include="Views\CR\DetalharCR.cshtml" />
+    <Content Include="Views\CR\EditarCR.cshtml" />
+    <Content Include="Views\CR\Index.cshtml" />
+    <Content Include="Views\CR\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Docente\CadastrarDocente.cshtml" />
+    <Content Include="Views\Docente\Delete.cshtml" />
+    <Content Include="Views\Docente\DetalharDocente.cshtml" />
+    <Content Include="Views\Docente\EditarComponente.cshtml" />
+    <Content Include="Views\Docente\EditarDocente.cshtml" />
+    <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\Docente\_BuscarComponentes.cshtml" />
+    <Content Include="Views\Docente\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Home\Cadastros.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\LocalAmbiente\CadastrarLocalAmbiente.cshtml" />
+    <Content Include="Views\LocalAmbiente\Delete.cshtml" />
+    <Content Include="Views\LocalAmbiente\DetalharLocalAmbiente.cshtml" />
+    <Content Include="Views\LocalAmbiente\EditarLocalAmbiente.cshtml" />
+    <Content Include="Views\LocalAmbiente\Index.cshtml" />
+    <Content Include="Views\LocalAmbiente\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Matriz\CadastrarMatriz.cshtml" />
+    <Content Include="Views\Matriz\DetalharMatriz.cshtml" />
+    <Content Include="Views\Matriz\EditarMatriz.cshtml" />
+    <Content Include="Views\Matriz\Index.cshtml" />
+    <Content Include="Views\Matriz\MatrizModulo.cshtml" />
+    <Content Include="Views\Matriz\_BuscarModuloComponentes.cshtml" />
+    <Content Include="Views\Matriz\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Modalidade\CadastrarModalidade.cshtml" />
+    <Content Include="Views\Modalidade\Delete.cshtml" />
+    <Content Include="Views\Modalidade\DetalharModalidade.cshtml" />
+    <Content Include="Views\Modalidade\EditarModalidade.cshtml" />
+    <Content Include="Views\Modalidade\Index.cshtml" />
+    <Content Include="Views\Modalidade\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Recurso\CadastrarRecurso.cshtml" />
+    <Content Include="Views\Recurso\Delete.cshtml" />
+    <Content Include="Views\Recurso\DetalharRecurso.cshtml" />
+    <Content Include="Views\Recurso\EditarRecurso.cshtml" />
+    <Content Include="Views\Recurso\Index.cshtml" />
+    <Content Include="Views\Recurso\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\TipoAmbiente\CadastrarTipoAmbiente.cshtml" />
+    <Content Include="Views\TipoAmbiente\Delete.cshtml" />
+    <Content Include="Views\TipoAmbiente\DetalharTipoAmbiente.cshtml" />
+    <Content Include="Views\TipoAmbiente\EditarTipoAmbiente.cshtml" />
+    <Content Include="Views\TipoAmbiente\Index.cshtml" />
+    <Content Include="Views\TipoAmbiente\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\TipoRecurso\CadastrarTipoRecurso.cshtml" />
+    <Content Include="Views\TipoRecurso\Delete.cshtml" />
+    <Content Include="Views\TipoRecurso\DetalharTipoRecurso.cshtml" />
+    <Content Include="Views\TipoRecurso\EditarTipoRecurso.cshtml" />
+    <Content Include="Views\TipoRecurso\Index.cshtml" />
+    <Content Include="Views\TipoRecurso\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Turma\CadastrarTurma.cshtml" />
+    <Content Include="Views\Turma\Delete.cshtml" />
+    <Content Include="Views\Turma\DetalharTurma.cshtml" />
+    <Content Include="Views\Turma\EditarTurma.cshtml" />
+    <Content Include="Views\Turma\Index.cshtml" />
+    <Content Include="Views\Turma\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Turma\_ListarCR.cshtml" />
+    <Content Include="Views\Turma\_RetornaTurmas.cshtml" />
+    <Content Include="Views\Turno\CadastrarTurno.cshtml" />
+    <Content Include="Views\Turno\Delete.cshtml" />
+    <Content Include="Views\Turno\DetalharTurno.cshtml" />
+    <Content Include="Views\Turno\EditarTurno.cshtml" />
+    <Content Include="Views\Turno\Index.cshtml" />
+    <Content Include="Views\Turno\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Unidade\CadastrarUnidade.cshtml" />
+    <Content Include="Views\Unidade\Delete.cshtml" />
+    <Content Include="Views\Unidade\DetalharUnidade.cshtml" />
+    <Content Include="Views\Unidade\EditarUnidade.cshtml" />
+    <Content Include="Views\Unidade\Index.cshtml" />
+    <Content Include="Views\Unidade\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\CatUsuario\Cadastrar.cshtml" />
+    <Content Include="Views\CatUsuario\Delete.cshtml" />
+    <Content Include="Views\CatUsuario\Editar.cshtml" />
+    <Content Include="Views\CatUsuario\Index.cshtml" />
+    <Content Include="Views\CatUsuario\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\CalendarioLegenda\Index.cshtml" />
+    <Content Include="Views\CalendarioLegenda\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\CalendarioLegenda\Cadastrar.cshtml" />
+    <Content Include="Views\CalendarioLegenda\Editar.cshtml" />
+    <Content Include="Views\Calendario\Index.cshtml" />
+    <Content Include="Views\CatUsuario\Cadastrar.cshtml" />
+    <Content Include="Views\CatUsuario\Delete.cshtml" />
+    <Content Include="Views\CatUsuario\Editar.cshtml" />
+    <Content Include="Views\CatUsuario\Index.cshtml" />
+    <Content Include="Views\CatUsuario\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Shared\_ModalConfirmacaoModificar.cshtml" />
+    <Content Include="Views\Calendario\Feriados.cshtml" />
+    <Content Include="Views\Usuario\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Usuario\Cadastrar.cshtml" />
+    <Content Include="Views\Usuario\Editar.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\TipoContrato\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\TipoContrato\Cadastrar.cshtml" />
+    <Content Include="Views\TipoContrato\Delete.cshtml" />
+    <Content Include="Views\TipoContrato\Editar.cshtml" />
+    <Content Include="Views\TipoContrato\Index.cshtml" />
+    <Content Include="Views\TipoAtividade\Index.cshtml" />
+    <Content Include="Views\TipoAtividade\EditarTipoAtividade.cshtml" />
+    <Content Include="Views\TipoAtividade\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\TipoAtividade\CadastrarTipoAtividade.cshtml" />
+    <Content Include="Views\TipoAtividade\Delete.cshtml" />
+    <Content Include="Views\TipoAtividade\DetalharTipoAtividade.cshtml" />
+    <Content Include="Views\Empresa\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Empresa\Cadastrar.cshtml" />
+    <Content Include="Views\Empresa\Delete.cshtml" />
+    <Content Include="Views\Empresa\Editar.cshtml" />
+    <Content Include="Views\Empresa\Index.cshtml" />
+    <Content Include="Views\Shared\_BuscarComponentes.cshtml" />
+    <Content Include="Views\AgendaEvento\Eventos.cshtml" />
+    <Content Include="Views\Perfil\Cadastrar.cshtml" />
+    <Content Include="Views\Perfil\Delete.cshtml" />
+    <Content Include="Views\Perfil\Editar.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Perfil\_CadastrarOuEditar.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_ListaUsuarioLogin.cshtml" />
+    <Content Include="Views\Agendamento\Index.cshtml" />
+    <Content Include="Views\PlanejamentoEscolar\Index.cshtml" />
+    <Content Include="Scripts\Modal\.gitignore" />
+    <Content Include="Scripts\Modal\bower.json" />
+    <Content Include="Scripts\Modal\LICENSE" />
+    <Content Include="Scripts\Modal\README.md" />
+    <Content Include="Views\Cadastros\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="ScriptBundle\%24Common\" />
+    <Folder Include="ScriptBundle\CalendarioLegenda\Index\" />
+    <Folder Include="ScriptBundle\Calendario\Common\" />
+    <Folder Include="ScriptBundle\Common\" />
+    <Folder Include="ViewModels\CatUsuario\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\img\Thumbs.db.doc" />
+    <Content Include="Content\css\opensans-bold-webfont.ttf" />
+    <Content Include="Content\css\opensans-light-webfont.ttf" />
+    <Content Include="Content\css\opensans-regular-webfont.eot" />
+    <Content Include="Content\css\opensans-regular-webfont.ttf" />
+    <Content Include="Content\css\opensans-semibold-webfont.ttf" />
+    <Content Include="Content\less\datepicker.less" />
+    <Content Include="Views\Agendamento\Componente.cshtml" />
+    <Content Include="Views\Agendamento\_CadastrarOuEditar.cshtml" />
+    <Content Include="Views\Agendamento\_FiltroAmbiente.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\ModalAlert.cshtml" />
+    <Content Include="Views\Shared\_BuscaComponentes.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Shared\_LayoutSPE.cshtml" />
+    <Content Include="Views\Shared\_ListaComponentes.cshtml" />
+    <Content Include="Views\Shared\_MenuCarroselCadastro.cshtml" />
+    <Content Include="Views\Shared\_ModalConfirmacaoExcluir.cshtml" />
+    <Content Include="Views\Shared\_ModalErro.cshtml" />
+    <Content Include="Views\Shared\_ModalSucesso.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{035917f3-229d-46f1-806a-703894c44794}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Extensions\Extensions.csproj">
+      <Project>{95411efb-78e3-4f74-939a-144a535d3796}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{49adbce0-c91e-4f0b-95e4-a703ee9cfcef}</Project>
+      <Name>Repository %28Repository\Repository%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Senai.SPE.BL\Senai.SPE.BL.csproj">
+      <Project>{ea6a902e-8262-460e-9fe0-c1c29d1f6563}</Project>
+      <Name>Senai.SPE.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Senai.SPE.Domain\Senai.SPE.Domain.csproj">
+      <Project>{18aef590-6ec2-449a-95e7-0b8425349965}</Project>
+      <Name>Senai.SPE.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Senai.SPE.Repository\Senai.SPE.Repository.csproj">
+      <Project>{ce67721b-15e8-4601-a73a-208d4074d6ae}</Project>
+      <Name>Senai.SPE.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>17024</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:28814/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,117 @@
+﻿@using SPE.ViewModel
+@model SPE.ViewModel.MatrizViewModel
+
+
+@{
+    ViewBag.Title = "_CadastrarOuEditar";
+}
+
+
+<div class="span6">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IdModalidade)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.IdModalidade, ((IEnumerable<ModalidadeViewModel>)Model.ListaModalidades).Select(option => new SelectListItem
+               {
+                   Text = option.Nome,
+                   Value = option.IdModalidade.ToString(),
+                   Selected = Model != null && option.IdModalidade == Model.IdModalidade
+               }), "Selecione", null)
+        @Html.ValidationMessageFor(model => model.IdModalidade)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IdAreaAtuacao)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.IdAreaAtuacao, ((IEnumerable<AreaAtuacaoViewModel>)Model.ListaAreaAtuacao).Select(option => new SelectListItem
+               {
+                   Text = option.Nome,
+                   Value = option.IdAreaAtuacao.ToString(),
+                   Selected = Model != null && option.IdAreaAtuacao == Model.IdModalidade
+               }), "Selecione", null)
+        @Html.ValidationMessageFor(model => model.IdAreaAtuacao)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IdCBO)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.IdCBO, ((IEnumerable<CBOViewModel>)Model.ListaCBO).Select(option => new SelectListItem
+               {
+                   Text = option.Descrricao,
+                   Value = option.IdCBO.ToString(),
+                   Selected = Model != null && option.IdCBO == Model.IdCBO
+               }), "Selecione", null)
+        @Html.ValidationMessageFor(model => model.IdCBO)
+    </div>
+</div>
+<div class="span6">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Nome)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Nome)
+        @Html.ValidationMessageFor(model => model.Nome)
+    </div>
+
+     <div class="editor-field">
+        @Html.HiddenFor(model => model.IdModalidade)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CH)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.CH,null,new { @readonly = "true" })
+        @Html.ValidationMessageFor(model => model.CH)
+    </div>
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DataFim)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.DataFimView)
+        @Html.ValidationMessageFor(model => model.DataFimView)
+    </div>
+          <div class="editor-label">    
+        @Html.LabelFor(model => model.Status)
+            </div>
+        <div class="editor-field">
+            <label class="radio" style="display:inline-block">
+                <input type="radio" name="Status" value="0" @if (Model.Status == 0)
+                                                            {
+                                                                              @:checked
+                                                                              }
+             >Inativo</label>
+            <label class="radio" style="display:inline-block">
+                <input type="radio" name="Status" value="1"@if (Model.Status == 1 ||Model.Status ==null )
+                                                            {
+                                                                              @:checked
+                                                                              }>Ativo</label>
+        @Html.ValidationMessageFor(model =>model.Status)
+    </div>
+    @if (Model.IdMatriz > 0)            
+    {
+    <div class="editor-label">    
+    @Html.LabelFor(model => model.Aprovado)
+    </div>
+    <div class="editor-field">           
+        <select name="aprovarMatriz" id="aprovarMatriz" @(ViewBag.AprovacaoMatriz == 1 ? "" : "readonly=true disabled=disabled")>
+            <option value="">Em Aprovação</option>
+            <option value="1"  @(Model.Aprovado == 1 ? "selected=selected" : null)>Aprovado</option>
+            <option value="0"  @(Model.Aprovado == 0 ? "selected=selected" : null)>Reprovado</option>
+        </select> 
+    </div>
+    } 
+<div id="hidden">
+      <div class="editor-label">    
+        Descrição
+
+      </div>
+        <div class="editor-field">
+          @Html.TextAreaFor(model => model.ReprovacaoMatriz.observacao, new { maxlength = "254", rows = 5 } )            
+            <span class="field-validation-error" data-valmsg-for="ReprovacaoMatriz.observacao" data-valmsg-replace="true" style="display:none;"><span for="ReprovacaoMatriz_observacao" generated="true" class="">Campo Obrigatório</span></span>
+</div>
+    </div>

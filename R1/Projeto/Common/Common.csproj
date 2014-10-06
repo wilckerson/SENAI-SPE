@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{035917F3-229D-46F1-806A-703894C44794}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\3rd\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\3rd\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionResults\HttpStatusCodePartialViewResult.cs" />
+    <Compile Include="ActionResults\HttpStatusCodeViewResult.cs" />
+    <Compile Include="Alert.cs" />
+    <Compile Include="Comparer\EqualityComparerList.cs" />
+    <Compile Include="CustomException.cs" />
+    <Compile Include="DataAnnotations\HtmlAttributesAttribute.cs" />
+    <Compile Include="Email\EmailHelper.cs" />
+    <Compile Include="Entity\EntityBaseViewModel.cs" />
+    <Compile Include="Entity\IEntity.cs" />
+    <Compile Include="ErrorHandling\ErrorHandling.cs" />
+    <Compile Include="ExcelWriter.cs" />
+    <Compile Include="Extensions\CalendarEx\Calendar.cs" />
+    <Compile Include="Extensions\DateEx\DateExtension.cs" />
+    <Compile Include="Extensions\EnumEx\EnumExtension.cs" />
+    <Compile Include="Extensions\HtmlHelperEx\HtmlHelperExtension.cs" />
+    <Compile Include="Extensions\IEnumerableEx\IEnumerableExtension.cs" />
+    <Compile Include="Extensions\IQueryableEx\IQueryableEx.cs" />
+    <Compile Include="Extensions\ListEx\ListExtension.cs" />
+    <Compile Include="Extensions\ModelState\ModelStateExtension.cs" />
+    <Compile Include="Extensions\ObjectEx\ObjectExtension.cs" />
+    <Compile Include="Extensions\PanelEx\MvcPanel.cs" />
+    <Compile Include="Extensions\PanelEx\PanelHelperEx.cs" />
+    <Compile Include="Extensions\RegexUtilsEx\RegexUtilsEx.cs" />
+    <Compile Include="Extensions\StringEx\StringExtension.cs" />
+    <Compile Include="Extensions\StringEx\StringValidationExtension.cs" />
+    <Compile Include="Extensions\TimeEx\TimeExtension.cs" />
+    <Compile Include="Extensions\TypeEx\TypeExtension.cs" />
+    <Compile Include="Filters\DisableCacheFilter.cs" />
+    <Compile Include="Filters\EnableCacheFilter.cs" />
+    <Compile Include="Filters\EnableCompressionFilter.cs" />
+    <Compile Include="Filters\NullModelCheckFilter.cs" />
+    <Compile Include="Filters\ValidationActionFilter.cs" />
+    <Compile Include="HandleException\Ensure.cs" />
+    <Compile Include="Logging\AzureLogging.cs" />
+    <Compile Include="Logging\Logging.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AESEncryption.cs" />
+    <Compile Include="Security\AllowAnonymousAttribute.cs" />
+    <Compile Include="Security\AllowAnonymousExAttribute.cs" />
+    <Compile Include="Security\Criptography.cs" />
+    <Compile Include="Security\HashEncryption.cs" />
+    <Compile Include="Security\LoggedUser.cs" />
+    <Compile Include="Security\TripleDES.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BaseController\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

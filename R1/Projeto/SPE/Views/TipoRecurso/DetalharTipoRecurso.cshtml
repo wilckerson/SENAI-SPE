@@ -1,0 +1,41 @@
+@model SPE.ViewModel.TipoRecursoViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Tipo Recurso")
+<div class="container">
+    <div class="white_box">
+
+        <div class="container-fluid">
+            <h1>Detalhes Tipo de Recurso</h1>
+
+            <h3>Tipo de Recurso</h3>
+            <fieldset>
+                <legend></legend>
+
+                <table border="1" class="table table-striped">
+
+                    <tr>
+                        <th>
+                            <div class="display-label">Nome:</div>
+                        </th>
+                        <td>
+                            <div class="display-field">@Model.Descr</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">@Html.ActionLink("Editar", "EditarTipoRecurso", new { id = Model.IdTipoRecurso }, new { @class = "btn" })</td>
+                    </tr>
+
+                </table>
+            </fieldset>
+            <p>
+                @Html.ActionLink("Lista de Tipos de Recursos", "Index", null, new { @class = "btns btn-large btn-principal" })
+            </p>
+        </div>
+    </div>
+</div>
+
+

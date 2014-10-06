@@ -1,0 +1,137 @@
+@using Extensions.EnumEx
+@model SPE.ViewModel.AgendaEventoViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Agenda Eventos")
+
+@section Head {
+    <link href="~/Scripts/jCal/jCal.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jCal/jCal.js"></script>
+    <script type="text/javascript" src="~/Scripts/jCal/jquery.animate.clip.js"></script>
+    <script src="~/Scripts/Eventos/custom.js"></script>
+}
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <span style="text-align: right">Docente</span>
+            <div>
+                <select id="IdDocente" name="IdDocente" onchange="setDocente()" @if (Model.IdDocente != "0")
+                                                                                { 
+                                                                                                @:disabled="disabled"
+                                                                                            }>
+
+                    <option value="0" selected>Selecione um Docente</option>
+                    @foreach (var item in Model.Docentes)
+                    {
+                        <option value="@item.IdDocente"
+                                        @if (item.IdDocente.ToString() == Model.IdDocente)
+                                        {
+                                            @:selected
+                                        }
+                                        >@item.Nome</option>
+                    }
+                </select>
+                <strong id="msg"></strong>
+            </div>
+
+            <div class="filtros" id="divAdicionar">
+                <h4>Adicionar Data</h4>
+                <table class="camposFiltro">
+                    <tr>
+                        <td style="text-align: right">Descrição</td>
+                        <td>
+                            <input id="dataDesc" style="width: 300px;" />
+                        </td>
+                        <td>Data Início</td>
+                        <td>
+                            <input type="text" id="dataini" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">Tipo</td>
+                        <td>
+                            @Html.DropDownListFor(model => model.TipoEvento, ((List<Senai.SPE.Domain.TipoAtividade>)Model.TipoEventos).Select(option => new SelectListItem
+       {
+           Text = option.Nome,
+           Value = option.IdTipoAtividade.ToString(),
+           Selected = Model != null && Model.TipoEvento != null && Model.TipoEvento.Contains(option.Nome)
+       }), "Selecione"
+                                    //, new { @disabled = "disabled" }
+       )
+                            @*<select class="TipoEvento" name="TipoEvento">
+                                @foreach (var item in Model.TipoEventos)
+                                {
+                                    <option value="@Html.Raw((byte)item)">@item.ToDescription()</option>
+                                }
+                            </select>*@
+                        </td>
+
+                        <td>Data de Fim</td>
+                        <td>
+                            <input type="text" id="datafim" />
+                        </td>
+                        <td>
+                            <input type="button" value="Cadastrar" id="Cadastrar" style="border: none;" class="btns btn-small btn-principal" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="editarEvento" class="filtros" style="display: none;">
+                <h4>Editar Data</h4>
+                @using (Html.BeginForm("EditarEvento", "AgendaEvento", FormMethod.Post, new { Id = "editarForm" }))
+                {
+                    <input type="hidden" id="idAgendaEvento" name="IdAgendaEvento" value="" />
+                    <input type="hidden" id="idDocenteEdit" name="idDocenteEdit" value="" />
+                    
+                    <table class="camposFiltro">
+                        <tr>
+                            <td style="text-align: right">Descrição</td>
+                            <td>
+                                <input id="edit_dataDesc" name="Descricao" style="width: 300px;" />
+                            </td>
+                            <td>Data Início</td>
+                            <td>
+                                <input type="text" name="DataIni" id="editDataIni" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right">Tipo</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.TipoEvento, ((List<Senai.SPE.Domain.TipoAtividade>)Model.TipoEventos).Select(option => new SelectListItem
+       {
+           Text = option.Nome,
+           Value = option.IdTipoAtividade.ToString(),
+           Selected = Model != null && Model.TipoEvento != null && Model.TipoEvento.Contains(option.Nome)
+       }), "Selecione", new { @id = "TipoEventoEditar" })
+                                @*<select id="TipoEventoEdit" name="TipoEventoEdit">
+                                    @foreach (var item in Model.TipoEventos)
+                                    {
+                                        <option value="@Html.Raw((byte)item)">@item.ToDescription()</option>
+                                    }
+                                </select>*@
+                            </td>
+
+                            <td>Data de Fim</td>
+                            <td>
+                                <input type="text" name="DataFim" id="editDataFim" />
+                            </td>
+                            <td>
+                                <input type="button" id="btnEditar" value="Salvar" class="btns btn-small btn-principal" style="border: none; margin: 1px;" /><br />
+                                <input type="button" value="Cancelar" id="CancelarEdit" class="btns btn-small" style="border: none; margin: 1px;" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+            <hr />
+
+            <div class="btn" onclick="JCalendario.backYear();"><< Ano Anterior</div>
+            <div class="btn" onclick="JCalendario.addYear();">Ano Seguinte >></div>
+            <div id="calendario"></div>
+        </div>
+    </div>

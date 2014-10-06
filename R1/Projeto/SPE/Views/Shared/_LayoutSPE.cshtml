@@ -1,0 +1,240 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>SPE</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @Styles.Render("~/Style/css")
+
+    <link type="text/css" href="@Url.Content("~/Content/css/jquery-ui-1.10.3.custom.min.css")" rel="stylesheet"  />
+    <link type="text/css" href="@Url.Content("~/Content/bootstrap/css/bootstrap.min.css")" rel="stylesheet"  />
+
+    <script type="text/javascript">
+        //Previnindo erros ao invocar console.log no IE7/8
+        var alertFallback = false;
+        if (typeof console === "undefined" || typeof console.log === "undefined") {
+            console = {};
+            if (alertFallback) {
+                console.log = function (msg) {
+                    alert(msg);
+                };
+            } else {
+                console.log = function () { };
+            }
+        }
+    </script>
+
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/modernizr")
+    @Scripts.Render("~/Scripts/jqueryval")
+    <script type="text/javascript" src="@Url.Content("~/Content/bootstrap/js/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/dataTableCustom.js")"></script>
+    
+
+    <script type="text/javascript" src="~/Scripts/kolorpicker/jquery.kolorpicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[mascara]").each(function () {
+                $(this).mask($(this).attr("mascara"));
+            });
+
+            $("input[tipo]").each(function () {
+                var tipo = $(this).attr("tipo");
+                if (tipo == "data") {
+                    $(this).datepicker();
+                    //geraCalendario($(this).attr("id"));
+                    $(this).mask("99/99/9999");
+                }
+                if (tipo == "moeda")
+                    mascaraMoeda($(this).attr("id"));
+                if (tipo == "telefone")
+                    $(this).mask("(99) 9999-9999");
+                if (tipo == "email")
+                    $(this).blur(campoEmail($(this).attr("id")));
+                if (tipo == "numero")
+                    $(this).keypress(verificaNumero);
+            });
+
+            function verificaNumero(tecla) {
+                if (tecla.which != 8 && tecla.which != 0 && (tecla.which < 48 || tecla.which > 57)) {
+                    return false;
+                }
+            }
+        });
+    </script>
+    @*<script type="text/javascript" src="~/Scripts/Modal/jquery.modal.min.js"></script>*@
+    <link href="~/Scripts/kolorpicker/style/kolorpicker.css" rel='stylesheet' />
+    @*<link href="~/Scripts/Modal/jquery.modal.css" rel="stylesheet" />*@
+
+    @RenderSection("Head", false)
+    @*@if (ViewBag.Erro != null && ViewBag.Erro)
+    {
+        @Html.Partial("../Shared/_ModalErro",(string)ViewBag.MsgErro)
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#modalErro").click();
+            });
+
+        </script>
+     }
+    else if (ViewBag.Sucesso != null && ViewBag.Sucesso)
+    { 
+         @Html.Partial("../Shared/_ModalSucesso",(string)ViewBag.MsgErro)
+     
+    }*@
+
+    @* @if (TempData["Error"] != null && (bool)TempData["Error"])
+    {
+        @Html.Partial("../Shared/_ModalErro",(string)TempData["MsgErro"])
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#modalErro").click();
+            });
+
+        </script>
+        TempData["Error"] = false;
+     }
+    else if (TempData["Sucesso"] != null && (bool)TempData["Sucesso"])
+    { 
+         @Html.Partial("../Shared/_ModalSucesso","Funcionou")
+          <script type="text/javascript">
+              $(document).ready(function () {
+
+                  $("#modalSucesso").click();
+
+              });
+
+        </script>
+        TempData["Sucesso"] = false;
+    }*@
+
+</head>
+<body>
+    <input type="hidden" id="userid" value="@Session["usuarioId"]"/>
+
+    <header>
+        <div class="container">
+            <div class="logo pull-left">
+                <a href="/Home" target="_self" title="home">
+                    <img src="/Images/logo_spe.png" /></a>
+            </div>
+
+            @if (Session["nome"] != null)
+            {
+                <nav class="pull-right">
+
+                    <div class="dropdown">
+                        <div class="user">
+                            <a href="#" class="pull-right dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#">
+                                <img src="/Images/user_Icon.png" />
+                                @Session["nome"]<span class="caret"></span>
+
+                                <!-- <img src="/Images/arrow_down.png" /> -->
+                            </a>
+
+                        </div>
+                        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel" style="margin-right: -22px; margin-top: 25px">
+                            @* <li>
+                                <div class="well well-small">@Session["nome"] </div>
+                                <button id="editar" class="btn pull-left" style="margin-left: 5px">Conta</button>
+                                <button id="sair" class="btn btn-primary pull-right" type="button" style="margin-right: 5px">Sair</button>
+
+                            </li>*@
+                            <li>
+                                <a id="editar" href="/usuario/editar/@Session["usuarioId"]">Minha conta</a>
+                            </li>
+                            <li>
+                                <a id="sair" href="/login/logout">Sair</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            }
+
+
+        </div>
+    </header>
+
+    <div class="crumbs">
+        <div class="container">
+            @*Você está em:  @ViewContext.Controller.ValueProvider.GetValue("controller").RawValue*@
+            <br />
+        </div>
+
+    </div>
+
+    <section id="main_aside">
+        @RenderBody()
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="menu_secundario">
+                @*<nav class="pull-left">
+                    <h4>Acesso Secundario</h4>
+                    <ul>
+                        <li><a href="../AreaAtuacao" target="_self">Cadastro</a></li>
+                        <li><a href="#" target="_self">Opçao 2</a></li>
+                        <li><a href="#" target="_self">Opçao 3</a></li>
+                        <li><a href="#" target="_self">Opçao 4</a></li>
+                        <li><a href="#" target="_self">Opçao 5</a></li>
+                    </ul>
+                </nav>*@
+                <p class="pull-left" style="padding-top: 12px;">
+                    ©2014 SENAI - Sistema de Planejamento Escolar (SPE)
+                </p>
+                <div class="senai pull-right">
+
+                    <img src="/Images/senai_logo.png" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            @*<div class="">
+                <hr />
+                <p class="pull-left">©2014 SENAI - Sistema de Planejamento Escolar (SPE)</p>
+
+               <nav class="pull-right">
+                    <ul>
+                        <li><a href="#" target="_self">Ajuda</a></li>
+                        <li><a href="#" target="_self">Suporte</a></li>
+                        <li><a href="#" target="_self">Outro</a></li>
+                    </ul>
+
+                </nav>
+            </div>*@
+
+        </div>
+
+        <div class="clearfix"></div>
+    </footer>
+
+
+    @RenderSection("scripts", required: false)
+    <div name="alertBox" id="alertBox" class="alert alert-info" data-dismiss="alert" style="position: fixed; height: 100px; display: none; right: 0; bottom: 0;"></div>
+
+    @if (TempData["Sucesso"] != null && (bool)TempData["Sucesso"])
+    {
+        <div name="alertBox" id="alertBox" class="alert alert-success" data-dismiss="alert" style="position: fixed; height: 100px; right: 0; bottom: 0;">@TempData["SucessoMessage"] </div>
+        TempData["Sucesso"] = null;
+        TempData["SucessoMessage"] = null;
+    }
+    @if (TempData["Error"] != null && (bool)TempData["Error"])
+    {
+        <div name="alertBox" id="alertBox" class="alert alert-error" data-dismiss="alert" style="position: fixed; height: 100px; right: 0; bottom: 0;">@TempData["ErrorMessage"] </div>
+        TempData["Error"] = null;
+        TempData["ErrorMessage"] = null;
+
+    }
+
+    @RenderSection("Footer", false)
+
+</body>
+</html>

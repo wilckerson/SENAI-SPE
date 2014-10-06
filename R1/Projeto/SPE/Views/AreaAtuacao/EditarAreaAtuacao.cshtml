@@ -1,0 +1,35 @@
+@model SPE.ViewModel.AreaAtuacaoViewModel
+
+@{
+    ViewBag.Title = "EditarAreaAtuacao";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Área Atuação")
+<script src="~/Scripts/AreaAtuacao/areaAtuacao.js"></script>
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Editar Área de Atuação</h1>
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend></legend>
+
+                    @Html.HiddenFor(model => model.IdAreaAtuacao)
+                    @Html.Partial("_CadastrarOuEditar", Model)
+
+
+                </fieldset>
+          
+
+            <div class="buttons">
+                <input type="submit" value="Salvar" class="btns btn-large btn-principal" />
+                 @Html.ActionLink("Lista de Áreas de Atuação", "Index", null, new { @class = "btns btn-large" })
+               
+            </div>
+            }
+        </div>
+    </div>
+</div>

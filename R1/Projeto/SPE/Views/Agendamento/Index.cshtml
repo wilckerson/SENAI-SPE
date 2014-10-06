@@ -1,0 +1,68 @@
+﻿@using Extensions.EnumEx
+@model SPE.ViewModel.AgendaEventoViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Agendamento")
+
+@section Head {
+    <link href="~/Scripts/jCal/jCal.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jCal/jCal.js"></script>
+    <script type="text/javascript" src="~/Scripts/jCal/jquery.animate.clip.js"></script>
+    <script src="~/Scripts/Agendamento/custom.js"></script>
+}
+<style type="text/css">
+    .camposTable tr td select {
+        margin: 0 !important;
+    }
+
+    .camposTable td {
+        padding-right: 5px;
+    }
+</style>
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+
+            <div class="">
+                <h4>Adicionar Data</h4>
+                <table class="camposTable">
+                    <tr>
+                        <td>Tipo:</td>
+                        <td>
+                            <select id="drpTipo" onchange="TipoSelecionado()">
+                                <option>Selecione</option>
+                                <option value="1">Ambiente</option>
+                                <option value="2">Componente</option>
+                                <option value="3">Docente</option>
+                                <option value="4">Turma</option>
+                            </select>
+                        </td>
+                        <td>Item:</td>
+                        <td>
+                            <select id="drpItem" disabled="disabled" onchange="ItemSelecionado()">
+                                <option>Selecione</option>
+                            </select>
+                        </td>                        
+                        <td>
+                            <input type="hidden" id="drpVersao" value="1" />                          
+                        </td>
+                        <td>
+                            <input type="button" id="btnBuscarAgendamento" class="btns btn-large btn-principal" disabled="disabled" onclick="BuscarAgendamento()" value="Buscar" style="border:none; margin-left:20px;" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="btn" onclick="JCalendario.backYear();"><< Ano Anterior</div>
+            <div class="btn" onclick="JCalendario.addYear();">Ano Seguinte >></div>
+
+            <div id="calendario"></div>
+        </div>
+    </div>
+</div>
+<div id="modalLoading" hidden="hidden" style="width:150px">
+    <h1> Carregando </h1>
+    <img src="~/Images/loading.gif"  style="width:50px; height:50px; position:relative; left:50px;"/>
+</div>

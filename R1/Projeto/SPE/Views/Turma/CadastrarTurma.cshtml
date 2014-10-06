@@ -1,0 +1,36 @@
+@model SPE.ViewModel.TurmaViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Turma")
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend>Turma</legend>
+
+                    @Html.Partial("_CadastrarOuEditar", Model)
+
+
+                </fieldset>
+                <div class="buttons">
+                    <input type="submit" value="Cadastrar" class="btns btn-large btn-principal btnsalvar" />
+                    @Html.ActionLink("Lista de Turmas", "Index", null, new { @class = "btns btn-large" })
+                </div>
+            }
+
+           
+        </div>
+    </div>
+</div>
+
+

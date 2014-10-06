@@ -1,0 +1,82 @@
+@model List<SPE.ViewModel.EmpresaViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Empresa")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Empresas</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Nome Fantasia</th>
+                        <th>CNPJ</th>
+                        <th search>Email</th>
+                        <th>Telefone</th>
+                        <th>Contato</th>
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @item.NomeFantasia
+                            </td>
+                            <td>
+                                @Extensions.StringEx.StringExtension.ToCNPJ(item.CNPJ)
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                @item.Tel
+                            </td>
+                            <td>
+                                @item.Contato
+                            </td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip"  onclick="Editar('/Empresa/Editar/@item.IdEmpresa');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.IdEmpresa);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Não há Empresas cadastradas.</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Empresa", "Cadastrar", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Empresa/Excluir/")
+

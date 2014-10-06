@@ -1,0 +1,43 @@
+@model SPE.ViewModel.AmbienteViewModel
+
+@section Head{
+    <script src="~/Scripts/Ambiente/ambiente.js"></script>
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Ambiente")
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Cadastrar Ambiente</h1>
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend></legend>
+
+                    @Html.Partial("_CadastrarOuEditar", Model)
+
+                    
+                </fieldset>
+                
+                <h1>Recursos</h1>
+                <fieldset>
+                    <legend></legend>
+
+                    @Html.HiddenFor(e => e.HiddenListaRecurso)
+                    @Html.Partial("_Recurso", Model)
+
+
+                </fieldset>
+
+                <div class="buttons">
+                    <input type="submit" value="Salvar" class="btns btn-large btn-principal" />
+                    @Html.ActionLink("Lista de Ambientes", "Index", null, new { @class = "btns btn-large" })
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

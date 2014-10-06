@@ -1,0 +1,30 @@
+@model SPE.ViewModels.Agendamento.AgendamentoIndexVM
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "")
+
+@section Head {
+    <script type="text/javascript" src="~/Scripts/fullcalendar/fullcalendar.min.js"></script>
+    <link href="~/Scripts/fullcalendar/fullcalendar.css" rel='stylesheet' />
+
+    @Scripts.Render("~/AutoBundle/Common")
+    @Scripts.Render("~/AutoBundle/Calendario/Common")
+    @Scripts.Render("~/AutoBundle/Calendario/index")
+
+    <style type="text/css">
+        .popover {
+            z-index: 1010; /* A value higher than 1010 that solves the problem */
+        }
+    </style>
+
+}
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <input type="hidden" id="turmaId" value="@Html.Raw(Request.QueryString["turmaId"])" />
+            <div id="calendario"></div>
+        </div>
+    </div>
+</div>

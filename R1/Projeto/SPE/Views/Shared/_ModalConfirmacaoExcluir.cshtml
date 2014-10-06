@@ -1,0 +1,22 @@
+﻿@model string
+@{
+    Layout = null;    
+}
+
+
+<!-- Modal -->
+<div id="myModal" style="top:35%;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Excluir</h3>
+    </div>
+    <div class="modal-body">
+        <p>Tem certeza que deseja excluir esse item?</p>
+    </div>
+    <div class="modal-footer">
+        <a id="hrefModal" href="@Model" class="btn btn-primary">Confirmar </a>@* <button >Confirmar</button>*@
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+    </div>
+</div>
+
+<a id="modalExcluir" href="#myModal" role="button" class="btn hide"  data-toggle="modal">Excluir</a>

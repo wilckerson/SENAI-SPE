@@ -1,0 +1,29 @@
+@model SPE.ViewModel.CBOViewModel
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Codigo)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Codigo, new { @class = "input-small", maxlength = 7 })
+    @Html.ValidationMessageFor(model => model.Codigo)
+
+    <script>
+        $('#Codigo').mask("9999-99");
+    </script>
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Descrricao)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Descrricao, new { @class = "input-medium", maxlength = 250 })
+    @Html.ValidationMessageFor(model => model.Descrricao)
+</div>
+
+@*<div class="editor-label">
+    @Html.LabelFor(model => model.Tipo)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Tipo, new { @class = "input-small", type = "number" })
+    @Html.ValidationMessageFor(model => model.Tipo)
+</div>*@
+

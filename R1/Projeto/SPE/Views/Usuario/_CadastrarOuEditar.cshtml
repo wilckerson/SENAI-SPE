@@ -1,0 +1,62 @@
+@model SPE.ViewModel.CadastrarOuEditar
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+
+<script src="~/Scripts/Usuario/Usuario.js"></script>
+
+
+<div class="row">
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Nome, new { @class = "input-large", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Email, new { @class = "input-large" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CPF)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CPF, new { @class = "input-medium" })
+            @Html.ValidationMessageFor(model => model.CPF)
+        </div>
+
+    </div>
+
+    <div class="span4">
+        <div class="editor-label">
+            <label>Perfil:</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.IdPerfil, ((IEnumerable<Senai.SPE.Domain.Perfil>)Model.ListaCatUsuario).Select(option => new SelectListItem
+               {
+                   Text = option.Nome,
+                   Value = option.idPerfil.ToString(),
+                   Selected = Model != null && option.idPerfil == Model.IdPerfil
+               }), "Selecione", new { style = "width:auto;" })
+
+            @Html.ValidationMessageFor(model => model.IdPerfil)
+        </div>
+
+        @*@if (Model.IdUsuario != null && Model.IdUsuario != 0)
+        {
+            <div class="editor-label">
+                <label>Último Acesso:</label>
+            </div>
+            <div class="editor-field">
+                @Model.UltimoAcesso
+            </div>
+        }*@
+    </div>
+</div>

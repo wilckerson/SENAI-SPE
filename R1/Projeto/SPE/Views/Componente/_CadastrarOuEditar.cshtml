@@ -1,0 +1,114 @@
+﻿@model SPE.ViewModel.ComponenteViewModel
+@{
+    Layout = null;
+}
+
+<div class="row-fluid">
+<div class="editor-label">
+    @Html.LabelFor(model => model.Nome)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Nome, new { @class = "input-medium" })
+    @Html.ValidationMessageFor(model => model.Nome)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.CH)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.CH, new { onkeypress = "return AllowOnlyNumbers(event);", @class = "input-mini" })
+    @Html.ValidationMessageFor(model => model.CH)
+</div>
+
+ @* Inicio Parte de Área de Atuação *@
+    <div class="container-fluid" style="width: 400px;">
+        <h4>Áreas de Atuação</h4>
+        <div id="modulos">
+            <table id="tableAreaAtuacao" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nome</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.ListaAreaAtuacao)
+                {
+                                         
+                    <tr>
+                        <td style="width: 8%;">
+                            <icon id="@item.IdAreaAtuacao" class="icon-plus-sign addAreaAtuacao"></icon>
+                        </td>
+                        <td>@item.Nome</td>
+                    </tr>
+                                     
+                }
+
+
+
+            </tbody>
+        </table>
+
+            </div>
+        </div>
+
+        <div class="container-fluid" style="width: 400px;">
+        <h4>Áreas de Atuação Escolhidas </h4>
+        <div id="modulos">
+            <table id="tableAreaAtuacaoEscolhidos" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @if( Model.AreaAtuacao != null){
+                        foreach (var AreaAtuacao in Model.AreaAtuacao)
+                        {
+                              <tr>
+                                <td style="width: 8%;">
+                                    <icon id="@AreaAtuacao.IdAreaAtuacao" class="icon-remove" onclick="removeAreaAtuacao(this)"></icon>
+                                </td>
+                                <td>@AreaAtuacao.Nome</td>
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+<hr />
+<div class="row-fluid">
+    <h3>Tipos de Ambiente</h3>
+    <br />
+    @foreach (var tipoAmbiente in Model.ListaTipoAmbiente)
+    {
+        
+        <label class="checkbox inline">
+            <input type="checkbox" name="tipoAmbiente" class="checkbox" value="@tipoAmbiente.IdTipoAmbiente" 
+            
+                 @if (Model.TipoAmbiente != null && Model.TipoAmbiente.Count > 0)
+                 {
+                     if (Model.TipoAmbiente.Where(a => a.IdTipoAmbiente == tipoAmbiente.IdTipoAmbiente).Count() > 0)
+                     {
+                    @:checked
+                    }
+                 }
+
+                />@tipoAmbiente.Descr
+        </label>       
+    }
+
+
+</div>
+</div>
+
+<input type="hidden" name="idsAreaAtuacao" id="idsAreaAtuacao" />
+
+
+

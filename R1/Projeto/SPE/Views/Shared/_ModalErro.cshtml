@@ -1,0 +1,22 @@
+﻿@model string
+@{
+    Layout = null;    
+}
+
+
+<!-- Modal -->
+<div id="myModalErro" style="top:35%;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h1 id="myModalLabel">
+            <img src="~/Images/1372983265_Error.png" style="width:80px;height:80px;" />Erro</h1>
+    </div>
+    <div class="modal-body">
+        <p class="alert alert-error">@Model</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+    </div>
+</div>
+
+<a id="modalErro" href="#myModalErro" role="button" class="btn hide"  data-toggle="modal">Excluir</a>

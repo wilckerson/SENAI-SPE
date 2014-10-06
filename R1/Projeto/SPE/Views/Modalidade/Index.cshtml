@@ -1,0 +1,65 @@
+@model SPE.ViewModel.FiltrosModalidade
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Modalidade")
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Modalidades</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+            
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Nome
+                        </th>
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+
+                @if (Model.Modalidade != null)
+                {
+                    foreach (var item in Model.Modalidade)
+                    {
+                    <tr>
+                        <td>
+                            @item.Nome
+                        </td>
+                        <td>
+                            <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip" onclick="Editar('/Modalidade/EditarModalidade/@item.IdModalidade');" href=""><i class="icon-edit" alt="editar"></i></div>
+                            <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.IdModalidade);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align: center;">Não há Modalidades cadastradas.</td>
+                    </tr>
+                }
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Modalidade", "CadastrarModalidade", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Modalidade/ExcluirModalidade/")

@@ -1,0 +1,128 @@
+﻿@model SPE.ViewModel.ComponenteViewModel
+
+@section Head{
+    <script type="text/javascript" src="~/Scripts/Componente/Componente.js"></script>
+}
+
+<style type="text/css">
+    #ModalComponente {
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 80%;
+    }
+</style>
+
+<div class="container-fluid" id="frmComponente">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Cadastrar Componente</h1>
+            @*@Html.ValidationSummary(true)*@
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Nome)
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("iptNome", "", new { @class = "input-medium" })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "error" })
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CH)
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("iptCH", "", new { onkeypress = "return AllowOnlyNumbers(event);", @class = "input-mini" })
+                @Html.ValidationMessageFor(model => model.CH, "", new { @class = "error" })
+            </div>
+
+            @* Inicio Parte de Área de Atuação *@
+            @*Áreas de atuação para cadastrar*@
+            <div class="row-fluid">
+                <h4>Áreas de Atuação</h4>
+                <div>
+                    <table id="tableAreaAtuacaoComponente" class="table table-bordered" style="width: 390px">
+                        <thead>
+                            <tr>
+                                <th>Ação</th>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ListaAreaAtuacao)
+                            {
+                                <tr>
+                                    <td style="width: 8%;">
+                                        <icon id="@item.IdAreaAtuacao" class="icon-plus-sign addAreaAtuacaoComponente"></icon>
+                                    </td>
+                                    <td>@item.Nome</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            @*Áreas de atuação já cadastradas*@
+            <div class="row-fluid">
+                <h4>Áreas de Atuação Escolhidas </h4>
+                <div>
+                    <table id="tableAreaAtuacaoComponenteEscolhidos" class="table table-bordered" style="width: 390px">
+                        <thead>
+                            <tr>
+                                <th>Ação</th>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model.AreaAtuacao != null)
+                            {
+                                foreach (var AreaAtuacao in Model.AreaAtuacao)
+                                {
+                                <tr>
+                                    <td style="width: 8%;">
+                                        <icon id="@AreaAtuacao.IdAreaAtuacao" class="icon-remove-componente" onclick="removeAreaAtuacaoComponente(this)"></icon>
+                                    </td>
+                                    <td>@AreaAtuacao.Nome</td>
+                                </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <span id="spanAreaAtuacao" class="error"></span>
+
+            @*Tipos de Ambiente*@
+            <div class="row-fluid">
+                <h4>Tipos de Ambiente</h4>
+                <br />
+                @foreach (var tipoAmbiente in Model.ListaTipoAmbiente)
+                {
+        
+                    <label class="checkbox inline">
+                        <input type="checkbox" name="tipoAmbiente" class="checkbox" value="@tipoAmbiente.IdTipoAmbiente" 
+            
+                 @if (Model.TipoAmbiente != null && Model.TipoAmbiente.Count > 0)
+                 {
+                     if (Model.TipoAmbiente.Where(a => a.IdTipoAmbiente == tipoAmbiente.IdTipoAmbiente).Count() > 0)
+                     {
+                    @:checked
+                    }
+                 }
+
+                />@tipoAmbiente.Descr
+                    </label>       
+                }
+
+
+            </div>
+            <span id="spanTipoAmbiente" class="error"></span>
+
+
+            <div class="buttons">
+                <input type="button" id="btnSalvarComponente" value="Salvar" onclick="SalvarComponenteMatriz()" class="btns btn-large btn-principal" />
+            </div>
+        </div>
+    </div>
+</div>

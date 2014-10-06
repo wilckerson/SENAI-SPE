@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA6A902E-8262-460E-9FE0-C1C29D1F6563}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Senai.SPE.BL</RootNamespace>
+    <AssemblyName>Senai.SPE.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0-beta1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0-beta1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgendaComponente.cs" />
+    <Compile Include="AgendaAmbiente.cs" />
+    <Compile Include="AgendaDocente.cs" />
+    <Compile Include="Agendamento.cs" />
+    <Compile Include="Ambiente.cs" />
+    <Compile Include="AreaAtuacao.cs" />
+    <Compile Include="CalendarioLegenda.cs" />
+    <Compile Include="CBO.cs" />
+    <Compile Include="ReprovacaoMatriz.cs" />
+    <Compile Include="Componente.cs" />
+    <Compile Include="CatUsuario.cs" />
+    <Compile Include="ReprovacaoTurma.cs" />
+    <Compile Include="Interfaces\IAgendaAmbienteBL.cs" />
+    <Compile Include="Interfaces\IAgendaComponenteBL.cs" />
+    <Compile Include="Interfaces\IAgendaDocenteBL.cs" />
+    <Compile Include="Interfaces\IAmbienteBL.cs" />
+    <Compile Include="Interfaces\IAreaAtuacaoBL.cs" />
+    <Compile Include="Interfaces\ICalendarioLegendaBL.cs" />
+    <Compile Include="Interfaces\ICatUsuarioBL.cs" />
+    <Compile Include="Interfaces\ICBOBL.cs" />
+    <Compile Include="Interfaces\IComponenteBL.cs" />
+    <Compile Include="Interfaces\ICRBL.cs" />
+    <Compile Include="Interfaces\IDocenteBL.cs" />
+    <Compile Include="Interfaces\IEmpresaBL.cs" />
+    <Compile Include="Interfaces\ILocalAmbienteBL.cs" />
+    <Compile Include="Interfaces\IMatrizBL.cs" />
+    <Compile Include="Interfaces\IModalidadeBL.cs" />
+    <Compile Include="Interfaces\IModuloBL.cs" />
+    <Compile Include="Interfaces\IRecursoBL.cs" />
+    <Compile Include="Interfaces\ITipoAmbienteBL.cs" />
+    <Compile Include="Interfaces\ITipoAtividadeBL.cs" />
+    <Compile Include="Interfaces\ITipoContratoBL.cs" />
+    <Compile Include="Interfaces\ITipoRecursoBL.cs" />
+    <Compile Include="Interfaces\ITurmaBL.cs" />
+    <Compile Include="Interfaces\ITurnoBL.cs" />
+    <Compile Include="Interfaces\IUnidadeBL.cs" />
+    <Compile Include="Interfaces\IUsuarioBL.cs" />
+    <Compile Include="Funcionalidade.cs" />
+    <Compile Include="Perfil.cs" />
+    <Compile Include="TipoAtividade.cs" />
+    <Compile Include="Empresa.cs" />
+    <Compile Include="TipoContrato.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="Recurso.cs" />
+    <Compile Include="TipoAmbiente.cs" />
+    <Compile Include="Unidade.cs" />
+    <Compile Include="Modulo.cs" />
+    <Compile Include="Matriz.cs" />
+    <Compile Include="Modalidade.cs" />
+    <Compile Include="LocalAmbiente.cs" />
+    <Compile Include="TipoRecurso.cs" />
+    <Compile Include="Turno.cs" />
+    <Compile Include="CR.cs" />
+    <Compile Include="Docente.cs" />
+    <Compile Include="Turma.cs" />
+    <Compile Include="GenericBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{035917f3-229d-46f1-806a-703894c44794}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Extensions\Extensions.csproj">
+      <Project>{95411efb-78e3-4f74-939a-144a535d3796}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{49adbce0-c91e-4f0b-95e4-a703ee9cfcef}</Project>
+      <Name>Repository %28Repository\Repository%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Senai.SPE.Domain\Senai.SPE.Domain.csproj">
+      <Project>{18aef590-6ec2-449a-95e7-0b8425349965}</Project>
+      <Name>Senai.SPE.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Senai.SPE.Repository\Senai.SPE.Repository.csproj">
+      <Project>{ce67721b-15e8-4601-a73a-208d4074d6ae}</Project>
+      <Name>Senai.SPE.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

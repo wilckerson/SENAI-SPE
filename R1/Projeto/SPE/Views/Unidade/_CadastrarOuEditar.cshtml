@@ -1,0 +1,47 @@
+@model SPE.ViewModel.UnidadeViewModel
+@{
+    ViewBag.Title = "_CadastrarOuEditar";
+}
+
+<div class="span6">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Codigo)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Codigo, null, new {  onkeypress = "return AllowOnlyNumbers(event);" })
+        @Html.ValidationMessageFor(model => model.Codigo)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Descr)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Descr, new { maxlength = 64 })
+        @Html.ValidationMessageFor(model => model.Descr)
+    </div>
+</div>
+
+<div class="span6">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Status)
+    </div>
+    <div class="editor-field">
+        <label class="radio" style="display: inline-block">
+            <input type="radio" name="Status" value="1" @if (Model.Status == 1 || Model.Status == null)
+                                                        {
+                                                            @:checked
+                                                        }
+             >Sim</label>
+        <label class="radio span1" style="display: inline-block">
+            <input type="radio" name="Status" value="0" @if (Model.Status == 0)
+                                                        {
+                                                            @:checked
+                                                        }
+            >Não</label>
+        @Html.ValidationMessageFor(model => model.Status)
+    </div>
+
+</div>
+
+
+

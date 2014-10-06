@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Senai.SPE.Domain.CalendarioLegenda>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "CalendarioLegenda")
+
+<div class="container">
+    <div class="white_box">
+
+
+        <div class="container-fluid">
+
+            <h1>Legenda</h1>
+            <hr />
+            <table class="table table-striped" style="margin-bottom: 20px;">
+                <tr>
+                    <th>Descrição
+                    </th>
+                    <th>Cor</th>
+                    <th style="width: 10%; cursor: default">Ações</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Descricao
+                        </td>
+                        <td>
+                            <div style="background-color:#@item.Cor; width: 35px; height: 30px"></div>
+                        </td>
+                        <td>
+                            <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip" onclick="Editar('/CalendarioLegenda/Editar/@item.IdCalendario');" href=""><i class="icon-edit" alt="editar"></i></div>
+                            <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir('@item.IdCalendario');" href=""><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Legenda", "Cadastrar", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/CalendarioLegenda/Excluir/")

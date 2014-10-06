@@ -1,0 +1,14 @@
+@model SPE.ViewModel.TipoRecursoViewModel
+@{
+    ViewBag.Title = "_CadastrarOuEditar";
+}
+
+<div class="span6">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Descr)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Descr, new { maxlength = 64 })
+        @Html.ValidationMessageFor(model => model.Descr)
+    </div>
+</div>

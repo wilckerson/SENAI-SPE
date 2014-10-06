@@ -1,0 +1,46 @@
+﻿@model SPE.ViewModel.ComponenteViewModel
+@{
+    ViewBag.Title = "DetalharComponente";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Componente")
+
+<div class="container">
+    <div class="white_box">
+
+        <div class="container-fluid">
+            <h1>Detalhes Componente</h1>
+
+            <h3>Componente</h3>
+
+
+
+                <table class="table table-striped" border="1">
+                    <tr>
+                        <th>
+                            <div class="display-label">Nome</div>
+                        </th>
+                        <td>
+                            <div class="display-field">@Model.Nome</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="display-label">Carga Horária</div>
+                        </th>
+                        <td>
+                            <div class="display-field">@Model.CH</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">@Html.ActionLink("Editar", "EditarComponente", new { id = Model.IdComponente }, new { @class = "btn" }) ,</td>
+                    </tr>
+
+                </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Lista de Componentes", "Index", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+    </div>
+</div>

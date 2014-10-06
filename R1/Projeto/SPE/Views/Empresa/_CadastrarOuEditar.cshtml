@@ -1,0 +1,57 @@
+@model SPE.ViewModel.EmpresaViewModel
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+@section head{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#CNPJ").mask("99.999.999/9999-99");
+        });
+    </script>
+}
+
+<div class="row">
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NomeFantasia)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.NomeFantasia, new { maxlength = 125, @class = "input-medium" })
+            @Html.ValidationMessageFor(model => model.NomeFantasia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CNPJ)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CNPJ, new { @class = "input-medium" })
+            @Html.ValidationMessageFor(model => model.CNPJ)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Email, new { maxlength = 64, @class = "input-medium" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </div>
+
+
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tel)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Tel, new { maxlength = 20, @class = "input-medium",@tipo="telefone" })
+            @Html.ValidationMessageFor(model => model.Tel)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contato)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Contato, new { maxlength = 64, @class = "input-medium" })
+            @Html.ValidationMessageFor(model => model.Contato)
+        </div>
+    </div>
+</div>

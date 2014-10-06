@@ -1,0 +1,14 @@
+@model SPE.ViewModel.TipoContratoViewModel
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+
+
+<div class="editor-label">
+    <label for="Descr">Nome</label>
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Descr,  new { @class="input-medium", maxlength = "200"})
+    @Html.ValidationMessageFor(model => model.Descr)
+</div>
+

@@ -1,0 +1,81 @@
+@model SPE.ViewModel.FiltrosTurma
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Turma")
+
+<div class="container">
+    <div class="Shape_2">
+    </div>
+    <div class="white_box">
+
+        <div class="container-fluid">
+            <h1>Lista de Turmas</h1>
+            <hr />
+
+            @if (Model != null)
+            {
+             
+                <div class="filtro">
+                    <h4>Filtros</h4>
+                    <table class="camposFiltro">
+                        <tr>
+                        </tr>
+                    </table>
+                </div>
+                   
+                <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                    <thead>
+                        <tr>
+                            <th search>Código</th>
+                            <th search>Matriz</th>
+                            <th filtered>CR</th>
+                            <th filtered>Modalidade</th>
+                            <th>Data de Início</th>
+                            <th style="width: 10%; cursor: default">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Turmas)
+                        {
+                            <tr>
+                                <td>
+                                    @item.IdTurma.ToString("00000")
+                                </td>
+                                <td>
+                                    @item.Nome
+                                </td>
+                                <td>@(item.CR != null ? item.CR.Nome : "")</td>
+                                <td>@(item.CR != null && item.CR.Modalidade != null ? item.CR.Modalidade.Nome: "")</td>
+                                <td>
+                                    @item.DataIniView
+
+                                </td>
+                                <td>
+                                    <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip" onclick="Editar('/Turma/EditarTurma/@item.IdTurma');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                    @*<a href="../Calendario?turmaId=@item.IdTurma" alt="Calendário">
+                                        <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Calendário" alt="tootip"><i class="icon-calendar"></i></div>
+                                    </a>*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            { 
+                <h1>Não há Turmas disponíveis para esse Centro de Responsabilidade.</h1>
+            }
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Turma", "CadastrarTurma", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Turma/ExcluirTurma/")

@@ -1,0 +1,18 @@
+﻿@model SPE.ViewModel.MatrizViewModel
+@{
+    Layout = null;
+}
+
+
+<ul class="ul1">
+    @foreach (var item in Model.ListaComponente.ListaViewModel)
+    {
+        <li componentid="@item.IdComponente" carga="@item.CH" class="ui-draggable" style="position: relative; cursor:pointer; cursor:hand -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: moz-none;
+-ms-user-select: none;
+user-select: none;">@item.Nome <a href="" onclick="return false;" class="remove" style="margin-left:4px;"> <icon class="icon-remove"></icon></a><span style="font-weight:bold; float:right">(@item.CH h)  </span></li>
+    }
+</ul>
+

@@ -1,0 +1,30 @@
+@model SPE.ViewModel.TipoAtividadeViewModel
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Tipo Atividade")
+<script src="~/Scripts/TipoAtividade/tipoAtividade.js"></script>
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Editar Tipo de Atividade</h1>
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend></legend>
+
+                    @Html.HiddenFor(model => model.IdTipoAtividade)
+                    @Html.Partial("_CadastrarOuEditar", Model)
+
+                </fieldset>
+          
+
+                <div class="buttons">
+                    <input type="submit" value="Salvar" class="btns btn-large btn-principal" />
+                    @Html.ActionLink("Lista de Tipos de Atividades", "Index", null, new { @class = "btns btn-large" })
+
+                </div>
+            }
+        </div>
+    </div>
+</div>

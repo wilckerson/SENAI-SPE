@@ -1,0 +1,32 @@
+@model SPE.ViewModel.CRViewModel
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Codigo)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Codigo, new { @class = "input-small", maxlength = 12, @tipo="numero"})
+    @Html.ValidationMessageFor(model => model.Codigo)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Nome)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Nome, new { @class = "input-medium", maxlength = 250 })
+    @Html.ValidationMessageFor(model => model.Nome)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IdModalidade)
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.IdModalidade, ((IEnumerable<SPE.ViewModel.ModalidadeViewModel>)Model.ListaModalidades).Select(option => new SelectListItem
+{
+    Text = option.Nome,
+    Value = option.IdModalidade.ToString(),
+    Selected = Model != null && Model.IdModalidade == option.IdModalidade
+}), "Selecione", null)
+    @Html.ValidationMessageFor(model => model.IdModalidade)
+</div>
+

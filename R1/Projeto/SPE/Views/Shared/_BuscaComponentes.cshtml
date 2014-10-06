@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Senai.SPE.Domain.Componente>
+
+@{
+    Layout = null;
+}
+
+
+
+<h3>Componentes Associados</h3>
+<br />
+
+<table class="table table-striped" id="tbComponentes" name="tbComponentes" style="margin-bottom: 20px;">
+    <thead>
+        <tr>           
+            <th>Nome
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.Nome
+                    <button type="button" class="close" data-dismiss="alert" onclick="RetirarVinculoComponente(@item.IdComponente)">×</button></td>
+            </tr>                
+        }
+    </tbody>
+</table>
+
+
+

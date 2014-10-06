@@ -1,0 +1,76 @@
+@model IEnumerable<SPE.ViewModel.TurnoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Turno")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Turnos</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Turno
+                        </th>
+                        <th>Hora Inicial
+                        </th>
+                        <th>Hora Final
+                        </th>
+                        <th style="width: 10%; cursor: default">Ações
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @item.Descr
+                            </td>
+                            <td>
+                                @item.HoraIni.Value.ToString().Substring(0, 5)
+                            </td>
+                            <td>
+                                @item.HoraFim.Value.ToString().Substring(0, 5)
+                            </td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" onclick="Editar('/Turno/EditarTurno/@item.IdTurno');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" onclick="Excluir(@item.IdTurno);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" style="text-align: center;">Não há Turnos cadastrados.</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Turno", "CadastrarTurno", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Turno/ExcluirTurno/")
+

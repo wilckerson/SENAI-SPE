@@ -1,0 +1,51 @@
+﻿
+
+<div class="container">
+    <h3><strong>Acesso ao sistema</strong></h3>
+</div>
+<div class="container">
+    <div>
+        @using (Html.BeginForm("AuthenticateUser", "Login"))
+        {
+            <hr>
+                           
+            <div class="row-fluid">
+                <label>Usuário</label>
+                <input type="text" name="login" id="login" placeholder="Nome de usuario" value="@ViewBag.ckLogin">
+                <label class="control-label" for="inputPassword">Senha</label>
+                <div class="controls">
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" value="@ViewBag.ckSenha">
+                </div>
+                <label class="checkbox">
+                    <input type="checkbox" name="lembrar" id="lembrar" 
+                        @if (ViewBag.ckLembrar != null && ViewBag.ckLembrar == true)
+                        {
+                            @:checked="checked"
+                        }
+                        >
+                    Lembrar usuário e senha.
+                </label>
+
+                <div class="buttons">
+                    <button type="submit" class="btns btn-large btn-principal" style="border: none;">Entrar</button>
+                </div>
+            </div>
+            
+            if (TempData["LoginMsg"] != null)
+            {
+                <div class="alert alert-error" style="width:30%">
+                    <span id="msgErro">@Html.ValidationSummary()</span>
+                </div>
+            }
+
+          
+        }
+    </div>
+</div>
+
+
+
+
+
+
+

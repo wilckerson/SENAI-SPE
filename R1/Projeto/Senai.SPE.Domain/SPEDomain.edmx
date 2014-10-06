@@ -1,0 +1,1199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SPEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgendaAmbiente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdAmbiente" Type="int" />
+          <Property Name="DataIni" Type="datetime" />
+          <Property Name="DataFim" Type="datetime" />
+          <Property Name="HoraIni" Type="datetime" />
+          <Property Name="HoraFim" Type="datetime" />
+          <Property Name="DiasSemana" Type="varchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="AgendaComponente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdComponente" Type="int" />
+          <Property Name="IdUnidade" Type="int" />
+          <Property Name="DataIni" Type="datetime" />
+          <Property Name="DataFim" Type="datetime" />
+          <Property Name="HoraIni" Type="datetime" />
+          <Property Name="HoraFim" Type="datetime" />
+          <Property Name="StDefinir" Type="bit" />
+          <Property Name="DiasSemana" Type="varchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="AgendaDocente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdDocente" Type="int" />
+          <Property Name="IdTipoAtividade" Type="int" />
+          <Property Name="DescricaoAtiv" Type="varchar" MaxLength="512" />
+          <Property Name="DataIni" Type="datetime" />
+          <Property Name="DataFim" Type="datetime" />
+          <Property Name="HoraIni" Type="datetime" />
+          <Property Name="HoraFim" Type="datetime" />
+          <Property Name="DiasSemana" Type="varchar" MaxLength="7" />
+          <Property Name="CH" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Ambiente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdLocalAmbiente" Type="int" />
+          <Property Name="IdTipoAmbiente" Type="int" />
+          <Property Name="IdAgendCompAmb" Type="int" />
+          <Property Name="Capac" Type="smallint" />
+        </EntityType>
+        <EntityType Name="AreaAtuacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Calendario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdModalidade" Type="int" />
+          <Property Name="IdCalendario" Type="int" />
+          <Property Name="Ano" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CatMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdCatMaterial" Type="int" />
+          <Property Name="NomeCat" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="CatServico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Cat_ID_CATEGORIA_SERVICO" Type="int" />
+          <Property Name="NomeCatServ" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="CatUsuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CBO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Competencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompetenciaDocente">
+          <Key>
+            <PropertyRef Name="IdDocente" />
+            <PropertyRef Name="IdCompetencia" />
+          </Key>
+          <Property Name="IdDocente" Type="int" Nullable="false" />
+          <Property Name="IdCompetencia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompetenciaEmpresa">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+            <PropertyRef Name="ID_COMPETENCIA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="int" Nullable="false" />
+          <Property Name="ID_COMPETENCIA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Componente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="256" />
+          <Property Name="CH" Type="smallint" />
+        </EntityType>
+        <EntityType Name="ComponenteTipoAmbiente">
+          <Key>
+            <PropertyRef Name="IdTipoAmbiente" />
+            <PropertyRef Name="IdComponente" />
+          </Key>
+          <Property Name="IdTipoAmbiente" Type="int" Nullable="false" />
+          <Property Name="IdComponente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdModalidade" Type="int" />
+        </EntityType>
+        <EntityType Name="CrUnidade">
+          <Key>
+            <PropertyRef Name="IdCr" />
+            <PropertyRef Name="IdUnidade" />
+          </Key>
+          <Property Name="IdCr" Type="int" Nullable="false" />
+          <Property Name="IdUnidade" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdUnidade" Type="int" />
+          <Property Name="IdTurno" Type="int" />
+          <Property Name="IdCr" Type="int" />
+          <Property Name="IdMatriz" Type="int" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="QtdeVagas" Type="smallint" />
+          <Property Name="DataFim" Type="datetime" />
+          <Property Name="Status" Type="smallint" />
+          <Property Name="TipoOferta" Type="smallint" />
+          <Property Name="Preco" Type="money" />
+          <Property Name="Evento" Type="int" />
+        </EntityType>
+        <EntityType Name="CursoMaterial">
+          <Key>
+            <PropertyRef Name="ID_CURSO" />
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="ID_CURSO" Type="int" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CursoServico">
+          <Key>
+            <PropertyRef Name="IdCurso" />
+            <PropertyRef Name="IdServico" />
+          </Key>
+          <Property Name="IdCurso" Type="int" Nullable="false" />
+          <Property Name="IdServico" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Docente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdAgendaCompDocente" Type="int" />
+          <Property Name="IdTipoContrato" Type="int" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="Cpf" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="64" />
+          <Property Name="Sexo" Type="tinyint" />
+          <Property Name="Tel" Type="varchar" MaxLength="32" />
+          <Property Name="NivelFuncao" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="int" Nullable="false" />
+          <Property Name="IdAgendaCompEmp" Type="int" />
+          <Property Name="NomeFantasia" Type="varchar" MaxLength="128" />
+          <Property Name="Cnpj" Type="varchar" MaxLength="17" />
+          <Property Name="Email" Type="varchar" MaxLength="64" />
+          <Property Name="Tel" Type="varchar" MaxLength="32" />
+          <Property Name="Contato" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="LocalAmbiente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Desc" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ID_CATEGORIA_MAT" Type="int" />
+        </EntityType>
+        <EntityType Name="Matriz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdModalidade" Type="int" />
+          <Property Name="IdAreaAtuacao" Type="int" />
+          <Property Name="IdCbo" Type="int" />
+          <Property Name="Preco" Type="money" />
+        </EntityType>
+        <EntityType Name="MatrizComponente">
+          <Key>
+            <PropertyRef Name="IdMatriz" />
+            <PropertyRef Name="IdComponente" />
+          </Key>
+          <Property Name="IdMatriz" Type="int" Nullable="false" />
+          <Property Name="IdComponente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MatrizMaterial">
+          <Key>
+            <PropertyRef Name="ID_MATRIZ" />
+            <PropertyRef Name="ID_MATERIAL" />
+          </Key>
+          <Property Name="ID_MATRIZ" Type="int" Nullable="false" />
+          <Property Name="ID_MATERIAL" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MatrizServico">
+          <Key>
+            <PropertyRef Name="IdMatriz" />
+            <PropertyRef Name="ID_SERVICO" />
+          </Key>
+          <Property Name="IdMatriz" Type="int" Nullable="false" />
+          <Property Name="ID_SERVICO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modalidade">
+          <Key>
+            <PropertyRef Name="ID_MODALIDADE" />
+          </Key>
+          <Property Name="ID_MODALIDADE" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="ModalidadeUnidade">
+          <Key>
+            <PropertyRef Name="IdUnidade" />
+            <PropertyRef Name="IdModalidade" />
+          </Key>
+          <Property Name="IdUnidade" Type="int" Nullable="false" />
+          <Property Name="IdModalidade" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrientadorArea">
+          <Key>
+            <PropertyRef Name="IdAreaAtuacao" />
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdAreaAtuacao" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecursoAmbiente">
+          <Key>
+            <PropertyRef Name="idRecurso" />
+          </Key>
+          <Property Name="idRecurso" Type="int" Nullable="false" />
+          <Property Name="IdAmbiente" Type="int" />
+          <Property Name="Tipo" Type="varchar" MaxLength="64" />
+          <Property Name="Desc" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ID_CATEGORIA_SERVICO" Type="int" />
+          <Property Name="NomeServ" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="TipoAmbiente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Desc" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="TipoAtividade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Tip_ID_TIPO_ATIVIDADE" Type="int" />
+          <Property Name="Nome" Type="varchar" MaxLength="256" />
+          <Property Name="Interna" Type="bit" />
+        </EntityType>
+        <EntityType Name="TipoContrato">
+          <Key>
+            <PropertyRef Name="ID_TIPO_CONTRATO" />
+          </Key>
+          <Property Name="ID_TIPO_CONTRATO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnCurricular">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdComponente" Type="int" />
+          <Property Name="Nome" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Unidade">
+          <Key>
+            <PropertyRef Name="ID_UNIDADE" />
+          </Key>
+          <Property Name="ID_UNIDADE" Type="int" Nullable="false" />
+          <Property Name="Desc" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="IdCatUsuario" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="64" />
+          <Property Name="Tel" Type="varchar" MaxLength="32" />
+          <Property Name="Cpf" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityContainer Name="SPEModelStoreContainer">
+          <EntitySet Name="AgendaAmbiente" EntityType="Self.AgendaAmbiente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="AgendaComponente" EntityType="Self.AgendaComponente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="AgendaDocente" EntityType="Self.AgendaDocente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Ambiente" EntityType="Self.Ambiente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="AreaAtuacao" EntityType="Self.AreaAtuacao" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Calendario" EntityType="Self.Calendario" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CatMaterial" EntityType="Self.CatMaterial" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CatServico" EntityType="Self.CatServico" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CatUsuario" EntityType="Self.CatUsuario" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CBO" EntityType="Self.CBO" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Competencia" EntityType="Self.Competencia" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CompetenciaDocente" EntityType="Self.CompetenciaDocente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CompetenciaEmpresa" EntityType="Self.CompetenciaEmpresa" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Componente" EntityType="Self.Componente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ComponenteTipoAmbiente" EntityType="Self.ComponenteTipoAmbiente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CR" EntityType="Self.CR" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CrUnidade" EntityType="Self.CrUnidade" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CursoMaterial" EntityType="Self.CursoMaterial" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CursoServico" EntityType="Self.CursoServico" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Docente" EntityType="Self.Docente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="LocalAmbiente" EntityType="Self.LocalAmbiente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Matriz" EntityType="Self.Matriz" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MatrizComponente" EntityType="Self.MatrizComponente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MatrizMaterial" EntityType="Self.MatrizMaterial" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MatrizServico" EntityType="Self.MatrizServico" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Modalidade" EntityType="Self.Modalidade" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ModalidadeUnidade" EntityType="Self.ModalidadeUnidade" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="OrientadorArea" EntityType="Self.OrientadorArea" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="RecursoAmbiente" EntityType="Self.RecursoAmbiente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoAmbiente" EntityType="Self.TipoAmbiente" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoAtividade" EntityType="Self.TipoAtividade" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TipoContrato" EntityType="Self.TipoContrato" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="UnCurricular" EntityType="Self.UnCurricular" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Unidade" EntityType="Self.Unidade" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SPEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgendaAmbiente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdAmbiente" Type="Int32" />
+          <Property Name="DataIni" Type="DateTime" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Precision="3" />
+          <Property Name="HoraIni" Type="DateTime" Precision="3" />
+          <Property Name="HoraFim" Type="DateTime" Precision="3" />
+          <Property Name="DiasSemana" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AgendaComponente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdComponente" Type="Int32" />
+          <Property Name="IdUnidade" Type="Int32" />
+          <Property Name="DataIni" Type="DateTime" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Precision="3" />
+          <Property Name="HoraIni" Type="DateTime" Precision="3" />
+          <Property Name="HoraFim" Type="DateTime" Precision="3" />
+          <Property Name="StDefinir" Type="Boolean" />
+          <Property Name="DiasSemana" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AgendaDocente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdDocente" Type="Int32" />
+          <Property Name="IdTipoAtividade" Type="Int32" />
+          <Property Name="DescricaoAtiv" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="DataIni" Type="DateTime" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Precision="3" />
+          <Property Name="HoraIni" Type="DateTime" Precision="3" />
+          <Property Name="HoraFim" Type="DateTime" Precision="3" />
+          <Property Name="DiasSemana" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="CH" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Ambiente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdLocalAmbiente" Type="Int32" />
+          <Property Name="IdTipoAmbiente" Type="Int32" />
+          <Property Name="IdAgendCompAmb" Type="Int32" />
+          <Property Name="Capac" Type="Int16" />
+        </EntityType>
+        <EntityType Name="AreaAtuacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Calendario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdModalidade" Type="Int32" />
+          <Property Name="IdCalendario" Type="Int32" />
+          <Property Name="Ano" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CatMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdCatMaterial" Type="Int32" />
+          <Property Name="NomeCat" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CatServico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Cat_ID_CATEGORIA_SERVICO" Type="Int32" />
+          <Property Name="NomeCatServ" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CatUsuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CBO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Competencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompetenciaDocente">
+          <Key>
+            <PropertyRef Name="IdDocente" />
+            <PropertyRef Name="IdCompetencia" />
+          </Key>
+          <Property Name="IdDocente" Type="Int32" Nullable="false" />
+          <Property Name="IdCompetencia" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompetenciaEmpresa">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+            <PropertyRef Name="ID_COMPETENCIA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="Int32" Nullable="false" />
+          <Property Name="ID_COMPETENCIA" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Componente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="CH" Type="Int16" />
+        </EntityType>
+        <EntityType Name="ComponenteTipoAmbiente">
+          <Key>
+            <PropertyRef Name="IdTipoAmbiente" />
+            <PropertyRef Name="IdComponente" />
+          </Key>
+          <Property Name="IdTipoAmbiente" Type="Int32" Nullable="false" />
+          <Property Name="IdComponente" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdModalidade" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CrUnidade">
+          <Key>
+            <PropertyRef Name="IdCr" />
+            <PropertyRef Name="IdUnidade" />
+          </Key>
+          <Property Name="IdCr" Type="Int32" Nullable="false" />
+          <Property Name="IdUnidade" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdUnidade" Type="Int32" />
+          <Property Name="IdTurno" Type="Int32" />
+          <Property Name="IdCr" Type="Int32" />
+          <Property Name="IdMatriz" Type="Int32" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="QtdeVagas" Type="Int16" />
+          <Property Name="DataFim" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int16" />
+          <Property Name="TipoOferta" Type="Int16" />
+          <Property Name="Preco" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Evento" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CursoMaterial">
+          <Key>
+            <PropertyRef Name="ID_CURSO" />
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="ID_CURSO" Type="Int32" Nullable="false" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CursoServico">
+          <Key>
+            <PropertyRef Name="IdCurso" />
+            <PropertyRef Name="IdServico" />
+          </Key>
+          <Property Name="IdCurso" Type="Int32" Nullable="false" />
+          <Property Name="IdServico" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Docente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdAgendaCompDocente" Type="Int32" />
+          <Property Name="IdTipoContrato" Type="Int32" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="Cpf" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="Byte" />
+          <Property Name="Tel" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="NivelFuncao" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="Int32" Nullable="false" />
+          <Property Name="IdAgendaCompEmp" Type="Int32" />
+          <Property Name="NomeFantasia" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Cnpj" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Contato" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LocalAmbiente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ID_CATEGORIA_MAT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Matriz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdModalidade" Type="Int32" />
+          <Property Name="IdAreaAtuacao" Type="Int32" />
+          <Property Name="IdCbo" Type="Int32" />
+          <Property Name="Preco" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="MatrizComponente">
+          <Key>
+            <PropertyRef Name="IdMatriz" />
+            <PropertyRef Name="IdComponente" />
+          </Key>
+          <Property Name="IdMatriz" Type="Int32" Nullable="false" />
+          <Property Name="IdComponente" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MatrizMaterial">
+          <Key>
+            <PropertyRef Name="ID_MATRIZ" />
+            <PropertyRef Name="ID_MATERIAL" />
+          </Key>
+          <Property Name="ID_MATRIZ" Type="Int32" Nullable="false" />
+          <Property Name="ID_MATERIAL" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MatrizServico">
+          <Key>
+            <PropertyRef Name="IdMatriz" />
+            <PropertyRef Name="ID_SERVICO" />
+          </Key>
+          <Property Name="IdMatriz" Type="Int32" Nullable="false" />
+          <Property Name="ID_SERVICO" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modalidade">
+          <Key>
+            <PropertyRef Name="ID_MODALIDADE" />
+          </Key>
+          <Property Name="ID_MODALIDADE" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ModalidadeUnidade">
+          <Key>
+            <PropertyRef Name="IdUnidade" />
+            <PropertyRef Name="IdModalidade" />
+          </Key>
+          <Property Name="IdUnidade" Type="Int32" Nullable="false" />
+          <Property Name="IdModalidade" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrientadorArea">
+          <Key>
+            <PropertyRef Name="IdAreaAtuacao" />
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdAreaAtuacao" Type="Int32" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecursoAmbiente">
+          <Key>
+            <PropertyRef Name="idRecurso" />
+          </Key>
+          <Property Name="idRecurso" Type="Int32" Nullable="false" />
+          <Property Name="IdAmbiente" Type="Int32" />
+          <Property Name="Tipo" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Desc" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ID_CATEGORIA_SERVICO" Type="Int32" />
+          <Property Name="NomeServ" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TipoAmbiente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TipoAtividade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Tip_ID_TIPO_ATIVIDADE" Type="Int32" />
+          <Property Name="Nome" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Interna" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TipoContrato">
+          <Key>
+            <PropertyRef Name="ID_TIPO_CONTRATO" />
+          </Key>
+          <Property Name="ID_TIPO_CONTRATO" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnCurricular">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdComponente" Type="Int32" />
+          <Property Name="Nome" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Unidade">
+          <Key>
+            <PropertyRef Name="ID_UNIDADE" />
+          </Key>
+          <Property Name="ID_UNIDADE" Type="Int32" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="IdCatUsuario" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Cpf" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SPEDomain" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgendaAmbiente" EntityType="Self.AgendaAmbiente" />
+          <EntitySet Name="AgendaComponente" EntityType="Self.AgendaComponente" />
+          <EntitySet Name="AgendaDocente" EntityType="Self.AgendaDocente" />
+          <EntitySet Name="Ambiente" EntityType="Self.Ambiente" />
+          <EntitySet Name="AreaAtuacao" EntityType="Self.AreaAtuacao" />
+          <EntitySet Name="Calendario" EntityType="Self.Calendario" />
+          <EntitySet Name="CatMaterial" EntityType="Self.CatMaterial" />
+          <EntitySet Name="CatServico" EntityType="Self.CatServico" />
+          <EntitySet Name="CatUsuario" EntityType="Self.CatUsuario" />
+          <EntitySet Name="CBO" EntityType="Self.CBO" />
+          <EntitySet Name="Competencia" EntityType="Self.Competencia" />
+          <EntitySet Name="CompetenciaDocente" EntityType="Self.CompetenciaDocente" />
+          <EntitySet Name="CompetenciaEmpresa" EntityType="Self.CompetenciaEmpresa" />
+          <EntitySet Name="Componente" EntityType="Self.Componente" />
+          <EntitySet Name="ComponenteTipoAmbiente" EntityType="Self.ComponenteTipoAmbiente" />
+          <EntitySet Name="CR" EntityType="Self.CR" />
+          <EntitySet Name="CrUnidade" EntityType="Self.CrUnidade" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" />
+          <EntitySet Name="CursoMaterial" EntityType="Self.CursoMaterial" />
+          <EntitySet Name="CursoServico" EntityType="Self.CursoServico" />
+          <EntitySet Name="Docente" EntityType="Self.Docente" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" />
+          <EntitySet Name="LocalAmbiente" EntityType="Self.LocalAmbiente" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Matriz" EntityType="Self.Matriz" />
+          <EntitySet Name="MatrizComponente" EntityType="Self.MatrizComponente" />
+          <EntitySet Name="MatrizMaterial" EntityType="Self.MatrizMaterial" />
+          <EntitySet Name="MatrizServico" EntityType="Self.MatrizServico" />
+          <EntitySet Name="Modalidade" EntityType="Self.Modalidade" />
+          <EntitySet Name="ModalidadeUnidade" EntityType="Self.ModalidadeUnidade" />
+          <EntitySet Name="OrientadorArea" EntityType="Self.OrientadorArea" />
+          <EntitySet Name="RecursoAmbiente" EntityType="Self.RecursoAmbiente" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" />
+          <EntitySet Name="TipoAmbiente" EntityType="Self.TipoAmbiente" />
+          <EntitySet Name="TipoAtividade" EntityType="Self.TipoAtividade" />
+          <EntitySet Name="TipoContrato" EntityType="Self.TipoContrato" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" />
+          <EntitySet Name="UnCurricular" EntityType="Self.UnCurricular" />
+          <EntitySet Name="Unidade" EntityType="Self.Unidade" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SPEModelStoreContainer" CdmEntityContainer="SPEDomain">
+          <EntitySetMapping Name="AgendaAmbiente">
+            <EntityTypeMapping TypeName="SPEModel.AgendaAmbiente">
+              <MappingFragment StoreEntitySet="AgendaAmbiente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAmbiente" ColumnName="IdAmbiente" />
+                <ScalarProperty Name="DataIni" ColumnName="DataIni" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="HoraIni" ColumnName="HoraIni" />
+                <ScalarProperty Name="HoraFim" ColumnName="HoraFim" />
+                <ScalarProperty Name="DiasSemana" ColumnName="DiasSemana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgendaComponente">
+            <EntityTypeMapping TypeName="SPEModel.AgendaComponente">
+              <MappingFragment StoreEntitySet="AgendaComponente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdComponente" ColumnName="IdComponente" />
+                <ScalarProperty Name="IdUnidade" ColumnName="IdUnidade" />
+                <ScalarProperty Name="DataIni" ColumnName="DataIni" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="HoraIni" ColumnName="HoraIni" />
+                <ScalarProperty Name="HoraFim" ColumnName="HoraFim" />
+                <ScalarProperty Name="StDefinir" ColumnName="StDefinir" />
+                <ScalarProperty Name="DiasSemana" ColumnName="DiasSemana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgendaDocente">
+            <EntityTypeMapping TypeName="SPEModel.AgendaDocente">
+              <MappingFragment StoreEntitySet="AgendaDocente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdDocente" ColumnName="IdDocente" />
+                <ScalarProperty Name="IdTipoAtividade" ColumnName="IdTipoAtividade" />
+                <ScalarProperty Name="DescricaoAtiv" ColumnName="DescricaoAtiv" />
+                <ScalarProperty Name="DataIni" ColumnName="DataIni" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="HoraIni" ColumnName="HoraIni" />
+                <ScalarProperty Name="HoraFim" ColumnName="HoraFim" />
+                <ScalarProperty Name="DiasSemana" ColumnName="DiasSemana" />
+                <ScalarProperty Name="CH" ColumnName="CH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ambiente">
+            <EntityTypeMapping TypeName="SPEModel.Ambiente">
+              <MappingFragment StoreEntitySet="Ambiente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdLocalAmbiente" ColumnName="IdLocalAmbiente" />
+                <ScalarProperty Name="IdTipoAmbiente" ColumnName="IdTipoAmbiente" />
+                <ScalarProperty Name="IdAgendCompAmb" ColumnName="IdAgendCompAmb" />
+                <ScalarProperty Name="Capac" ColumnName="Capac" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AreaAtuacao">
+            <EntityTypeMapping TypeName="SPEModel.AreaAtuacao">
+              <MappingFragment StoreEntitySet="AreaAtuacao">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calendario">
+            <EntityTypeMapping TypeName="SPEModel.Calendario">
+              <MappingFragment StoreEntitySet="Calendario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdModalidade" ColumnName="IdModalidade" />
+                <ScalarProperty Name="IdCalendario" ColumnName="IdCalendario" />
+                <ScalarProperty Name="Ano" ColumnName="Ano" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatMaterial">
+            <EntityTypeMapping TypeName="SPEModel.CatMaterial">
+              <MappingFragment StoreEntitySet="CatMaterial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdCatMaterial" ColumnName="IdCatMaterial" />
+                <ScalarProperty Name="NomeCat" ColumnName="NomeCat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatServico">
+            <EntityTypeMapping TypeName="SPEModel.CatServico">
+              <MappingFragment StoreEntitySet="CatServico">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Cat_ID_CATEGORIA_SERVICO" ColumnName="Cat_ID_CATEGORIA_SERVICO" />
+                <ScalarProperty Name="NomeCatServ" ColumnName="NomeCatServ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatUsuario">
+            <EntityTypeMapping TypeName="SPEModel.CatUsuario">
+              <MappingFragment StoreEntitySet="CatUsuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CBO">
+            <EntityTypeMapping TypeName="SPEModel.CBO">
+              <MappingFragment StoreEntitySet="CBO">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Competencia">
+            <EntityTypeMapping TypeName="SPEModel.Competencia">
+              <MappingFragment StoreEntitySet="Competencia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompetenciaDocente">
+            <EntityTypeMapping TypeName="SPEModel.CompetenciaDocente">
+              <MappingFragment StoreEntitySet="CompetenciaDocente">
+                <ScalarProperty Name="IdDocente" ColumnName="IdDocente" />
+                <ScalarProperty Name="IdCompetencia" ColumnName="IdCompetencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompetenciaEmpresa">
+            <EntityTypeMapping TypeName="SPEModel.CompetenciaEmpresa">
+              <MappingFragment StoreEntitySet="CompetenciaEmpresa">
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="ID_COMPETENCIA" ColumnName="ID_COMPETENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Componente">
+            <EntityTypeMapping TypeName="SPEModel.Componente">
+              <MappingFragment StoreEntitySet="Componente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="CH" ColumnName="CH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComponenteTipoAmbiente">
+            <EntityTypeMapping TypeName="SPEModel.ComponenteTipoAmbiente">
+              <MappingFragment StoreEntitySet="ComponenteTipoAmbiente">
+                <ScalarProperty Name="IdTipoAmbiente" ColumnName="IdTipoAmbiente" />
+                <ScalarProperty Name="IdComponente" ColumnName="IdComponente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CR">
+            <EntityTypeMapping TypeName="SPEModel.CR">
+              <MappingFragment StoreEntitySet="CR">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdModalidade" ColumnName="IdModalidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CrUnidade">
+            <EntityTypeMapping TypeName="SPEModel.CrUnidade">
+              <MappingFragment StoreEntitySet="CrUnidade">
+                <ScalarProperty Name="IdCr" ColumnName="IdCr" />
+                <ScalarProperty Name="IdUnidade" ColumnName="IdUnidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curso">
+            <EntityTypeMapping TypeName="SPEModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUnidade" ColumnName="IdUnidade" />
+                <ScalarProperty Name="IdTurno" ColumnName="IdTurno" />
+                <ScalarProperty Name="IdCr" ColumnName="IdCr" />
+                <ScalarProperty Name="IdMatriz" ColumnName="IdMatriz" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="QtdeVagas" ColumnName="QtdeVagas" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TipoOferta" ColumnName="TipoOferta" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="Evento" ColumnName="Evento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CursoMaterial">
+            <EntityTypeMapping TypeName="SPEModel.CursoMaterial">
+              <MappingFragment StoreEntitySet="CursoMaterial">
+                <ScalarProperty Name="ID_CURSO" ColumnName="ID_CURSO" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CursoServico">
+            <EntityTypeMapping TypeName="SPEModel.CursoServico">
+              <MappingFragment StoreEntitySet="CursoServico">
+                <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+                <ScalarProperty Name="IdServico" ColumnName="IdServico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docente">
+            <EntityTypeMapping TypeName="SPEModel.Docente">
+              <MappingFragment StoreEntitySet="Docente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAgendaCompDocente" ColumnName="IdAgendaCompDocente" />
+                <ScalarProperty Name="IdTipoContrato" ColumnName="IdTipoContrato" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="NivelFuncao" ColumnName="NivelFuncao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="SPEModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="IdAgendaCompEmp" ColumnName="IdAgendaCompEmp" />
+                <ScalarProperty Name="NomeFantasia" ColumnName="NomeFantasia" />
+                <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Contato" ColumnName="Contato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocalAmbiente">
+            <EntityTypeMapping TypeName="SPEModel.LocalAmbiente">
+              <MappingFragment StoreEntitySet="LocalAmbiente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="SPEModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ID_CATEGORIA_MAT" ColumnName="ID_CATEGORIA_MAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matriz">
+            <EntityTypeMapping TypeName="SPEModel.Matriz">
+              <MappingFragment StoreEntitySet="Matriz">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdModalidade" ColumnName="IdModalidade" />
+                <ScalarProperty Name="IdAreaAtuacao" ColumnName="IdAreaAtuacao" />
+                <ScalarProperty Name="IdCbo" ColumnName="IdCbo" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatrizComponente">
+            <EntityTypeMapping TypeName="SPEModel.MatrizComponente">
+              <MappingFragment StoreEntitySet="MatrizComponente">
+                <ScalarProperty Name="IdMatriz" ColumnName="IdMatriz" />
+                <ScalarProperty Name="IdComponente" ColumnName="IdComponente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatrizMaterial">
+            <EntityTypeMapping TypeName="SPEModel.MatrizMaterial">
+              <MappingFragment StoreEntitySet="MatrizMaterial">
+                <ScalarProperty Name="ID_MATRIZ" ColumnName="ID_MATRIZ" />
+                <ScalarProperty Name="ID_MATERIAL" ColumnName="ID_MATERIAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatrizServico">
+            <EntityTypeMapping TypeName="SPEModel.MatrizServico">
+              <MappingFragment StoreEntitySet="MatrizServico">
+                <ScalarProperty Name="IdMatriz" ColumnName="IdMatriz" />
+                <ScalarProperty Name="ID_SERVICO" ColumnName="ID_SERVICO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modalidade">
+            <EntityTypeMapping TypeName="SPEModel.Modalidade">
+              <MappingFragment StoreEntitySet="Modalidade">
+                <ScalarProperty Name="ID_MODALIDADE" ColumnName="ID_MODALIDADE" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModalidadeUnidade">
+            <EntityTypeMapping TypeName="SPEModel.ModalidadeUnidade">
+              <MappingFragment StoreEntitySet="ModalidadeUnidade">
+                <ScalarProperty Name="IdUnidade" ColumnName="IdUnidade" />
+                <ScalarProperty Name="IdModalidade" ColumnName="IdModalidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrientadorArea">
+            <EntityTypeMapping TypeName="SPEModel.OrientadorArea">
+              <MappingFragment StoreEntitySet="OrientadorArea">
+                <ScalarProperty Name="IdAreaAtuacao" ColumnName="IdAreaAtuacao" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecursoAmbiente">
+            <EntityTypeMapping TypeName="SPEModel.RecursoAmbiente">
+              <MappingFragment StoreEntitySet="RecursoAmbiente">
+                <ScalarProperty Name="idRecurso" ColumnName="idRecurso" />
+                <ScalarProperty Name="IdAmbiente" ColumnName="IdAmbiente" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servico">
+            <EntityTypeMapping TypeName="SPEModel.Servico">
+              <MappingFragment StoreEntitySet="Servico">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ID_CATEGORIA_SERVICO" ColumnName="ID_CATEGORIA_SERVICO" />
+                <ScalarProperty Name="NomeServ" ColumnName="NomeServ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoAmbiente">
+            <EntityTypeMapping TypeName="SPEModel.TipoAmbiente">
+              <MappingFragment StoreEntitySet="TipoAmbiente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoAtividade">
+            <EntityTypeMapping TypeName="SPEModel.TipoAtividade">
+              <MappingFragment StoreEntitySet="TipoAtividade">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tip_ID_TIPO_ATIVIDADE" ColumnName="Tip_ID_TIPO_ATIVIDADE" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Interna" ColumnName="Interna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoContrato">
+            <EntityTypeMapping TypeName="SPEModel.TipoContrato">
+              <MappingFragment StoreEntitySet="TipoContrato">
+                <ScalarProperty Name="ID_TIPO_CONTRATO" ColumnName="ID_TIPO_CONTRATO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turno">
+            <EntityTypeMapping TypeName="SPEModel.Turno">
+              <MappingFragment StoreEntitySet="Turno">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnCurricular">
+            <EntityTypeMapping TypeName="SPEModel.UnCurricular">
+              <MappingFragment StoreEntitySet="UnCurricular">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdComponente" ColumnName="IdComponente" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unidade">
+            <EntityTypeMapping TypeName="SPEModel.Unidade">
+              <MappingFragment StoreEntitySet="Unidade">
+                <ScalarProperty Name="ID_UNIDADE" ColumnName="ID_UNIDADE" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SPEModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="IdCatUsuario" ColumnName="IdCatUsuario" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

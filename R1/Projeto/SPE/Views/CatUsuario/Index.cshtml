@@ -1,0 +1,50 @@
+@model IEnumerable<Senai.SPE.Domain.CatUsuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Categoria Usuário")
+<div class="container">
+    <div class="white_box">
+
+
+        <div class="container-fluid">
+
+            <h1>Lista de Categorias de Usuário</h1>
+            <hr />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome
+                        </th>
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.NomeCatUsuario
+                            </td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip"  onclick="Editar('/CatUsuario/Editar/@item.IdCatUsuario');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.IdCatUsuario);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Categoria de Usuário", "Cadastrar", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/CatUsuario/Excluir/")
+

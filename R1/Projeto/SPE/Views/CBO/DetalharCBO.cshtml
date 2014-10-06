@@ -1,0 +1,45 @@
+@model SPE.ViewModel.CBOViewModel
+
+@{
+    ViewBag.Title = "DetalharCr";
+}
+
+    @Html.Partial("../Shared/_MenuCarroselCadastro","CBO")
+    <div class="container">
+    <div class="white_box">
+
+        <div class="container-fluid">
+
+<h1>Detalhes CBO</h1>
+
+<h3>CBO</h3>
+<fieldset>
+    <legend></legend>
+
+    <table border="1" class="table table-striped">
+        <tr>
+            <th><div class="display-label">Nome</div></th>
+            <td> <div class="display-field">@Model.Descrricao</div></td>
+        </tr>  
+        <tr>
+            <th><div class="display-label">Modalidade</div></th>
+            @*<td> <div class="display-field">@if (Model.Tipo != null)
+                {
+                    @Model.Tipo
+                }</div>
+            </td>*@
+        </tr>           
+        <tr>
+            <td colspan="2" style="text-align:center;">@Html.ActionLink("Editar", "EditarCBO", new { id = Model.IdCBO }, new { @class = "btn"})</td>
+        </tr>
+
+    </table> 
+</fieldset>
+<div class="buttons">    
+   @Html.ActionLink("Lista de CBO", "Index",null, new { @class = "btns btn-large btn-principal"})
+</div>
+
+
+
+        </div>
+    </div></div>

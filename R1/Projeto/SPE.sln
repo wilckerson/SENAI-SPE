@@ -1,0 +1,156 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPE", "SPE\SPE.csproj", "{561CC4D3-5EE5-4059-B3B0-75EBFF594747}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{387ACA1C-B31B-4774-86DD-188B9D016EFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{52B45995-36ED-41B8-BE0B-23A4C2EFC9EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{0808432A-5BAC-428B-96D3-19575B5789AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{035917F3-229D-46F1-806A-703894C44794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "Extensions\Extensions.csproj", "{95411EFB-78E3-4F74-939A-144A535D3796}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BL", "BL", "{521AA2A1-D445-46A5-AE69-2CD7B9E8A6F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{AD8A010F-1B65-4474-A91A-D12F53BEA793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senai.SPE.Repository", "Senai.SPE.Repository\Senai.SPE.Repository.csproj", "{CE67721B-15E8-4601-A73A-208D4074D6AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senai.SPE.BL", "Senai.SPE.BL\Senai.SPE.BL.csproj", "{EA6A902E-8262-460E-9FE0-C1C29D1F6563}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senai.SPE.Domain", "Senai.SPE.Domain\Senai.SPE.Domain.csproj", "{18AEF590-6EC2-449A-95E7-0B8425349965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{49ADBCE0-C91E-4F0B-95E4-A703EE9CFCEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D4C77484-CDBF-467B-96FE-6AF5D5293F62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteFLow", "TesteFLow\TesteFLow.csproj", "{E978E4E3-2B97-4669-92FA-352D182B54DE}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://idevelop.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Common\\Common.csproj
+		SccProjectTopLevelParentUniqueName1 = SPE.sln
+		SccProjectName1 = Common
+		SccLocalPath1 = Common
+		SccProjectUniqueName2 = Extensions\\Extensions.csproj
+		SccProjectTopLevelParentUniqueName2 = SPE.sln
+		SccProjectName2 = Extensions
+		SccLocalPath2 = Extensions
+		SccProjectUniqueName3 = Repository\\Repository.csproj
+		SccProjectTopLevelParentUniqueName3 = SPE.sln
+		SccProjectName3 = Repository
+		SccLocalPath3 = Repository
+		SccProjectUniqueName4 = Senai.SPE.Domain\\Senai.SPE.Domain.csproj
+		SccProjectTopLevelParentUniqueName4 = SPE.sln
+		SccProjectName4 = Senai.SPE.Domain
+		SccLocalPath4 = Senai.SPE.Domain
+		SccProjectUniqueName5 = Senai.SPE.Repository\\Senai.SPE.Repository.csproj
+		SccProjectTopLevelParentUniqueName5 = SPE.sln
+		SccProjectName5 = Senai.SPE.Repository
+		SccLocalPath5 = Senai.SPE.Repository
+		SccProjectUniqueName6 = Senai.SPE.BL\\Senai.SPE.BL.csproj
+		SccProjectTopLevelParentUniqueName6 = SPE.sln
+		SccProjectName6 = Senai.SPE.BL
+		SccLocalPath6 = Senai.SPE.BL
+		SccProjectUniqueName7 = SPE\\SPE.csproj
+		SccProjectTopLevelParentUniqueName7 = SPE.sln
+		SccProjectName7 = SPE
+		SccLocalPath7 = SPE
+		SccProjectUniqueName8 = TesteFLow\\TesteFLow.csproj
+		SccProjectTopLevelParentUniqueName8 = SPE.sln
+		SccProjectName8 = TesteFLow
+		SccLocalPath8 = TesteFLow
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{561CC4D3-5EE5-4059-B3B0-75EBFF594747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{561CC4D3-5EE5-4059-B3B0-75EBFF594747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{561CC4D3-5EE5-4059-B3B0-75EBFF594747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{561CC4D3-5EE5-4059-B3B0-75EBFF594747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{035917F3-229D-46F1-806A-703894C44794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{035917F3-229D-46F1-806A-703894C44794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{035917F3-229D-46F1-806A-703894C44794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{035917F3-229D-46F1-806A-703894C44794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95411EFB-78E3-4F74-939A-144A535D3796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95411EFB-78E3-4F74-939A-144A535D3796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95411EFB-78E3-4F74-939A-144A535D3796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95411EFB-78E3-4F74-939A-144A535D3796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE67721B-15E8-4601-A73A-208D4074D6AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE67721B-15E8-4601-A73A-208D4074D6AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE67721B-15E8-4601-A73A-208D4074D6AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE67721B-15E8-4601-A73A-208D4074D6AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA6A902E-8262-460E-9FE0-C1C29D1F6563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA6A902E-8262-460E-9FE0-C1C29D1F6563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA6A902E-8262-460E-9FE0-C1C29D1F6563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA6A902E-8262-460E-9FE0-C1C29D1F6563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18AEF590-6EC2-449A-95E7-0B8425349965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18AEF590-6EC2-449A-95E7-0B8425349965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18AEF590-6EC2-449A-95E7-0B8425349965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18AEF590-6EC2-449A-95E7-0B8425349965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49ADBCE0-C91E-4F0B-95E4-A703EE9CFCEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49ADBCE0-C91E-4F0B-95E4-A703EE9CFCEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49ADBCE0-C91E-4F0B-95E4-A703EE9CFCEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49ADBCE0-C91E-4F0B-95E4-A703EE9CFCEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E978E4E3-2B97-4669-92FA-352D182B54DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E978E4E3-2B97-4669-92FA-352D182B54DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E978E4E3-2B97-4669-92FA-352D182B54DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E978E4E3-2B97-4669-92FA-352D182B54DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{561CC4D3-5EE5-4059-B3B0-75EBFF594747} = {0808432A-5BAC-428B-96D3-19575B5789AC}
+		{18AEF590-6EC2-449A-95E7-0B8425349965} = {52B45995-36ED-41B8-BE0B-23A4C2EFC9EC}
+		{035917F3-229D-46F1-806A-703894C44794} = {387ACA1C-B31B-4774-86DD-188B9D016EFE}
+		{95411EFB-78E3-4F74-939A-144A535D3796} = {387ACA1C-B31B-4774-86DD-188B9D016EFE}
+		{EA6A902E-8262-460E-9FE0-C1C29D1F6563} = {521AA2A1-D445-46A5-AE69-2CD7B9E8A6F5}
+		{CE67721B-15E8-4601-A73A-208D4074D6AE} = {AD8A010F-1B65-4474-A91A-D12F53BEA793}
+		{49ADBCE0-C91E-4F0B-95E4-A703EE9CFCEF} = {AD8A010F-1B65-4474-A91A-D12F53BEA793}
+		{E978E4E3-2B97-4669-92FA-352D182B54DE} = {D4C77484-CDBF-467B-96FE-6AF5D5293F62}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://idevelop.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Senai.SPE.Domain\\Senai.SPE.Domain.csproj
+		SccProjectTopLevelParentUniqueName1 = SPE.sln
+		SccProjectName1 = Senai.SPE.Domain
+		SccLocalPath1 = Senai.SPE.Domain
+		SccProjectUniqueName2 = Common\\Common.csproj
+		SccProjectTopLevelParentUniqueName2 = SPE.sln
+		SccProjectName2 = Common
+		SccLocalPath2 = Common
+		SccProjectUniqueName3 = Extensions\\Extensions.csproj
+		SccProjectTopLevelParentUniqueName3 = SPE.sln
+		SccProjectName3 = Extensions
+		SccLocalPath3 = Extensions
+		SccProjectUniqueName4 = Repository\\Repository.csproj
+		SccProjectTopLevelParentUniqueName4 = SPE.sln
+		SccProjectName4 = Repository
+		SccLocalPath4 = Repository
+		SccProjectUniqueName5 = Senai.SPE.BL\\Senai.SPE.BL.csproj
+		SccProjectTopLevelParentUniqueName5 = SPE.sln
+		SccProjectName5 = Senai.SPE.BL
+		SccLocalPath5 = Senai.SPE.BL
+		SccProjectUniqueName6 = Senai.SPE.Repository\\Senai.SPE.Repository.csproj
+		SccProjectTopLevelParentUniqueName6 = SPE.sln
+		SccProjectName6 = Senai.SPE.Repository
+		SccLocalPath6 = Senai.SPE.Repository
+		SccProjectUniqueName7 = SPE\\SPE.csproj
+		SccProjectTopLevelParentUniqueName7 = SPE.sln
+		SccProjectName7 = SPE
+		SccLocalPath7 = SPE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,130 @@
+@model SPE.ViewModel.TurnoViewModel
+@{
+    ViewBag.Title = "_CadastrarOuEditar";
+}
+
+<div class="span6">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Descr)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Descr)
+        @Html.ValidationMessageFor(model => model.Descr)
+    </div>
+</div>
+
+<div class="span6">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.HoraIni)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.HoraIni, null, new { @class = "input-mini", @maxlength = 5 })
+
+        @Html.ValidationMessageFor(model => model.HoraIni)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.HoraFim)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.HoraFim, null, new { @class = "input-mini", @maxlength = 5 })
+
+        @Html.ValidationMessageFor(model => model.HoraFim)
+    </div>
+</div>
+
+@Html.HiddenFor(model => model.TimeInicialHoraView)
+@Html.HiddenFor(model => model.TimeInicialMinutoView)
+@Html.HiddenFor(model => model.TimeFinalHoraView)
+@Html.HiddenFor(model => model.TimeFinalMinutoView)
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //var startDateTextBox = $('#HoraIni');
+        //var endDateTextBox = $('#HoraFim');
+        //$("#HoraIni").mask("99:99");
+        //$("#HoraFim").mask("99:99");
+        var today = new Date();
+        var defaultStartDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), $('#TimeInicialHoraView').val(), $('#TimeInicialMinutoView').val());
+        var defaultEndDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), $('#TimeFinalHoraView').val(), $('#TimeFinalMinutoView').val());
+
+        $('#HoraIni').timepicker({
+            showTimezone: false,
+            showTime: true,
+            closeText: 'OK',
+            timeText: 'Hora: ',
+            hourText: 'Hora: ',
+            minuteText: 'Minuto: ',
+            currentText: 'Hoje',
+            timeOnlyTitle: 'Selecione a hora',
+            stepMinute: 15,
+            timeFormat: "HH:mm",
+            defaultValue: "00:00",
+            onClose: function (dateText, inst) {
+                if ($('#HoraFim').val() != '') {
+                    var testStartTime = $('#HoraIni').datetimepicker('getDate');
+                    var testEndTime = $('#HoraFim').datetimepicker('getDate');
+                    if (testStartTime > testEndTime) {
+                        $('#HoraFim').timepicker('setDate', testStartTime);
+                    }
+                    $('#HoraFim').datetimepicker('option', 'minDateTime', $('#HoraIni').datetimepicker('getDate'));
+
+                }
+                else {
+                    $('#HoraFim').val(dateText);
+                }
+            },
+            onSelect: function (selectedDateTime) {
+                $('#HoraFim').datetimepicker('option', 'minDateTime', $('#HoraIni').datetimepicker('getDate'));
+            }
+        });
+
+        $('#HoraFim').timepicker({
+            showTimezone: false,
+            showTime: true,
+            closeText: 'OK',
+            timeText: 'Hora: ',
+            hourText: 'Hora: ',
+            minuteText: 'Minuto: ',
+            currentText: 'Hoje',
+            timeOnlyTitle: 'Selecione a hora',
+            stepMinute: 15,
+            timeFormat: "HH:mm",
+            defaultValue: "23:45",
+            onClose: function (dateText, inst) {
+                if ($('#HoraIni').val() != '') {
+                    var testStartTime = $('#HoraIni').datetimepicker('getDate');
+                    var testEndTime = $('#HoraFim').datetimepicker('getDate');
+                    if (testStartTime > testEndTime) {
+                        $('#HoraIni').timepicker('setDate', testEndTime);
+                    }
+                    $('#HoraIni').datetimepicker('option', 'maxDateTime', $('#HoraFim').datetimepicker('getDate'));
+
+                }
+                else {
+                    $('#HoraIni').val(dateText);
+                }
+            },
+            onSelect: function (selectedDateTime) {
+                $('#HoraIni').datetimepicker('option', 'maxDateTime', $('#HoraFim').datetimepicker('getDate'));
+            }
+        });
+
+        var testStartTime = $('#HoraIni').datetimepicker('getDate');
+        var testEndTime = $('#HoraFim').datetimepicker('getDate');
+
+        var isEditar = $('#IdTurno').val() ? true : false;
+
+        if (isEditar) {
+            $('#HoraIni').timepicker('setDate', defaultStartDate);
+            $('#HoraFim').timepicker('setDate', defaultEndDate);
+            $('#HoraFim').datetimepicker('option', 'minDateTime', $('#HoraIni').datetimepicker('getDate'));
+            $('#HoraIni').datetimepicker('option', 'maxDateTime', $('#HoraFim').datetimepicker('getDate'));
+        }
+
+
+    });
+</script>
+
+
+

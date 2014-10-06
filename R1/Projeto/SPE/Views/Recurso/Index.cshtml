@@ -1,0 +1,71 @@
+@model IEnumerable<SPE.ViewModel.RecursoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Recurso")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Recursos</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Descrição
+                        </th>
+                        <th filtered>Tipo
+                        </th>
+                        <th style="width: 10%; cursor: default">Ações
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @item.Descr
+                            </td>
+                            <td>
+                                @item.TipoRecurso.Descr
+                            </td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" onclick="Editar('/Recurso/EditarRecurso/@item.idRecurso');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" onclick="Excluir(@item.idRecurso );"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" style="text-align: center;">Não há Recursos cadastrados.</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Recurso", "CadastrarRecurso", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Recurso/ExcluirRecurso/")
+

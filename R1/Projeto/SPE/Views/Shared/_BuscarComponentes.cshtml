@@ -1,0 +1,32 @@
+﻿@model List<Senai.SPE.Domain.Componente>
+
+@{
+    Layout = null;
+    
+}
+
+    @foreach (var item in Model)
+    {
+
+        string listaAreasAtuacao = "";
+
+        if (item.AreaAtuacao.Any())
+        {
+            foreach (var areaAtuacao in item.AreaAtuacao)
+            {
+                listaAreasAtuacao += (areaAtuacao.IdAreaAtuacao.ToString() + ";");
+            }
+
+            listaAreasAtuacao = listaAreasAtuacao.Substring(0, listaAreasAtuacao.Length-1);
+        }
+        
+        <li componentid="@item.IdComponente" nome="@item.Nome" carga="@item.CH" idAreaAtuacao="@listaAreasAtuacao"  class="ui-draggable" style="position: relative; cursor:pointer; cursor:hand -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: moz-none;
+-ms-user-select: none;
+user-select: none;">@item.Nome <a href="" class="remove" style="margin-left: 4px;">
+    <icon class="icon-remove"></icon>
+</a><span style="font-weight: bold; float: right">@*(@item.CH h)*@  </span></li>
+    }
+

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E978E4E3-2B97-4669-92FA-352D182B54DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TesteFLow</RootNamespace>
+    <AssemblyName>TesteFLow</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMoq">
+      <HintPath>..\packages\AutoMoq.1.6.2.0\lib\net35\AutoMoq.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0-beta1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.1.1309.1617\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Senai.SPE.BL.Fakes">
+      <HintPath>FakesAssemblies\Senai.SPE.BL.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="Senai.SPE.Domain.Fakes">
+      <HintPath>FakesAssemblies\Senai.SPE.Domain.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="Senai.SPE.Repository.Fakes">
+      <HintPath>FakesAssemblies\Senai.SPE.Repository.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="SPE.Fakes">
+      <HintPath>FakesAssemblies\SPE.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="BL\AgendaAmbienteBLTests.cs" />
+    <Compile Include="BL\AgendaComponenteBLTests.cs" />
+    <Compile Include="BL\AgendaDocenteBLTests.cs" />
+    <Compile Include="BL\AmbienteBLTests.cs" />
+    <Compile Include="BL\AreaAtuacaoBLTests.cs" />
+    <Compile Include="BL\CalendarioLegendaBLTests.cs" />
+    <Compile Include="BL\CatUsuarioBLTests.cs" />
+    <Compile Include="BL\CBOBLTests.cs" />
+    <Compile Include="BL\ComponenteBLTests.cs" />
+    <Compile Include="BL\CRBLTests.cs" />
+    <Compile Include="BL\DocenteBLTests.cs" />
+    <Compile Include="BL\EmpresaBLTests.cs" />
+    <Compile Include="BL\GenericBLTests.cs" />
+    <Compile Include="BL\LocalAmbienteBLTests.cs" />
+    <Compile Include="BL\MatrizBLTests.cs" />
+    <Compile Include="BL\ModalidadeBLTests.cs" />
+    <Compile Include="BL\ModuloBLTests.cs" />
+    <Compile Include="BL\RecursoBLTests.cs" />
+    <Compile Include="BL\SPEBLTests.cs" />
+    <Compile Include="BL\TipoAmbienteBLTests.cs" />
+    <Compile Include="BL\TipoAtividadeBLTests.cs" />
+    <Compile Include="BL\TipoContratoBLTests.cs" />
+    <Compile Include="BL\TipoRecursoBLTests.cs" />
+    <Compile Include="BL\TurmaBLTests.cs" />
+    <Compile Include="BL\TurnoBLTests.cs" />
+    <Compile Include="BL\UnidadeBLTests.cs" />
+    <Compile Include="BL\UnitTest1.cs" />
+    <Compile Include="Controllers\AmbienteControllerTests.cs" />
+    <Compile Include="Controllers\AreaAtuacaoControllerTests.cs" />
+    <Compile Include="Controllers\CalendarioControllerTests.cs" />
+    <Compile Include="Controllers\CalendarioLegendaControllerTests.cs" />
+    <Compile Include="Controllers\CatUsuarioControllerTests.cs" />
+    <Compile Include="Controllers\CBOControllerTests.cs" />
+    <Compile Include="Controllers\ComponenteControllerTests.cs" />
+    <Compile Include="Controllers\CRControllerTests.cs" />
+    <Compile Include="Controllers\DocenteControllerTests.cs" />
+    <Compile Include="Controllers\EmpresaControllerTests.cs" />
+    <Compile Include="Controllers\HomeControllerTests.cs" />
+    <Compile Include="Controllers\LocalAmbienteControllerTests.cs" />
+    <Compile Include="Controllers\LoginControllerTests.cs" />
+    <Compile Include="Controllers\MatrizControllerTests.cs" />
+    <Compile Include="Controllers\ModalidadeControllerTests.cs" />
+    <Compile Include="Controllers\RecursoControllerTests.cs" />
+    <Compile Include="Controllers\TipoAmbienteControllerTests.cs" />
+    <Compile Include="Controllers\TipoAtividadeControllerTests.cs" />
+    <Compile Include="Controllers\TipoContratoControllerTests.cs" />
+    <Compile Include="Controllers\TipoRecursoControllerTests.cs" />
+    <Compile Include="Controllers\TurmaControllerTests.cs" />
+    <Compile Include="Controllers\TurnoControllerTests.cs" />
+    <Compile Include="Controllers\UnidadeControllerTests.cs" />
+    <Compile Include="Controllers\UsuarioControllerTests.cs" />
+    <Compile Include="Controllers\AgendamentoControllerTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BL\UsuarioBLTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{49ADBCE0-C91E-4F0B-95E4-A703EE9CFCEF}</Project>
+      <Name>Repository %28Repository\Repository%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Senai.SPE.BL\Senai.SPE.BL.csproj">
+      <Project>{ea6a902e-8262-460e-9fe0-c1c29d1f6563}</Project>
+      <Name>Senai.SPE.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Senai.SPE.Domain\Senai.SPE.Domain.csproj">
+      <Project>{18aef590-6ec2-449a-95e7-0b8425349965}</Project>
+      <Name>Senai.SPE.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Senai.SPE.Repository\Senai.SPE.Repository.csproj">
+      <Project>{CE67721B-15E8-4601-A73A-208D4074D6AE}</Project>
+      <Name>Senai.SPE.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPE\SPE.csproj">
+      <Project>{561CC4D3-5EE5-4059-B3B0-75EBFF594747}</Project>
+      <Name>SPE</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <Fakes Include="Fakes\Senai.SPE.BL.fakes" />
+    <Fakes Include="Fakes\Senai.SPE.Repository.fakes" />
+    <Fakes Include="Fakes\Senai.SPE.Domain.fakes" />
+    <Fakes Include="Fakes\SPE.fakes" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

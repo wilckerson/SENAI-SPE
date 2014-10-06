@@ -1,0 +1,101 @@
+﻿@model SPE.ViewModel.FiltrosMatriz
+@{
+    ViewBag.Title = "Index";
+}
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Matriz")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Matrizes</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Codigo
+                        </th>
+                        <th search>Nome
+                        </th>
+                        <th filtered>Modalidade
+                        </th>
+                        <th filtered>Área de Atuação</th>
+                        <th>CBO</th>
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Matriz != null)
+                    {
+                        foreach (var item in Model.Matriz)
+                        {
+                            <tr>
+                                <td>
+                                    @item.IdMatriz.ToString("00000")
+                                </td>
+                                <td>
+                                    @item.Nome
+                                </td>
+                                <td>
+                                    @if (item.Modalidade != null)
+                                    {
+                                        @item.Modalidade.Nome                         
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("N/A");
+                                    }
+                                </td>
+                                <td>@if (item.AreaAtuacao != null)
+                                    {
+                                    @item.AreaAtuacao.Nome
+                                    }
+                                    else
+                                    {
+                                    @Html.Raw("N/A");
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.CBO != null)
+                                    {
+                                        @item.CBO.Descrricao
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("N/A");
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip" onclick="Editar('/Matriz/EditarMatriz/@item.IdMatriz');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                    <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.IdMatriz);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                                </td>
+                            </tr>
+                        }
+                        
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align:center;">Não Há Matrizes cadastradas.</td>
+                        </tr>
+                        
+                    }
+                    
+                </tbody>
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Matriz", "CadastrarMatriz", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Matriz/ExcluirMatriz/")

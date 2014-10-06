@@ -1,0 +1,35 @@
+@model SPE.ViewModel.CRViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>CRViewModel</legend>
+
+    <div class="display-label">Nome</div>
+    <div class="display-field">@Model.Nome</div>
+
+    <div class="display-label">IdModalidade</div>
+    <div class="display-field">@Model.IdModalidade</div>
+
+    <div class="display-label">Modalidade</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Modalidade).ToString()</div>
+
+    <div class="display-label">Curso</div>
+    <div class="display-field">@(Model.Curso == null ? "None" : Model.Curso.Count.ToString())</div>
+
+    <div class="display-label">Unidade</div>
+    <div class="display-field">@(Model.Unidade == null ? "None" : Model.Unidade.Count.ToString())</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

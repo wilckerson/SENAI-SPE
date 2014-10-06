@@ -1,0 +1,50 @@
+@using SPE.ViewModel
+@model SPE.ViewModel.RecursoViewModel
+@{
+    ViewBag.Title = "_CadastrarOuEditar";
+}
+
+<div class="span6">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.idTipoRecurso)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.idTipoRecurso, ((IEnumerable<TipoRecursoViewModel>)Model.ListaTipoRecurso).Select(option => new SelectListItem
+               {
+                   Text = option.Descr,
+                   Value = option.idTipoRecurso.ToString(),
+                   Selected = Model != null && option.idTipoRecurso == Model.idTipoRecurso
+               }), "Selecione")
+        @Html.ValidationMessageFor(model => model.idTipoRecurso)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Descr)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Descr, new { maxlength = "64" })
+        @Html.ValidationMessageFor(model => model.Descr)
+    </div>
+
+
+    @*<div class="editor-label">    
+        @Html.LabelFor(model => model.Status)  
+    </div>
+    <div class="editor-field">
+        <label class="radio" style="display:inline-block">
+            <input type="radio" name="Status" value="1"@if (Model.Status == 1 || Model.Status == null)
+                                                        {
+                                                            @:checked
+                                                        }
+             >Ativo</label>
+        <label class="radio span1" style="display:inline-block">
+            <input type="radio" name="Status" value="0" @if (Model.Status == 0)
+                                                        {
+                                                            @:checked
+                                                        }
+            >Inativo</label>
+        @Html.ValidationMessageFor(model => model.Status)
+    </div>*@
+
+
+</div>

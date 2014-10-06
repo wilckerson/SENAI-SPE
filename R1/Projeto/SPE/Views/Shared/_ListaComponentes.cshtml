@@ -1,0 +1,24 @@
+﻿@model SPE.ViewModel.MatrizListarComponentesViewModel
+
+
+<input type="hidden" value="@Model.Matriz" name="idMatriz" id="idMatriz" />
+
+
+<table class="table table-striped" style="margin-bottom: 20px;">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nome
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ListaViewModel)
+        {
+            <tr>
+                <td style="width: 2%;">
+                <td style="width: 15px;" id="@item.IdComponente" onclick="IncluirVinculo(this)" data-dismiss="alert">@item.Nome</td>
+            </tr>        
+        }
+    </tbody>
+</table>

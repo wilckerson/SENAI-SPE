@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SPE.ViewModel.TurmaViewModel>
+@{
+    Layout = null;
+}
+
+
+
+<table class="table table-striped" style="margin-bottom: 20px;">
+    <tr>
+        <th>Nome
+        </th>
+        <th>Data de Início
+        </th>
+        <th style="width: 10%">Ações</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Nome
+            </td>
+            <td>
+                @if (item.DataInicio.HasValue)
+                { @item.DataInicio.Value.ToShortDateString(); }
+            </td>
+            <td>
+                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip" onclick="Editar('/Turma/EditarTurma/@item.IdTurma');" href=""><i class="icon-edit" alt="editar"></i></div>
+                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.IdTurma);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+            </td>
+        </tr>
+    }
+</table>

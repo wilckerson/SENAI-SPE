@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{18AEF590-6EC2-449A-95E7-0B8425349965}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Senai.SPE.Domain</RootNamespace>
+    <AssemblyName>Senai.SPE.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0-beta1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgendaAmbiente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgendaComponente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgendaDocente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgendaEvento.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Agendamento.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ambiente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AreaAtuacao.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarioCivil.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarioLegenda.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatMaterial.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatServico.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatUsuario.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CBO.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Componente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CR.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Docente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empresa.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Componente.cs" />
+    <Compile Include="Entity\Unidade.cs" />
+    <Compile Include="Enum\TipoEventoEnum.cs" />
+    <Compile Include="Enum\DiasSemanaEnum.cs" />
+    <Compile Include="Enum\MensagemEnum.cs" />
+    <Compile Include="Enum\PaginacaoEnum.cs" />
+    <Compile Include="Funcionalidade.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocalAmbiente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Material.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Matriz.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modalidade.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perfil.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recurso.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecursoAmbiente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReprovacaoMatriz.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReprovacaoTurma.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Servico.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPEContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SPEContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPEContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPEContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SPEContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SPEDbContext.cs" />
+    <Compile Include="Split1_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Split_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoAmbiente.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoAtividade.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoContrato.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoRecurso.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoUsuario.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Turma.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Turno.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarAmbientes1_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarAmbientes_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarComponentesPorModulo1_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarComponentesPorModulo_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarCR1_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarCR_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarDocentes1_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarDocentes_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarMatrizes1_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarMatrizes_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarTurmas1_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnListarTurmas_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnPegarMinMaxDatas1_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ufnPegarMinMaxDatas_Result.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnCurricular.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unidade.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>SPEContext.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="SPEContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SPEContext.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Senai.SPE.Domain</CustomToolNamespace>
+    </EntityDeploy>
+    <None Include="SPEContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SPEContext.edmx</DependentUpon>
+      <LastGenOutput>SPEContext.Context.cs</LastGenOutput>
+    </None>
+    <None Include="SPEContext.edmx.diagram">
+      <DependentUpon>SPEContext.edmx</DependentUpon>
+    </None>
+    <None Include="SPEContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SPEContext.edmx</DependentUpon>
+      <LastGenOutput>SPEContext.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

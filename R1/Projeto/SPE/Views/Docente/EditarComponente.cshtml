@@ -1,0 +1,28 @@
+﻿@model SPE.ViewModel.ComponenteViewModel
+@{
+    ViewBag.Title = "EditarComponente";
+}
+
+<div class="white_box">
+
+
+    <div class="container">
+        <h1>Editar Componente</h1>
+
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend></legend>
+                @Html.HiddenFor(model => model.IdComponente)
+                @Html.Partial("_CadastrarOuEditar", Model)
+
+                <p>
+                    <input type="submit" value="Salvar" />
+                </p>
+            </fieldset>
+        }
+
+        @Html.ActionLink("Lista de Componentes", "Index")
+    </div>
+</div>

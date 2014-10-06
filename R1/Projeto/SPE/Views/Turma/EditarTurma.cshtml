@@ -1,0 +1,171 @@
+@model SPE.ViewModel.TurmaViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Turma")
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <h1>Turma</h1>
+                <hr />
+                @Html.HiddenFor(model => model.IdTurma)            
+                @Html.Partial("_CadastrarOuEditar", Model)
+if (Model.Matriz != null)
+                {
+                    if (Model.Matriz.Modulo != null)
+                    {
+                        foreach (var item in Model.Matriz.Modulo)
+                        {
+                       
+                <div class="row-fluid">
+                    <div class="accordion" id="accordion2">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="@string.Format("#{0}", item.IdModulo)">
+                                    <h3>@item.Nome <b class="caret"></b></h3>
+                                </a>
+                            </div>
+                            <div id="@string.Format("{0}", item.IdModulo)" class="accordion-body collapse in">
+                                <div class="accordion-inner">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>DESCRIÇÃO  </th>
+                                            <th>CH</th>
+                                            <th>INÍCIO</th>
+                                            <th>FIM</th>
+                                            <th>PLANEJAMENTO</th>
+                                        </tr>
+                                        @foreach (var componente in item.Componente)
+                                        {
+                                            <tr>
+                                                <td>@componente.Nome</td>
+                                                <td>@componente.CH</td>
+                                                <td>@if (componente.AgendaComponente.Where(a=>a.IdTurma == Model.IdTurma ) != null && componente.AgendaComponente.Where(a=>a.IdTurma == Model.IdTurma ).Count() > 0)
+                                                    {
+                                                    if(componente.AgendaComponente.Where(a => a.IdModulo == item.IdModulo && a.IdTurma == Model.IdTurma).LastOrDefault()!= null)
+                                                    {
+                                                        if (componente.AgendaComponente.Where(a => a.IdModulo == item.IdModulo && a.IdTurma == Model.IdTurma).LastOrDefault().DataIni != null)
+                                                        {
+                                                        @componente.AgendaComponente.Where(a => a.IdModulo == item.IdModulo && a.IdTurma == Model.IdTurma).LastOrDefault().DataIni.GetValueOrDefault().ToShortDateString()
+                                                        }
+                                                    }
+                                                    }
+                                                    </td>
+                                                <td>@if (componente.AgendaComponente.Where(a => a.IdTurma == Model.IdTurma) != null && componente.AgendaComponente.Where(a => a.IdTurma == Model.IdTurma).Count() > 0)
+                                                    {
+                                                        if (componente.AgendaComponente.Where(a => a.IdModulo == item.IdModulo && a.IdTurma == Model.IdTurma).LastOrDefault() != null)
+                                                    {
+                                                        if (componente.AgendaComponente.Where(a => a.IdModulo == item.IdModulo && a.IdTurma == Model.IdTurma).LastOrDefault().DataFim != null)
+                                                        {
+                                                        @componente.AgendaComponente.Where(a => a.IdModulo == item.IdModulo&& a.IdTurma == Model.IdTurma).LastOrDefault().DataFim.GetValueOrDefault().ToShortDateString()
+                                                        }
+                                                    } 
+                                                    }</td>
+                                                <td>
+                                                    <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Planejamento" alt="tootip" onclick="Editar('/PlanejamentoEscolar?tipo=4&item=@Model.IdTurma&versao=1&mes=@(DateTime.Now.Month-1)&ano=@DateTime.Now.Year');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                        }
+                    }
+                }                
+                <h1>Histórico Aprovação</h1>
+                <hr />
+                        <div class="container-fluid">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Descrição</th>
+                                        <th>Data</th>             
+                                    </tr>
+                                </thead>
+                                <tbody>
+@*                                    @if (Model.Aprovado == 1)
+                                    {
+                                        <tr class="success">
+                                            <td style="color:none;">Aprovado</td>
+                                            <td style="color:none;">Ok</td>
+                                            <td></td>
+                                        </tr>
+                                    }
+                                    @if (Model.ListaReprovacaoTurma != null)
+                                    {
+                                        foreach (var item in Model.ListaReprovacaoTurma)
+                                        {
+                                            if (item.IdReprovacaoTurma != null)
+                                            {
+                                                <tr class="error">
+                                                    <td>Reprovado</td>
+                                                    <td>@item.Observacao</td>
+                                                    <td>@item.Data.Value.ToString("dd/MM/yyyy 'às' hh:mm")</td>
+                                                </tr>                                            
+                                            }
+
+                                        }
+                                    }
+                                    @if (Model.Aprovado == null && Model.ListaReprovacaoTurma.Count == 0)
+                                    {
+                                            <tr class="warning">
+                                                <td colspan="2" style="text-align:center;">Não há histórico de aprovação para esta Turma.</td>                                                
+                                            </tr>
+                                    }*@
+                                    @if (Model.ListaReprovacaoTurma != null)
+                                    {
+                                        foreach (var item in Model.ListaReprovacaoTurma)
+                                        {
+                                            if (item.Tipo == 0)
+                                            {
+                                                <tr class="error">
+                                                    <td>Reprovado</td>
+                                                    <td>@item.Observacao</td>
+                                                    <td>@item.Data.Value.ToString("dd/MM/yyyy 'às' HH:mm")</td>
+                                                </tr>                                            
+                                            }
+                                            else if (item.Tipo == 1)
+                                            {
+                                                                                   
+                                                <tr class="success">
+                                                    <td style="color:none;">Aprovado</td>
+                                                    <td style="color:none;">@item.Observacao</td>
+                                                    <td>@item.Data.Value.ToString("dd/MM/yyyy 'às' HH:mm")</td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    }
+                                    @if (Model.Aprovado == null && Model.ListaReprovacaoTurma.Count == 0)
+                                    {
+                                            <tr class="warning">
+                                                <td colspan="2" style="text-align:center;">Não há histórico de aprovação para esta Turma.</td>                                                
+                                            </tr>
+                                    }
+                                                                            
+                                </tbody>
+                            </table>
+                        </div>
+
+                <div class="buttons">
+                    <input id="btnsalvar" type="submit" value="Salvar" class="btns btn-large btn-principal btnsalvar" />
+                    @Html.ActionLink("Lista de Turmas", "Index", null, new { @class = "btns btn-large" })
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

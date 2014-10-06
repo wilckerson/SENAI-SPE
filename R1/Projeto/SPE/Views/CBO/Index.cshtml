@@ -1,0 +1,73 @@
+@model IEnumerable<SPE.ViewModel.CBOViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "CBO")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de CBO</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Código
+                        </th>
+                        <th search>Nome
+                        </th>
+                        @*<th filtered>Tipo
+                        </th>*@
+                        <th style="width: 10%; cursor: default">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @item.Codigo
+                            </td>
+                            <td>
+                                @item.Descrricao
+                            </td>
+                            @*<td>
+                                @item.Tipo
+                            </td>*@
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" alt="tootip" onclick="Editar('/CBO/EditarCBO/@item.IdCBO');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" alt="tootip" onclick="Excluir(@item.IdCBO);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Não há CBO's cadastrados.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar CBO", "CadastrarCBO", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/CBO/ExcluirCBO/")

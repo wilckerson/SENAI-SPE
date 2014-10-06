@@ -1,0 +1,589 @@
+@model SPE.ViewModel.AgendaComponenteViewModel
+
+@{
+    ViewBag.Title = "_CadastrarOuEditar";
+  
+}
+<div class="row">
+    
+    <div class="span5">
+        @Html.HiddenFor(model => model.IdTurma)
+        <input type="hidden" id="hidDiasSemanaComponente" value="" />
+
+        <input type="hidden" id="hidTurnoHoraIni" value="@Model.Turma.Turno.HoraIni.GetValueOrDefault(TimeSpan.MinValue).Hours" />
+        <input type="hidden" id="hidTurnoMinIni" value="@Model.Turma.Turno.HoraIni.GetValueOrDefault(TimeSpan.MinValue).Minutes" />
+        <input type="hidden" id="hidTurnoHoraFim" value="@Model.Turma.Turno.HoraFim.GetValueOrDefault(TimeSpan.MinValue).Hours"/>
+        <input type="hidden" id="hidTurnoMinFim" value="@Model.Turma.Turno.HoraFim.GetValueOrDefault(TimeSpan.MinValue).Minutes" />
+        <input type="hidden" id="hidTurnoInicio"  value="@Model.Turma.Turno.HoraIni.GetValueOrDefault(TimeSpan.MinValue)" />
+        <input type="hidden" id="hidTurnoFim"  value="@Model.Turma.Turno.HoraFim.GetValueOrDefault(TimeSpan.MinValue)"/>
+         <input type="hidden" id="hidVagasQtd"  value="@Model.Turma.QtdeVagas"/>
+        <input type="hidden" id="IdComponente" value="@Model.Componente.IdComponente" />
+        <input type="hidden" id="IdModulo" value="@Model.IdModulo" />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Componente.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Componente.Nome, null, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Componente.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DataIni)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DataIniView)
+            @Html.ValidationMessageFor(model => model.DataIni)
+        </div>
+
+
+        @*<div class="input-append bootstrap-timepicker">*@
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HoraIni)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.HoraIniView, null, new { @class = "input-small", @readonly = "readonly" })
+            <span style="font-size: 14px"></span>
+        </div>
+
+
+        @*  </div> , @onblur="ValidateTime(this);" *@
+
+    </div>
+
+
+
+    <div class="span5">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Componente.CH)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Componente.CH, null, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Componente.CH)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DataFim)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DataFimView, null, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.DataFim)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HoraFim)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.HoraFimView, null, new { @class = "input-small", @readonly = "readonly" })
+            <span style="font-size: 14px"></span>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="editor-label row-fluid">
+    Dias da Semana
+
+</div>
+<br />
+<div class="row-fluid">
+
+    @foreach (var dia in Model.ListaDias)
+    {
+        <label class="checkbox inline">
+            <input type="checkbox" name="DiasSemanaComponente" class="checkbox" value="@dia" onchange="OnSelectDia(this)" 
+                @if (Model.ComponentesAgendados != null && Model.ComponentesAgendados.DiasSemana != null)
+                {
+                    if (Model.ComponentesAgendados.DiasSemana.Contains(dia))
+                    {
+                    @:checked
+                    }
+                }/>@dia
+        </label>
+    }
+</div>
+
+<hr />
+
+@*Inicio Parte de Ambiente*@
+
+<div class="container-fluid">
+    <div class="dropdown">
+        <a class="" data-toggle="dropdown" href="#">
+            <h3>Ambiente
+                     <b class="caret"></b></h3>
+        </a>
+
+    </div>
+</div>
+
+<div class="container-fluid bluespace">
+
+    @foreach (var dia in Model.ListaDias)
+    {
+        <label class="checkbox inline">
+            <input  name="DiasAmbiente" type="checkbox" class="checkbox" value="@dia" disabled="disabled"
+                  
+                />@dia
+        </label>
+    }
+
+    <div class="row-fluid">
+        <div class="span3">
+
+            <label>Horário Inicial</label>
+            <input type="text" id="HoraAmbienteInicial" class="input-small" />
+            <div class="editor-field">
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        var horaInicialHora = $('#hidTurnoHoraIni').val();
+                        var horaInicialMinuto = $('#hidTurnoMinIni').val();
+                        var horaFinalHora = $('#hidTurnoHoraFim').val();
+                        var horaFimMinuto = $('#hidTurnoMinFim').val();
+                        $('#HoraAmbienteInicial').timepicker({
+                            showTimezone: false,
+                            closeText: 'OK',
+                            timeText: 'Hora: ',
+                            hourText: 'Hora: ',
+                            minuteText: 'Minuto: ',
+                            currentText: 'Hoje',
+                            timeOnlyTitle: 'Selecione a hora',
+                            stepMinute: 15,
+                            defaultValue: "00:00",
+                            timeFormat: "HH:mm",
+                            //defaultValue: horaInicialHora + ":" + horaInicialMinuto,
+
+                            minDate: new Date(2013, 11, 31, horaInicialHora, horaInicialMinuto),
+                            maxDate: new Date(2013, 11, 31, horaFinalHora, horaFimMinuto),
+                            onClose: function (dateText, inst) {
+                                if ($('#HoraAmbienteFinal').val() != '') {
+                                    var testStartTime = $('#HoraAmbienteInicial').datetimepicker('getDate');
+                                    var testEndTime = $('#HoraAmbienteFinal').datetimepicker('getDate');
+
+                                    $('#HoraAmbienteFinal').datetimepicker('option', 'minDateTime', $('#HoraAmbienteInicial').datetimepicker('getDate'));
+
+                                }
+                                else {
+                                    $('#HoraAmbienteFinal').val(dateText);
+                                }
+                            },
+                            onSelect: function (selectedDateTime) {
+                                $('#HoraAmbienteFinal').datetimepicker('option', 'minDateTime', $('#HoraAmbienteInicial').datetimepicker('getDate'));
+                            }
+                        });
+                    });
+
+                </script>
+
+            </div>
+
+
+        </div>
+
+        <div class="span3">
+
+            <label>Horário Final</label>
+            <input type="text" id="HoraAmbienteFinal" class="input-small" />
+            <div class="editor-field">
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        var horaInicialHora = $('#hidTurnoHoraIni').val();
+                        var horaInicialMinuto = $('#hidTurnoMinIni').val();
+                        var horaFinalHora = $('#hidTurnoHoraFim').val();
+                        var horaFimMinuto = $('#hidTurnoMinFim').val();
+                        $('#HoraAmbienteFinal').timepicker({
+                            showTimezone: false,
+                            closeText: 'OK',
+                            timeText: 'Hora: ',
+                            hourText: 'Hora: ',
+                            minuteText: 'Minuto: ',
+                            currentText: 'Hoje',
+                            timeOnlyTitle: 'Selecione a hora',
+                            stepMinute: 15,
+
+                            defaultValue: "00:00",
+                            timeFormat: "HH:mm",
+                            //defaultValue: horaFinalHora + ":" + horaFimMinuto,
+
+
+                            minDate: new Date(2013, 11, 31, horaInicialHora, horaInicialMinuto),
+                            maxDate: new Date(2013, 11, 31, horaFinalHora, horaFimMinuto),
+                            onClose: function (dateText, inst) {
+                                if ($('#HoraAmbienteInicial').val() != '') {
+                                    var testStartTime = new Date($('#HoraAmbienteInicial').datetimepicker('getDate'));
+                                    var testEndTime = new Date($('#HoraAmbienteFinal').datetimepicker('getDate'));
+                                    if (testStartTime > testEndTime) {
+                                        $('#HoraAmbienteInicial').timepicker('setDate', testEndTime);
+                                    }
+
+                                }
+                                else {
+                                    $('#HoraAmbienteFinal').val(dateText);
+                                }
+                            },
+
+                        });
+                    });
+
+                </script>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <div class="filtro">
+        <h4>Filtros</h4>
+        <table class="camposFiltro">
+            <tr>
+            </tr>
+        </table>
+    </div>
+
+
+    <table id="dataTable" class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nome</th>
+                <th filtered>Tipo</th>
+                <th filtered>Capacidade</th>
+                <th filtered>Local</th>
+            </tr>
+        </thead>
+        <tbody class="filtroAmbiente">
+            @Html.Partial("_FiltroAmbiente", Model.Componente.TipoAmbiente.ToList())
+        </tbody>
+    </table>
+</div>
+<div class="container-fluid">
+    <br />
+    <h4>Ambientes Escolhidos</h4>
+    <table id="tableAmbienteEscolhido" class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Capacidade</th>
+                <th>Local</th>
+                <th>Dias </th>
+                <th>Horário Inicial</th>
+                <th>Horário Final</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.AmbienteAgendados != null)
+            {
+                foreach (var item in Model.AmbienteAgendados)
+                {
+                
+           
+                <tr>
+
+                    <td>
+                        <icon  id="@item.IdAmbiente" onclick="RemoverItemAmbiente(this)" class="icon-remove" diasSemana="@item.DiasSemanaAmbiente" horainicial="@item.HoraIni" capacidade="@item.Ambiente.Capac" horafinal="@item.HoraFim"></icon>
+                    </td>
+                    <td>@item.Ambiente.Nome</td>
+                     <td>@item.Ambiente.TipoAmbiente.Descr</td>
+                    <td>@item.Ambiente.Capac</td>
+                    <td>@if (item.Ambiente.LocalAmbiente != null)
+                        { 
+                        @item.Ambiente.LocalAmbiente.Descr
+                        }
+                        else
+                        {
+                        <span>N/A</span>
+                        }</td>
+                    <td>@item.DiasSemanaAmbiente </td>
+                    <td>@item.HoraIni</td>
+                    <td>@item.HoraFim</td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+<hr />
+
+
+@* Fim Parte de Ambiente *@
+
+
+
+
+
+
+
+
+@*Inicio Parte de Docente*@
+
+<div class="container-fluid ">
+    <div class="dropdown">
+        <a class="" data-toggle="dropdown" href="#">
+            <h3>Docentes
+                     <b class="caret"></b></h3>
+        </a>
+
+    </div>
+</div>
+<div class="container-fluid bluespace">
+    <div class="row-fluid">
+
+        @foreach (var dia in Model.ListaDias)
+        {
+            <label class="checkbox inline">
+                <input  name="DiasDocente" type="checkbox" class="checkbox" value="@dia" disabled="disabled"
+                   
+                    />@dia
+            </label>
+        }
+    </div>
+
+    <div class="docentes">
+        <div class="row-fluid">
+            <div class="span3">
+
+
+
+                <label>Horário Inicial</label>
+                <input type="text" id="HoraDocenteInicial" class="input-small" />
+                <div class="editor-field">
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            var horaInicialHora = $('#hidTurnoHoraIni').val();
+                            var horaInicialMinuto = $('#hidTurnoMinIni').val();
+                            var horaFinalHora = $('#hidTurnoHoraFim').val();
+                            var horaFimMinuto = $('#hidTurnoMinFim').val();
+                            $('#HoraDocenteInicial').timepicker({
+                                showTimezone: false,
+                                closeText: 'OK',
+                                timeText: 'Hora: ',
+                                hourText: 'Hora: ',
+                                minuteText: 'Minuto: ',
+                                currentText: 'Hoje',
+                                timeOnlyTitle: 'Selecione a hora',
+                                stepMinute: 15,
+
+                                defaultValue: "00:00",
+                                timeFormat: "HH:mm",
+                                //defaultValue: horaInicialHora + ":" + horaInicialMinuto,
+
+
+                                minDate: new Date(2013, 11, 31, horaInicialHora, horaInicialMinuto),
+                                maxDate: new Date(2013, 11, 31, horaFinalHora, horaFimMinuto),
+                                onClose: function (dateText, inst) {
+                                    if ($('#HoraDocenteFinal').val() != '') {
+                                        var testStartTime = $('#HoraDocenteInicial').datetimepicker('getDate');
+                                        var testEndTime = $('#HoraDocenteFinal').datetimepicker('getDate');
+
+                                        $('#HoraDocenteFinal').datetimepicker('option', 'minDateTime', $('#HoraDocenteInicial').datetimepicker('getDate'));
+
+                                    }
+                                    else {
+                                        $('#HoraDocenteFinal').val(dateText);
+                                    }
+                                },
+                                onSelect: function (selectedDateTime) {
+                                    $('#HoraDocenteFinal').datetimepicker('option', 'minDateTime', $('#HoraDocenteInicial').datetimepicker('getDate'));
+                                }
+
+                            });
+                        });
+
+                    </script>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="span3">
+
+                <label>Horário Final</label>
+                <input type="text" id="HoraDocenteFinal" class="input-small" />
+                <div class="editor-field">
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            var horaInicialHora = $('#hidTurnoHoraIni').val();
+                            var horaInicialMinuto = $('#hidTurnoMinIni').val();
+                            var horaFinalHora = $('#hidTurnoHoraFim').val();
+                            var horaFimMinuto = $('#hidTurnoMinFim').val();
+                            $('#HoraDocenteFinal').timepicker({
+                                showTimezone: false,
+                                closeText: 'OK',
+                                timeText: 'Hora: ',
+                                hourText: 'Hora: ',
+                                minuteText: 'Minuto: ',
+                                currentText: 'Hoje',
+                                timeOnlyTitle: 'Selecione a hora',
+                                stepMinute: 15,
+                                timeFormat: "HH:mm",
+                                //defaultValue: horaFinalHora + ":" + horaFimMinuto,
+
+                                defaultValue: "00:00",
+
+                                minDate: new Date(2013, 11, 31, horaInicialHora, horaInicialMinuto),
+                                maxDate: new Date(2013, 11, 31, horaFinalHora, horaFimMinuto),
+                                onClose: function (dateText, inst) {
+                                    if ($('#HoraDocenteInicial').val() != '') {
+                                        var testStartTime = new Date($('#HoraDocenteInicial').datetimepicker('getDate'));
+                                        var testEndTime = new Date($('#HoraDocenteFinal').datetimepicker('getDate'));
+                                        if (testStartTime > testEndTime) {
+                                            $('#HoraDocenteInicial').timepicker('setDate', testEndTime);
+                                        }
+
+                                    }
+                                    else {
+                                        $('#HoraDocenteFinal').val(dateText);
+                                    }
+                                },
+
+                            });
+                        });
+
+                    </script>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        @*            <a href="#" target="_self" class="back">
+            <img src="~/img/arrow_left.jpg"></a>
+        @foreach (var docente in Model.Docentes)
+        {
+            <a href="#" target="_self" onclick="return false;">
+                <div class="docente">
+                    <icon id="@docente.IdDocente" class="icon-plus-sign addDocente"></icon>
+                    <img src="~/img/avatar.jpg">
+                    <span>@docente.Nome</span>
+                    <div class="progress progress-success">
+                        <div class="bar" style="width: 40%"><span>40%</span></div>
+                    </div>
+                </div>
+            </a>
+
+        }
+        <a href="#" target="_self" class="back">
+                <img src="~/img/arrow_right.jpg"></a>*@
+        <table id="tableDocente" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th></th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var Docente in Model.Docentes)
+                {
+                                         
+                    <tr>
+                        <td style="width: 8%;">
+                            <icon id="@Docente.IdDocente" class="icon-plus-sign addDocente"></icon>
+                        </td>
+                        <td style="width: 8%;">
+                            <img src="~/img/avatar.jpg" style="width: 64px;">
+                        </td>
+                        <td>@Docente.Nome</td>
+
+
+                    </tr>
+                                     
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="clearfix"></div>
+
+
+<div class="container-fluid">
+    <h4>Docentes Escolhidos </h4>
+    <div id="BoxDocente" class="docentes">
+        <table id="tableDocenteEscolhidos" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Dias</th>
+                    <th>Horário Inicial</th>
+                    <th>Horário Final</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var Docente in Model.DocentesAgendados)
+                {
+                                         
+                    <tr>
+                        <td style="width: 8%;">
+                            <icon id="@Docente.Docente.IdDocente" class="icon-remove" diasSemana="@Docente.DiasSemanaDocente" horafinal="@Docente.HoraFim" horainicial="@Docente.HoraIni" onclick="RemoverItemDocente(this)"></icon>
+                        </td>
+                        <td style="width: 8%;">
+                            <img src="~/img/avatar.jpg">
+                        </td>
+                        <td>@Docente.Docente.Nome</td>
+                        <td>@Docente.DiasSemanaDocente</td>
+                        <td>@Docente.HoraIni</td>
+                        <td>@Docente.HoraFim</td>
+
+                    </tr>
+                                     
+                }
+
+
+
+            </tbody>
+        </table>
+        @*    
+      @if (Model.DocentesAgendados != null && Model.DocentesAgendados.Count() != 0)
+      {
+          foreach (var item in Model.DocentesAgendados)
+          {
+               <a href="#" target="_self" onclick="return false;">
+                <div class="docente">
+                        <icon id="@item.IdDocente" onclick="RemoverItemDocente(this)" class="icon-remove addDocente" horainicial="@item.HoraIni" horafinal="@item.HoraFim" diasSemana="@item.DiasSemanaDocente"></icon>
+                    <img src="~/img/avatar.jpg">
+                    <span>@item.Docente.Nome</span>
+                    <div class="progress progress-success">
+                        <div class="bar" style="width: 40%"><span>40%</span></div>
+                    </div>
+                    <span>@item.DiasSemanaDocente</span>
+<hr />
+                        <span>@item.HoraIni</span>
+                        <span>@item.HoraFim</span>
+                </div>
+            </a>
+          }
+            }*@
+
+
+
+    </div>
+</div>
+
+
+@*Fim Parte de Docente*@
+
+<script src="~/Scripts/Agendamento/Componente.js" type="text/javascript"></script>
+

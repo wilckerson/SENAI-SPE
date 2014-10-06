@@ -1,0 +1,124 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>SPE</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/modernizr")
+    @Scripts.Render("~/Scripts/jqueryval")
+
+    @*@if (ViewBag.Erro != null && ViewBag.Erro)
+    {
+        @Html.Partial("../Shared/_ModalErro",(string)ViewBag.MsgErro)
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#modalErro").click();
+            });
+
+        </script>
+     }
+    else if (ViewBag.Sucesso != null && ViewBag.Sucesso)
+    { 
+         @Html.Partial("../Shared/_ModalSucesso",(string)ViewBag.MsgErro)
+     
+    }*@
+
+    @if (TempData["Error"] != null && (bool)TempData["Error"])
+    {
+        @Html.Partial("../Shared/_ModalErro",(string)TempData["MsgErro"])
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#modalErro").click();
+            });
+
+        </script>
+        TempData["Error"] = false;
+     }
+    else if (TempData["Sucesso"] != null && (bool)TempData["Sucesso"])
+    { 
+         @Html.Partial("../Shared/_ModalSucesso","Funcionou")
+          <script type="text/javascript">
+              $(document).ready(function () {
+
+                  $("#modalSucesso").click();
+
+              });
+
+        </script>
+        TempData["Sucesso"] = false;
+    }
+   
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo pull-left">
+                <a href="/Home" target="_self" title="home">
+                    <img src="/Images/logo_spe.png" /></a>
+            </div>
+        
+
+        </div>
+    </header>
+
+    <div class="crumbs">
+      <br />
+
+    </div>
+
+    <section>
+        @RenderBody()
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="menu_secundario">
+               @* <nav class="pull-left">
+                    <h4>Acesso Secundario</h4>
+                    <ul>
+                        <li><a href="#" target="_self">Opçao 1</a></li>
+                        <li><a href="#" target="_self">Opçao 2</a></li>
+                        <li><a href="#" target="_self">Opçao 3</a></li>
+                        <li><a href="#" target="_self">Opçao 4</a></li>
+                        <li><a href="#" target="_self">Opçao 5</a></li>
+                    </ul>
+                </nav>*@
+                <div class="senai pull-right">
+
+                    <img src="/Images/senai_logo.png" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <hr />
+                <p class="pull-left">©2013 SENAI - Sistema Planejamento Escolar</p>
+
+                <nav class="pull-right">
+                    <ul>
+                        <li><a href="#" target="_self">Ajuda</a></li>
+                        <li><a href="#" target="_self">Suporte</a></li>
+                        <li><a href="#" target="_self">Outro</a></li>
+                    </ul>
+
+                </nav>
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+    </footer>
+
+   
+    @RenderSection("scripts", required: false)
+</body>
+</html>

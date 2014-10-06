@@ -1,0 +1,104 @@
+﻿@model SPE.ViewModel.MatrizViewModel
+@{
+    
+    ViewBag.Title = "MatrizModulo";
+}
+
+<input type="hidden" name="idMatrizBusca" id="idMatrizBusca" value="@Model.IdMatriz" />
+<a href="#" class="addModulo">Adicionar Modulo</a><br />
+<div id="moduloModel">
+    <div class="modulo-item" order="1" moduloid="1">
+        <div id="headModulo">
+            Nome  : 
+            <input type="text" class="modelTitle" value="Modulo" />
+            <div style="float: right; font-weight: bold;">
+                (<span id="cargaTotal">0</span> h)                
+            </div>
+            <a href="#" class="removeModulo">
+                <icon class="icon-remove"></icon>
+            </a>
+            <a href="#" class="toggle">
+                <icon class="icon-minus"></icon>
+            </a>
+        </div>
+        <div style="clear: right">
+        </div>
+        <ul class="ul1 modulos"></ul>
+    </div>
+</div>
+<div id="modulos">
+    <h1>Modulos</h1>
+    @if (Model.Modulo.Count == 0)
+    {
+        <div class="modulo-item" order="1" moduloid="">
+            <div id="headModulo">
+                Nome  : 
+                <input type="text" class="modelTitle" id="nomeModulo" value="Modulo 1" />
+                <div style="float: right; font-weight: bold;">
+                    (<span id="cargaTotal">0</span> h)
+               
+                    
+                </div>
+                <a href="#" class="removeModulo">
+                    <icon class="icon-remove"></icon>
+                </a>
+                <a href="#" class="toggle">
+                    <icon class="icon-minus"></icon>
+                </a>
+
+            </div>
+            <div style="clear: right"></div>
+            <ul class="ul1 modulos"></ul>
+
+        </div>
+
+    }
+    @{int count = 0;
+      foreach (var item in Model.Modulo)
+      {
+          count++;
+        <div class="modulo-item" order="@count" moduloid="@item.IdModulo">
+            <div id="headModulo">
+                Nome  : 
+                <input type="text" class="modelTitle" id="nomeModulo" value="@item.Nome" />
+                <div style="float: right; font-weight: bold;">
+                    (<span id="cargaTotal">@item.Componente.Sum(a => a.CH)</span> h)
+                   
+                </div>
+                <a href="#" class="removeModulo">
+                    <icon class="icon-remove"></icon>
+                </a>
+                <a href="#" class="toggle">
+                    <icon class="icon-minus"></icon>
+                </a>
+            </div>
+            <div style="clear: right"></div>
+            <ul class="ul1 modulos">
+                @foreach (var componente in item.Componente)
+                {
+                    <li componentid="@componente.IdComponente" carga="@componente.CH" class="ui-draggable" style="position: relative;">@componente.Nome <a href="" onclick="return false;" class="remove" style="margin-left: 4px;">
+                        <icon class="icon-remove"></icon>
+                    </a><span style="font-weight: bold; float: right">(@componente.CH h)  </span></li>}
+            </ul>
+        </div>
+        
+      }
+    }
+
+</div>
+
+<div class="componentes" style="width: 55%; margin-left: 12px;">
+    <h1>Componentes</h1>
+    <p>Lista dos componentes da a área de atuação selecionada.</p>
+    <input type="text" id="txtBusca" name="txtBusca" value="" />
+    <input type="button" class="btn" value="Busca" onclick="ListarComponentes();" />
+
+    <input type="button" class="btn addComponenteMatriz" value="Adicionar Componente" />
+
+    <div id="componentes">
+        @Html.Partial("_BuscarModuloComponentes", Model)
+    </div>
+
+</div>
+
+<link href="~/Content/DragComponente.css" rel="stylesheet" />

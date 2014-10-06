@@ -1,0 +1,87 @@
+@model IEnumerable<SPE.ViewModel.AmbienteViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Ambiente")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Lista de Ambientes</h1>
+            <hr />
+
+            <div class="filtro">
+                <h4>Filtros</h4>
+                <table class="camposFiltro">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="dataTable" class="table table-striped" style="margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th search>Nome
+                        </th>
+                        <th filtered>Localização
+                        </th>
+                        <th filtered>Tipo de Ambiente
+                        </th>
+                        <th search>Capacidade
+                        </th>
+                        <th style="width: 10%; cursor: default">Ações
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @item.Nome
+                            </td>
+                            <td>
+                                @if (item.LocalAmbiente != null)
+                                {
+                                    @item.LocalAmbiente.Descr                            
+                                }
+                            </td>
+                            <td>
+                                @if (item.TipoAmbiente != null)
+                                {
+                                    @item.TipoAmbiente.Descr                         
+                                }
+                            </td>
+                            <td>
+                                @item.Capac
+                            </td>
+                            <td>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" onclick="Editar('/Ambiente/EditarAmbiente/@item.IdAmbiente');" href=""><i class="icon-edit" alt="editar"></i></div>
+                                <div class="btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir" onclick="Excluir(@item.IdAmbiente);"><i class="icon-ban-circle"></i><a href="#" alt="Excluir"></a></div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Não há Ambientes cadastrados.</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <div class="buttons">
+                @Html.ActionLink("Adicionar Ambiente", "CadastrarAmbiente", null, new { @class = "btns btn-large btn-principal" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("../Shared/_ModalConfirmacaoExcluir", "/Ambiente/ExcluirAmbiente/")
+

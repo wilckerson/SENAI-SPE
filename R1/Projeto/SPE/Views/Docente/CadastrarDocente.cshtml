@@ -1,0 +1,34 @@
+@model SPE.ViewModel.DocenteViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Docente")
+
+  @section Head 
+    {
+        <script src="~/Scripts/Docente/Docente.js"></script>
+    }
+
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+            <h1>Cadastrar Docente</h1>
+            <hr />
+
+            @using (Html.BeginForm("CadastrarDocente", "Docente", FormMethod.Post, new { @id = "cadastro" }))
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    @Html.Partial("_CadastrarOuEditar", Model)
+                </fieldset>
+            
+                <div class="buttons">
+                    <button id="btnSalvar" class="btns btn-large btn-principal">Salvar</button>
+                    @Html.ActionLink("Lista de Docentes", "Index", null, new { @class = "btns btn-large" })
+                </div>
+            }
+        </div>
+    </div>
+</div>

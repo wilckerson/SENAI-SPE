@@ -1,0 +1,44 @@
+@model SPE.ViewModel.CadastrarOuEditar
+
+@{
+    ViewBag.Title = "CadastrarUsuario";
+}
+
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Usuário")
+<div class="container">
+    <div class="white_box">
+        <div class="container-fluid">
+
+            <h1>Cadastrar Usuário</h1>
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend></legend>
+                    <div class="editor-field">
+                        <input type="text" id="txtNomeUsuario" />
+                        <button type="button" value="Buscar" class="btn" id="btnBuscarUsuario" onclick="BuscaUsuarios();" style="margin-top: -20px;">
+                            Buscar</button>
+
+
+                        <div id="divUsuario">
+                        </div>
+                    </div>
+                    @Html.Partial("_CadastrarOuEditar", Model)
+                    @Html.HiddenFor(e => e.Status)
+
+
+                </fieldset>
+          
+
+                <div class="buttons">
+                    <input type="submit" value="Salvar" class="btns btn-large btn-principal" />
+                    @Html.ActionLink("Lista de Usuário", "Index", null, new { @class = "btns btn-large" })
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

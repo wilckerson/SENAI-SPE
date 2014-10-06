@@ -1,0 +1,503 @@
+﻿@model SPE.ViewModels.Agendamento.AgendamentoIndexVM
+@{
+    var tipo = Request.QueryString["tipo"];
+    var tabAmbiente = "";
+    var tabComponente = "";
+    var tabDocente = "";
+    var tabTurma = "";
+
+    string titulo = "";
+    switch (int.Parse(tipo))
+    {
+        case 1:
+            tabComponente = "class=active";
+            titulo = "<h4>Ambiente</h4>";
+            break;
+        case 2:
+            tabAmbiente = "class=active";
+            titulo = "<h4>Componente</h4>";
+            break;
+        case 3:
+            tabAmbiente = "class=active";
+            titulo = "<h4>Docente</h4>";
+            break;
+        case 4:
+            tabAmbiente = "class=active";
+            titulo = "<h4>Turma</h4>";
+            break;
+    }
+
+}
+@Html.Partial("../Shared/_MenuCarroselCadastro", "Agendamento")
+
+@section Head {
+
+    <script type="text/javascript" src="~/Scripts/fullcalendar/fullcalendar.min.js"></script>
+    @*<script type="text/javascript" src="~/ScriptBundle/PlanejamentoEscolar/Index.js"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/ScriptBundle/PlanejamentoEscolar/Index.js")"></script>
+
+    <link href="~/Scripts/fullcalendar/fullcalendar.css" rel='stylesheet' />
+    <script type="text/javascript" src="~/Scripts/dataTableCustom2.js"></script>
+    @Scripts.Render("~/AutoBundle/Common")
+
+    <style type="text/css">
+        .sorting_asc {
+            display: none;
+        }
+
+        input + .camposFiltro1 tr td {
+            margin-bottom: 6px !important;
+        }
+
+        .popover {
+            z-index: 9999; /* A value higher than 1010 that solves the problem */
+            position: absolute;
+        }
+
+        .foto_box {
+            height: 60px;
+            width: 60px;
+            border-bottom-color: black;
+            border-width: thick;
+            float: left;
+        }
+
+        .information {
+            cursor: pointer;
+            height: 40px;
+            left: 20px;
+        }
+
+        .selectpicker {
+            width: 90px;
+        }
+
+        .docente_nome {
+            display: inline-block;
+            float: left;
+            max-width: 140px;
+            margin-left: 12px;
+            margin-top: 0px;
+        }
+
+        .camposFiltro1 tr td input {
+            margin: 0 !important;
+        }
+
+        .camposFiltro2 tr td input {
+            margin: 0 !important;
+        }
+
+        .camposFiltro3 tr td input {
+            margin: 0 !important;
+        }
+
+        .camposFiltro4 tr td input {
+            margin: 0 !important;
+        }
+    </style>
+}
+<input type="hidden" name="ItemId" id="ItemId" value="@ViewBag.Item"/>
+<input type="hidden" name="ItemTipo" id="ItemTipo" value="@ViewBag.Tipo"/>
+<input type="hidden" name="NomeItem" id="NomeItem" value="@ViewBag.NomeItem"/>
+<input type="hidden" name="ItemVersao" id="ItemVersao" value="@ViewBag.Versao"/>
+<input type="hidden" name="ItemData" id="ItemData" value="@ViewBag.Data"/>
+
+<div class="container">
+    <div class="span12">
+        <div class="span10">
+            <div class="white_box">
+                <div class="container-fluid">
+                    <input type="hidden" id="ano" value="@Html.Raw(Request.QueryString["ano"])" />
+                    <input type="hidden" id="mes" value="@Html.Raw(Request.QueryString["mes"])" />
+
+                    <div style="text-align:center;">
+                        @Html.Raw(titulo)
+                        <h3 style="margin:0px;">@ViewBag.Nome</h3>
+                    </div>
+                    <br />
+                    <div id="planejamento"></div>
+                </div>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="white_box" style="padding: 5px">
+                <div class="col-lg-3">
+
+                    <div class="editor-field">
+
+                        @*                        @if (Model.listaAreaAtuacao == null)
+                        {
+                            @:Esta Turma Não possui área de atuação vinculada
+				}
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.areaAtuacao, ((IEnumerable<Senai.SPE.Domain.AreaAtuacao>)Model.listaAreaAtuacao).Select(option => new SelectListItem
+                   {
+                       Text = option.Nome,
+                       Value = option.IdAreaAtuacao.ToString()
+                   }), "Selecione", new { style = "width:auto;" })
+                        }*@
+
+                        @*@Html.ValidationMessageFor(model => model.IdCR)*@
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li id="taba" @(tipo == "1" ? "style=display:none;" : tabAmbiente)><a href="#ambientes" style="font-size: 12px;">Ambiente</a></li>
+                        <li id="tabb" @(tipo == "2" ? "style=display:none;" : tabComponente)><a href="#componentes" style="font-size: 12px;">Componente</a></li>
+                        <li id  ="tabc" @(tipo == "3" ? "style=display:none;" : tabDocente)><a href="#docentes" style="font-size: 12px;">Docente</a></li>
+                        <li id="tabd" @(tipo == "4" ? "style=display:none;" : tabTurma)><a href="#turmas" style="font-size: 12px;">Turma</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div style="position: relative;" class="tab-pane" id="docentes">
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('#dataTable').dataTable({
+                                        "bPaginate": false,
+                                        "bDestroy": true,
+
+                                    });
+                                    $(".dataTables_info").hide();
+                                });
+                            </script>
+                            <table class="camposFiltro1">
+                                <tr>
+                                </tr>
+                            </table>
+                            <table id="dataTable1" class="table table-striped" style="margin-bottom: 20px;">
+                                <thead>
+                                    <tr>
+                                        <th search>Nome
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.listaDocentes)
+                                    {
+                                        <tr class="information" data-toggle="modal" data-target="#modalAgendamento">
+                                            <td>
+                                                <div class="foto_box">
+                                                    <img src="../../Images/avatar.jpg" />
+                                                </div>
+                                                <h6 class="docente_nome"  tipo="1" itemid="@item.IdDocente" style="position: absolute;">@item.Nome</h6>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+                        <div class="tab-pane fluid" style="position: relative;" id="turmas">
+
+                            <table class="camposFiltro2">
+                                <tr>
+                                </tr>
+                            </table>
+
+                            <table id="dataTable2" class="table table-striped" style="margin-bottom: 20px;">
+                                <thead>
+                                    <tr>
+                                        <th search>Nome
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.listaTurmas)
+                                    {
+                                        <tr class="information" data-toggle="modal" data-target="#modalAgendamento">
+                                            <td>
+                                                <h6 class="docente_nome"  tipo="2" itemid="@item.IdTurma" >@item.IdTurma.ToString("00000") - @item.Matriz.Nome</h6>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div style="position: relative;" id="componentes" @if (tipo == "1")
+                                                                          {
+		 @:class="tab-pane active"
+	}
+                                                                          else
+                                                                          {
+		 @:class="tab-pane"                               
+	}>
+                            <table class="camposFiltro3">
+                                <tr>
+                                </tr>
+                            </table>
+                            <table id="dataTable3" class="table table-striped" style="margin-bottom: 20px;">
+                                <thead>
+                                    <tr>
+                                        <th search>Nome
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.listaComponentes)
+                                    {
+                                        <tr class="information" data-toggle="modal" data-target="#modalAgendamento">
+                                            <td style="height: 50px;" align="center">
+                                                <h6 class="docente_nome"  tipo="3" itemid="@item.IdComponente" style="position: absolute;">@item.Nome - CH: @(item.CH) Horas</h6>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div style="position: relative;" id="ambientes" @if (tipo != "1")
+                                                                        {
+		 @:class="tab-pane active"
+	}
+                                                                        else
+                                                                        {
+		 @:class="tab-pane"                               
+	}>
+                            <table class="camposFiltro4">
+                                <tr>
+                                </tr>
+                            </table>
+                            <table id="dataTable4" class="table table-striped" style="margin-bottom: 20px;">
+                                <thead>
+                                    <tr>
+                                        <th search>Nome
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.listaAmbientes)
+                                    {
+                                        <tr class="information" data-toggle="modal" data-target="#modalAgendamento">
+                                            <td style="height: 50px;" align="center">
+                                                <h6 class="docente_nome"  tipo="4" itemid="@item.IdAmbiente" style="position: absolute;">@item.Nome</h6>
+                                            </td>
+                                        </tr>@*
+                                        
+                                        <tr class="information" data-toggle="modal" data-target="#modalAgendamento">
+                                            <td>
+                                                <h6 class="docente_nome"  tipo="4" itemid="@item.IdAmbiente" style="position: absolute;">@item.Nome</h6>
+                                            </td>
+                                        </tr>
+                                    *@
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Layout modal -->
+<div class="modal fade" id="modalAgendamento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h4></h4>
+                        <form id="formModal">
+                            <div class="row-fluid">
+                                <label id="Label1" class="span6">Docente</label>
+                                <label id="Label2" class="span6">Componente</label>
+
+                            </div>
+
+                            <div class="row-fluid">
+
+                                <select name="slt1" id="slt1" class="span6">
+                                </select>
+
+                                <select name="slt2" id="slt2" class="span6 offset2">
+                                </select>
+                            </div>
+
+                            <div class="row-fluid">
+                                <label id="Label3" class="span6">Ambiente</label>
+                                <label id="Label4" class="span6">Turma</label>
+
+                            </div>
+
+                            <div class="row-fluid">
+                                <select name="slt3" id="slt3" class="span6">
+                                </select>
+                                <select name="Slt4" id="slt4" class="span6 offset2">
+                                </select>
+                            </div>
+                            <div class="form-inline">
+
+                                <label class="checkbox">
+                                    <input name="diasemana" type="checkbox" value="0" id="checkdomingo">
+                                    Domingo &nbsp;
+                                </label>
+                                <label class="checkbox">
+                                    <input name="diasemana" type="checkbox" value="1" id="checksegunda">
+                                    Segunda &nbsp;
+                                </label>
+                                <label class="checkbox">
+                                    <input name="diasemana" type="checkbox" value="2" id="checkterca">
+                                    Terça &nbsp;
+                                </label>
+                                <label class="checkbox">
+                                    <input name="diasemana" type="checkbox" value="3" id="checkquarta">
+                                    Quarta &nbsp;
+                                </label>
+                                <label class="checkbox">
+                                    <input name="diasemana" type="checkbox" value="4" id="checkquinta">
+                                    Quinta &nbsp; 
+                                </label>
+                                <label class="checkbox">
+                                    <input name="diasemana" type="checkbox" value="5" id="checksexta">
+                                    Sexta &nbsp;
+                                </label>
+                                <label class="checkbox">
+                                    <input name="diasemana" type="checkbox" value="6" id="checksabado">
+                                    Sábado
+                                </label>
+                                <br />
+
+                            </div>
+                            <div style="float: left;">
+
+                                <label class="select">Data Início</label>
+                                <input type="text" name="dtInicio" id="dtInicio" tipo="data" style="width: 100px" />
+                                <br />
+
+                                <label class="select">Data Fim</label>
+                                <input type="text" name="dtFim" id="dtFim" tipo="data" style="width: 100px" />
+
+                            </div>
+
+                            <div style="float: left; margin-left: 142px;">
+
+                                <label class="select spam3">Hora Inicio:</label>
+                                <input id="horaInicio" type="text" class="selectpicker" style="width: 100px" />
+                                <br />
+
+                                <label class="select">Hora Fim:</label>
+                                <input type="text" id="horaFim" class="selectpicker" style="width: 100px" />
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div id="msgValidacao" style="color: red; margin-bottom: 12px;"></div>
+
+        <input type="button" data-dismiss="modal" data-target="#modalAgendamento" class="btns btn-small" value="Fechar" style="border: none;" />
+        <input type="button" data-dismiss="modal" data-target="#modalAgendamento" id="btnSaveAgendamento" class="btns btn-principal btn-small" value="Salvar" style="border: none;" />
+    </div>
+    <!-- /.modal-dialog -->
+
+    <!-- /.modal -->
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //var startDateTextBox = $('#horaInicio');
+        //var endDateTextBox = $('#horaFim');
+        //$("#horaInicio").mask("99:99");
+        //$("#horaFim").mask("99:99");
+        var today = new Date();
+        var defaultStartDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), $('#TimeInicialHoraView').val(), $('#TimeInicialMinutoView').val());
+        var defaultEndDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), $('#TimeFinalHoraView').val(), $('#TimeFinalMinutoView').val());
+
+        $('#horaInicio').timepicker({
+            showTimezone: false,
+            showTime: true,
+            closeText: 'OK',
+            timeText: 'Hora: ',
+            hourText: 'Hora: ',
+            minuteText: 'Minuto: ',
+            currentText: 'Hoje',
+            timeOnlyTitle: 'Selecione a hora',
+            stepMinute: 5,
+            timeFormat: "HH:mm",
+            defaultValue: "00:00",
+            onClose: function (dateText, inst) {
+                if ($('#horaFim').val() != '') {
+                    var testStartTime = $('#horaInicio').datetimepicker('getDate');
+                    var testEndTime = $('#horaFim').datetimepicker('getDate');
+                    if (testStartTime > testEndTime) {
+                        $('#horaFim').timepicker('setDate', testStartTime);
+                    }
+                    $('#horaFim').datetimepicker('option', 'minDateTime', $('#horaInicio').datetimepicker('getDate'));
+
+                }
+                else {
+                    $('#horaFim').val(dateText);
+                }
+            },
+            onSelect: function (selectedDateTime) {
+                $('#horaFim').datetimepicker('option', 'minDateTime', $('#horaInicio').datetimepicker('getDate'));
+            }
+        });
+
+        $('#horaFim').timepicker({
+            showTimezone: false,
+            showTime: true,
+            closeText: 'OK',
+            timeText: 'Hora: ',
+            hourText: 'Hora: ',
+            minuteText: 'Minuto: ',
+            currentText: 'Hoje',
+            timeOnlyTitle: 'Selecione a hora',
+            stepMinute: 5,
+            timeFormat: "HH:mm",
+            defaultValue: "23:45",
+            onClose: function (dateText, inst) {
+                if ($('#horaInicio').val() != '') {
+                    var testStartTime = $('#horaInicio').datetimepicker('getDate');
+                    var testEndTime = $('#horaFim').datetimepicker('getDate');
+                    if (testStartTime > testEndTime) {
+                        $('#horaInicio').timepicker('setDate', testEndTime);
+                    }
+                    $('#horaInicio').datetimepicker('option', 'maxDateTime', $('#horaFim').datetimepicker('getDate'));
+
+                }
+                else {
+                    $('#horaInicio').val(dateText);
+                }
+            },
+            onSelect: function (selectedDateTime) {
+                $('#horaInicio').datetimepicker('option', 'maxDateTime', $('#horaFim').datetimepicker('getDate'));
+            }
+        });
+
+        var testStartTime = $('#horaInicio').datetimepicker('getDate');
+        var testEndTime = $('#horaFim').datetimepicker('getDate');
+
+        //if (isEditar) {
+        //    $('#horaInicio').timepicker('setDate', defaultStartDate);
+        //    $('#horaFim').timepicker('setDate', defaultEndDate);
+        //    $('#horaFim').datetimepicker('option', 'minDateTime', $('#horaInicio').datetimepicker('getDate'));
+        //    $('#horaInicio').datetimepicker('option', 'maxDateTime', $('#horaFim').datetimepicker('getDate'));
+        //}
+
+
+    });
+</script>
